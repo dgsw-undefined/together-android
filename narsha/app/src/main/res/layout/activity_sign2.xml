@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".sign2Activity">
+
+
+    <ImageView
+        android:id="@+id/logo_sign2"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_user_image" />
+
+    <TextView
+        android:id="@+id/title_sign2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Undefined"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/logo_sign2"
+        app:layout_constraintStart_toStartOf="@+id/logo_sign2"
+        app:layout_constraintTop_toBottomOf="@+id/logo_sign2" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="30dp"
+        android:background="#000000"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_sign2"></LinearLayout>
+
+    <TextView
+        android:id="@+id/text_sign2_tec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Tec"
+        android:textColor="#000000"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="@+id/edit_sign2_tec"
+        app:layout_constraintEnd_toStartOf="@+id/edit_sign2_tec"
+        app:layout_constraintHorizontal_bias="0.449"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/edit_sign2_tec" />
+
+    <TextView
+        android:id="@+id/text_sign2_interested"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Interested"
+        android:textColor="#000000"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="@+id/edit_sign2_interested"
+        app:layout_constraintEnd_toStartOf="@+id/edit_sign2_interested"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/edit_sign2_interested" />
+
+    <TextView
+        android:id="@+id/text_sign2_github"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:text="GitHub"
+        android:textColor="#000000"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="@+id/edit_sign2_github"
+        app:layout_constraintEnd_toStartOf="@+id/edit_sign2_github"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/edit_sign2_github" />
+
+    <TextView
+        android:id="@+id/text_sign2_position"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Position"
+        android:textColor="#000000"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="@+id/edit_sign2_position"
+        app:layout_constraintEnd_toStartOf="@+id/edit_sign2_position"
+        app:layout_constraintHorizontal_bias="0.418"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/edit_sign2_position" />
+
+    <TextView
+        android:id="@+id/text_sign2_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Field"
+        android:textColor="#000000"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="@+id/edit_sign2_field"
+        app:layout_constraintEnd_toStartOf="@+id/edit_sign2_field"
+        app:layout_constraintHorizontal_bias="0.447"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/edit_sign2_field"
+        app:layout_constraintVertical_bias="0.857" />
+
+    <EditText
+        android:id="@+id/edit_sign2_tec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:hint="Tec"
+        android:textAlignment="center"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+
+    <EditText
+        android:id="@+id/edit_sign2_interested"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="Interested"
+        android:textAlignment="center"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/edit_sign2_tec"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edit_sign2_tec"
+        app:layout_constraintTop_toBottomOf="@+id/edit_sign2_tec" />
+
+    <EditText
+        android:id="@+id/edit_sign2_github"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="GitHub"
+        android:textAlignment="center"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/edit_sign2_interested"
+        app:layout_constraintStart_toStartOf="@+id/edit_sign2_interested"
+        app:layout_constraintTop_toBottomOf="@+id/edit_sign2_interested" />
+
+    <EditText
+        android:id="@+id/edit_sign2_position"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="Position"
+        android:textAlignment="center"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/edit_sign2_github"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edit_sign2_github"
+        app:layout_constraintTop_toBottomOf="@+id/edit_sign2_github" />
+
+    <EditText
+        android:id="@+id/edit_sign2_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="Field"
+        android:textAlignment="center"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/edit_sign2_position"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/edit_sign2_position"
+        app:layout_constraintTop_toBottomOf="@+id/edit_sign2_position" />
+
+    <Button
+        android:id="@+id/btn_sign2_to_sign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="8dp"
+        android:background="#00000000"
+        android:text="Back"
+        app:layout_constraintEnd_toStartOf="@+id/btn_sign2_do_sign"
+        app:layout_constraintTop_toBottomOf="@+id/edit_sign2_field" />
+
+    <Button
+        android:id="@+id/btn_sign2_do_sign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="35dp"
+        android:layout_marginTop="8dp"
+        android:background="#00000000"
+        android:text="Sign"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_sign2_field" />
+</android.support.constraint.ConstraintLayout>
