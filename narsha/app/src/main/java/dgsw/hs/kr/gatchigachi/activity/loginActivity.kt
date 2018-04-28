@@ -3,7 +3,8 @@ package gateegachi.dgsw.kr.narsha
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import gateegachi.dgsw.kr.narsha.R.layout.activity_sign
+import dgsw.hs.kr.gatchigachi.R
+import dgsw.hs.kr.gatchigachi.R.layout.activity_sign
 import kotlinx.android.synthetic.main.activity_login.*
 
 class loginActivity : AppCompatActivity() {

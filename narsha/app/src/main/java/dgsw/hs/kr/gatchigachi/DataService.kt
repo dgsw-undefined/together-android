@@ -1,5 +1,7 @@
 package dgsw.hs.kr.gatchigachi
 
+import dgsw.hs.kr.gatchigachi.model.Team
+
 object DataService {
     val teamData = arrayListOf(
             Team("undefined"),
