@@ -1,13 +1,13 @@
-package dgsw.hs.kr.gatchigachi
+package dgsw.hs.kr.gatchigachi.adapter
 
-import android.annotation.SuppressLint
-import android.content.ClipData
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
+import dgsw.hs.kr.gatchigachi.R
+import dgsw.hs.kr.gatchigachi.model.Team
 
 class TeamGridAdapter (val context: Context, val teamData: ArrayList<Team>) : BaseAdapter() {
 

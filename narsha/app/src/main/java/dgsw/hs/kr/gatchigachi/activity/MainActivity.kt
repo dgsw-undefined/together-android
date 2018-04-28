@@ -2,9 +2,8 @@ package dgsw.hs.kr.gatchigachi
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.GridLayout
 import android.widget.GridView
-import android.widget.ListView
+import dgsw.hs.kr.gatchigachi.adapter.TeamGridAdapter
 
 class MainActivity : AppCompatActivity() {
 
