@@ -1,9 +1,12 @@
 package dgsw.hs.kr.gatchigachi
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.GridView
 import dgsw.hs.kr.gatchigachi.adapter.TeamGridAdapter
+import gateegachi.dgsw.kr.narsha.trustActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 

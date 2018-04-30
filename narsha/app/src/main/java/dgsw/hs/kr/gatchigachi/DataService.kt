@@ -1,6 +1,7 @@
 package dgsw.hs.kr.gatchigachi
 
 import dgsw.hs.kr.gatchigachi.model.Team
+import dgsw.hs.kr.gatchigachi.model.User
 
 object DataService {
     val teamData = arrayListOf(
@@ -13,5 +14,12 @@ object DataService {
             Team("레알마드리드"),
             Team("바르셀로나"),
             Team("아 누구야")
+    )
+
+    val UserData = arrayListOf(
+            User("Gun"),
+            User("SungHwa"),
+            User("TaeHyung"),
+            User("Jin Hyuk")
     )
 }
