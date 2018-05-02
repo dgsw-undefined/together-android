@@ -1,4 +1,4 @@
-package gateegachi.dgsw.kr.narsha
+package dgsw.hs.kr.gatchigachi
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -8,7 +8,7 @@ import dgsw.hs.kr.gatchigachi.R.layout.activity_login
 import dgsw.hs.kr.gatchigachi.R.layout.activity_sign2
 import kotlinx.android.synthetic.main.activity_sign.*
 
-class signActivity : AppCompatActivity() {
+class SignActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
