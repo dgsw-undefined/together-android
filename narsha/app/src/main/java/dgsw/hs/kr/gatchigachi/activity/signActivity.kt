@@ -15,12 +15,12 @@ class SignActivity : AppCompatActivity() {
         setContentView(R.layout.activity_sign)
 
         btn_sign_to_login.setOnClickListener{
-            val nextIntent = Intent(this, activity_login::class.java)
+            val nextIntent = Intent(this, LoginActivity::class.java)
             startActivity(nextIntent)
         }
 
         btn_sign_to_sign2.setOnClickListener {
-            val nextIntent = Intent(this, activity_sign2::class.java)
+            val nextIntent = Intent(this, Sign2Activity::class.java)
             startActivity(nextIntent)
         }
     }
