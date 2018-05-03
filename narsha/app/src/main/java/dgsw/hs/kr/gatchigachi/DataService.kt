@@ -1,7 +1,9 @@
 package dgsw.hs.kr.gatchigachi
 
+import dgsw.hs.kr.gatchigachi.model.Member
 import dgsw.hs.kr.gatchigachi.model.Team
 import dgsw.hs.kr.gatchigachi.model.User
+import java.util.*
 
 object DataService {
     val teamData = arrayListOf(
@@ -21,5 +23,12 @@ object DataService {
             User("SungHwa"),
             User("TaeHyung"),
             User("Jin Hyuk")
+    )
+
+    val MemberData = arrayListOf(
+            Member("KimGun","Front","2015-05-03"),
+            Member("SungHwa","Front","2015-05-03"),
+            Member("Taehyung","Back","2015-05-03"),
+            Member("JinHyuk","Back","2015-05-03")
     )
 }

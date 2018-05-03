@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         team_grid_view.adapter = teamAdapter
 
         btn_trust.setOnClickListener {
-            val nextIntent = Intent(this, TrustActivity::class.java)
+            val nextIntent = Intent(this, DetailTeamActivity::class.java)
             startActivity(nextIntent)
         }
 
