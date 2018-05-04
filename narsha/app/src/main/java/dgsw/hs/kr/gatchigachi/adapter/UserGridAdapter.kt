@@ -7,31 +7,33 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import dgsw.hs.kr.gatchigachi.R
-import dgsw.hs.kr.gatchigachi.model.Team
+import dgsw.hs.kr.gatchigachi.model.User
 
-class TeamGridAdapter (val context: Context, val teamData: ArrayList<Team>) : BaseAdapter() {
+class UserGridAdapter (val context: Context, val UserData: ArrayList<User>) : BaseAdapter() {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
-        val teamView : View = LayoutInflater.from(context).inflate(R.layout.team_list_item, null)
+        val teamView : View = LayoutInflater.from(context).inflate(R.layout.user_list_item, null)
 
-        val teamName : TextView = teamView.findViewById(R.id.team_name)
+        val teamName : TextView = teamView.findViewById(R.id.user_name)
 
-        val team = teamData[position]
+        val user = UserData[position]
 
-        teamName.setText(team.name)
+        teamName.setText(user.name)
 
         return teamView
     }
 
     override fun getItem(position: Int): Any {
-        return teamData.get(position)
+        return UserData.get(position)
     }
 
     override fun getItemId(position: Int): Long {
-        return teamData.get(position).hashCode().toLong()
+        return  0
     }
 
+
+
     override fun getCount(): Int {
-        return teamData.size
+        return UserData.size
     }
 }

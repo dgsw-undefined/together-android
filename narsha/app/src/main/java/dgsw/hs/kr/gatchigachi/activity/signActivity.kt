@@ -1,4 +1,4 @@
-package gateegachi.dgsw.kr.narsha
+package dgsw.hs.kr.gatchigachi
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -8,19 +8,19 @@ import dgsw.hs.kr.gatchigachi.R.layout.activity_login
 import dgsw.hs.kr.gatchigachi.R.layout.activity_sign2
 import kotlinx.android.synthetic.main.activity_sign.*
 
-class signActivity : AppCompatActivity() {
+class SignActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign)
 
         btn_sign_to_login.setOnClickListener{
-            val nextIntent = Intent(this, activity_login::class.java)
+            val nextIntent = Intent(this, LoginActivity::class.java)
             startActivity(nextIntent)
         }
 
         btn_sign_to_sign2.setOnClickListener {
-            val nextIntent = Intent(this, activity_sign2::class.java)
+            val nextIntent = Intent(this, Sign2Activity::class.java)
             startActivity(nextIntent)
         }
     }

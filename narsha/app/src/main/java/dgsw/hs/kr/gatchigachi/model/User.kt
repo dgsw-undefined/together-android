@@ -1,4 +1,3 @@
 package dgsw.hs.kr.gatchigachi.model
 
-class Team(val name:String)
-
+class User(val name:String)
