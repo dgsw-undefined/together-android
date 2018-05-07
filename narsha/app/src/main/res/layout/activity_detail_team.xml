@@ -9,10 +9,11 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="395dp"
-        android:layout_height="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
         android:layout_marginTop="75dp"
         android:background="#000000"
+
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,7 +79,7 @@
     <ListView
         android:id="@+id/team_member_list"
         android:layout_width="match_parent"
-        android:layout_height="659dp"
+        android:layout_height="660dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" /><![CDATA[

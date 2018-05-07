@@ -14,7 +14,7 @@ class MemberGridAdapter (val context: Context, val MemberData: ArrayList<Member>
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
         val memberView : View = LayoutInflater.from(context).inflate(R.layout.member_list_item, null)
 
-        val memberName : TextView = memberView.findViewById(R.id.member_name);
+        val memberName : TextView = memberView.findViewById(R.id.member_name)
 
         val memberPosition : TextView = memberView.findViewById(R.id.member_position)
 
