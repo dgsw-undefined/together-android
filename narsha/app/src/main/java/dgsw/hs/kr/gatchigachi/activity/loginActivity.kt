@@ -20,22 +20,39 @@ class LoginActivity : AppCompatActivity() {
         }
 
         btn_login_do_login.setOnClickListener {
+            val nextIntent = Intent(this, MainActivity::class.java)
+
             val id : String = edit_login_id.text.toString()
             val pw : String = edit_login_pw.text.toString()
 
-            if(id.length == 0){
-                Toast.makeText(this,"ID를 입력하세요", Toast.LENGTH_SHORT).show()
-                edit_login_id.requestFocus();
+            if(check(id, pw) == 1){
+                // 중복 등 데이터 확인
+                startActivity(nextIntent)
             }
 
-            if(pw.length == 0){
-                Toast.makeText(this,"비밀번호를 입력하세요", Toast.LENGTH_SHORT).show()
-                edit_login_pw.requestFocus()
-            }
-            else if(pw.length < 8){
-                Toast.makeText(this,"8자 이상의 비밀번호를 입력하세요", Toast.LENGTH_SHORT).show()
-                edit_login_pw.requestFocus()
-            }
+
+
         }
+    }
+    fun check(id : String, pw : String) : Int {
+        if(id.length == 0){
+            Toast.makeText(this,"ID를 입력하세요", Toast.LENGTH_SHORT).show()
+            edit_login_id.requestFocus();
+            return -1
+        }
+
+        if(pw.length == 0){
+            Toast.makeText(this,"비밀번호를 입력하세요", Toast.LENGTH_SHORT).show()
+            edit_login_pw.requestFocus()
+            return -1
+        }
+
+        else if(pw.length < 8){
+            Toast.makeText(this,"8자 이상의 비밀번호를 입력하세요", Toast.LENGTH_SHORT).show()
+            edit_login_pw.requestFocus()
+            return -1
+        }
+
+        return 1
     }
 }
