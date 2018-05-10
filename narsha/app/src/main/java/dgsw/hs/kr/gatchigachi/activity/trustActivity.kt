@@ -8,6 +8,7 @@ import dgsw.hs.kr.gatchigachi.R
 import dgsw.hs.kr.gatchigachi.adapter.TeamGridAdapter
 import dgsw.hs.kr.gatchigachi.adapter.UserGridAdapter
 import dgsw.hs.kr.gatchigachi.model.User
+import kotlinx.android.synthetic.main.activity_trust.*
 
 class TrustActivity : AppCompatActivity() {
 
@@ -17,12 +18,12 @@ class TrustActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_trust)
 
-        val listView:ListView = findViewById(R.id.list_trust_view)
+        //val listView:ListView = findViewById(R.id.list_trust_view)
         var UserAdapter = UserGridAdapter(this, DataService.UserData)
         //val UserAdapter = UserGridAdapter(context = this, UserData = testArray)
 
 
 
-        listView.adapter = UserAdapter
+        list_trust_view.adapter = UserAdapter
     }
 }

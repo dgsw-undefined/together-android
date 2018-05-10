@@ -29,9 +29,6 @@ class LoginActivity : AppCompatActivity() {
                 // 중복 등 데이터 확인
                 startActivity(nextIntent)
             }
-
-
-
         }
     }
     fun check(id : String, pw : String) : Int {
