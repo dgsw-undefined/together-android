@@ -50,8 +50,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#000000"
+        android:layout_height="2dip"
+        android:background="#2d3436"
+        android:elevation="50dip"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
