@@ -22,21 +22,15 @@ class LoginActivity : AppCompatActivity() {
         btn_login_do_login.onFocusChangeListener
 
         btn_login_to_sign.setOnClickListener {
-<<<<<<< HEAD
             val Button_Animation = AnimationUtils.loadAnimation(this,R.anim.button_anim)
             Button_Animation.start()
-=======
->>>>>>> parent of 9048191... 버튼 애니메이션 test
             val nextIntent = Intent(this, SignActivity::class.java)
             startActivity(nextIntent)
         }
 
         btn_login_do_login.setOnClickListener {
-<<<<<<< HEAD
             val Button_Animation = AnimationUtils.loadAnimation(this,R.anim.button_anim)
             Button_Animation.start()
-=======
->>>>>>> parent of 9048191... 버튼 애니메이션 test
             val nextIntent = Intent(this, MainActivity::class.java)
 
             val id : String = edit_login_id.text.toString()
