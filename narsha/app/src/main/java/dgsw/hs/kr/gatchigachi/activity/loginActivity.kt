@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Switch
 import android.widget.Toast
 import dgsw.hs.kr.gatchigachi.R.layout.activity_sign
+import dgsw.hs.kr.gatchigachi.activity.MainActivity
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
