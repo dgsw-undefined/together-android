@@ -19,14 +19,14 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         btn_login_to_sign.setOnClickListener {
-            val Button_Animation : Animation = AnimationUtils.loadAnimation(this,R.anim.button_anim)
+            val Button_Animation = AnimationUtils.loadAnimation(this,R.anim.button_anim)
             Button_Animation.start()
             val nextIntent = Intent(this, SignActivity::class.java)
             startActivity(nextIntent)
         }
 
         btn_login_do_login.setOnClickListener {
-            val Button_Animation : Animation = AnimationUtils.loadAnimation(this,R.anim.button_anim)
+            val Button_Animation = AnimationUtils.loadAnimation(this,R.anim.button_anim)
             Button_Animation.start()
             val nextIntent = Intent(this, MainActivity::class.java)
 
