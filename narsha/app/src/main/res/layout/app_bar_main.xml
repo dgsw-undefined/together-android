@@ -110,10 +110,27 @@
         android:id="@+id/aaa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="56dp"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout2"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp">
+
+        <LinearLayout
+            android:id="@+id/underline"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/back"
+            android:elevation="50dip"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="DuplicateIds">
+
+        </LinearLayout>
 
         <CheckBox
             android:id="@+id/btn_open_detail"
@@ -129,21 +146,6 @@
             app:layout_constraintEnd_toEndOf="@+id/underline"
             app:layout_constraintStart_toStartOf="@+id/underline"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <LinearLayout
-            android:id="@+id/underline"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/back"
-            android:elevation="50dip"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        </LinearLayout>
 
         <GridView
             android:id="@+id/team_grid_view"

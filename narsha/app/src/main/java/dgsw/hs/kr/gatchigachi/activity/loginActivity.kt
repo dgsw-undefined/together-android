@@ -1,8 +1,12 @@
 package dgsw.hs.kr.gatchigachi
 
+import android.animation.Animator
+import android.animation.AnimatorSet
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.sax.StartElementListener
+import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Switch
@@ -17,23 +21,26 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val Button_Animation : Animation = AnimationUtils.loadAnimation(this,R.anim.button_anim)
+
+
 
         btn_login_to_sign.setOnClickListener {
             val nextIntent = Intent(this, SignActivity::class.java)
+            val animation = AnimationUtils.loadAnimation(this,R.anim.button_anim)
+            btn_login_to_sign.startAnimation(animation)
             startActivity(nextIntent)
         }
 
         btn_login_do_login.setOnClickListener {
             val nextIntent = Intent(this, MainActivity::class.java)
-
+            val animation = AnimationUtils.loadAnimation(this,R.anim.button_anim)
+            btn_login_do_login.startAnimation(animation)
             val id : String = edit_login_id.text.toString()
             val pw : String = edit_login_pw.text.toString()
 
             if(check(id, pw) == 1){
                 // 중복 등 데이터 확인
                 if(call_server() == 1){
-
                     startActivity(nextIntent)
                 }
             }
