@@ -4,6 +4,8 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.ContactsContract
+import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import dgsw.hs.kr.gatchigachi.R
 import dgsw.hs.kr.gatchigachi.R.layout.activity_login
@@ -31,11 +33,11 @@ class SignActivity : AppCompatActivity() {
             val phone : String = edit_sign_phone.text.toString()
 
             if(Check(name, id,pw, pw2, phone) == 1){
-                /*nextIntent.putExtra("ToSign2",name)
-                nextIntent.putExtra("ToSign2",id)
-                nextIntent.putExtra("ToSign2",pw)
-                nextIntent.putExtra("ToSign2",pw2)
-                nextIntent.putExtra("ToSign2",phone)*/
+                nextIntent.putExtra("name",name)
+                nextIntent.putExtra("id",id)
+                nextIntent.putExtra("pw",pw)
+                nextIntent.putExtra("pw2",pw2)
+                nextIntent.putExtra("phone",phone)
                 startActivity(nextIntent)
             }
         }
@@ -49,11 +51,15 @@ class SignActivity : AppCompatActivity() {
             val phone : String = edit_sign_phone.text.toString()
 
             if(Check(name, id, pw, pw2, phone) == 1){
-                //서버
-                startActivity(nextIntent)
+                if(call_server() == 1){
+                    startActivity(nextIntent)
+                }
             }
 
         }
+    }
+    fun call_server() : Int {
+        return 1
     }
 
     fun Check(name :String, id : String, pw: String, pw2 : String, phone : String) : Int{

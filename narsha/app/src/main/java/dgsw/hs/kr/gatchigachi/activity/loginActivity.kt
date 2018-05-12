@@ -3,6 +3,8 @@ package dgsw.hs.kr.gatchigachi
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.Switch
 import android.widget.Toast
 import dgsw.hs.kr.gatchigachi.R.layout.activity_sign
@@ -13,6 +15,10 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        val Button_Animation : Animation = AnimationUtils.loadAnimation(this,R.anim.button_anim)
+
+        btn_login_do_login.onFocusChangeListener
 
         btn_login_to_sign.setOnClickListener {
             val nextIntent = Intent(this, SignActivity::class.java)

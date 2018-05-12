@@ -16,5 +16,6 @@ class DetailTeamActivity : AppCompatActivity() {
         var memberAdapter = MemberGridAdapter(this, DataService.MemberData)
         team_member_list.adapter = memberAdapter
 
+
     }
 }
