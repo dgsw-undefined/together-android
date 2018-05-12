@@ -12,7 +12,7 @@
         android:layout_height="2dip"
         android:layout_marginTop="75dp"
         android:background="#2d3436"
-        android:elevation="500dp"
+        android:elevation="3dip"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

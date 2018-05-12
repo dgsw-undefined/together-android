@@ -15,7 +15,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         btn_login_to_sign.setOnClickListener {
-            val nextIntent = Intent(this, activity_sign::class.java)
+            val nextIntent = Intent(this, SignActivity::class.java)
             startActivity(nextIntent)
         }
 
@@ -27,9 +27,15 @@ class LoginActivity : AppCompatActivity() {
 
             if(check(id, pw) == 1){
                 // 중복 등 데이터 확인
-                startActivity(nextIntent)
+                if(call_server() == 1){
+
+                    startActivity(nextIntent)
+                }
             }
         }
+    }
+    fun call_server() : Int {
+        return 1
     }
     fun check(id : String, pw : String) : Int {
         if(id.length == 0){

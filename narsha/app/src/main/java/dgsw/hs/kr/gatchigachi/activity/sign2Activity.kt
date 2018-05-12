@@ -11,12 +11,12 @@ class Sign2Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign2)
-        val intent = getIntent()
+        /*val intent = getIntent()
         val name: String = intent.getStringExtra("name")
         val id: String = intent.getStringExtra("id")
         val pw: String = intent.getStringExtra("pw")
         val pw2: String = intent.getStringExtra("pw2")
-        val phone: String = intent.getStringExtra("phone")
+        val phone: String = intent.getStringExtra("phone")*/
 
         btn_sign2_do_sign.setOnClickListener {
             val nextIntent = Intent(this, LoginActivity::class.java)
@@ -26,6 +26,10 @@ class Sign2Activity : AppCompatActivity() {
             val github: String = edit_sign2_github.text.toString()
             val field: String = edit_sign2_field.text.toString()
             val interested: String = edit_sign2_interested.text.toString()
+
+            if(Check(tec, position, github, field, interested) == 1){
+                //서버
+            }
             startActivity(nextIntent)
         }
 

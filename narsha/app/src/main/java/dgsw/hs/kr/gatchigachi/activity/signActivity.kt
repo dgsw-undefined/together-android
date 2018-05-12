@@ -31,11 +31,11 @@ class SignActivity : AppCompatActivity() {
             val phone : String = edit_sign_phone.text.toString()
 
             if(Check(name, id,pw, pw2, phone) == 1){
-                nextIntent.putExtra("ToSign2",name)
+                /*nextIntent.putExtra("ToSign2",name)
                 nextIntent.putExtra("ToSign2",id)
                 nextIntent.putExtra("ToSign2",pw)
                 nextIntent.putExtra("ToSign2",pw2)
-                nextIntent.putExtra("ToSign2",phone)
+                nextIntent.putExtra("ToSign2",phone)*/
                 startActivity(nextIntent)
             }
         }
@@ -49,7 +49,7 @@ class SignActivity : AppCompatActivity() {
             val phone : String = edit_sign_phone.text.toString()
 
             if(Check(name, id, pw, pw2, phone) == 1){
-                //중복 등 데이터 확인
+                //서버
                 startActivity(nextIntent)
             }
 
