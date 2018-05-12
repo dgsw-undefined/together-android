@@ -21,8 +21,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-
-
+        val LogoAnimation = AnimationUtils.loadAnimation(this, R.anim.logo_anim)
+        logo_login.startAnimation(LogoAnimation)
 
         btn_login_to_sign.setOnClickListener {
             val nextIntent = Intent(this, SignActivity::class.java)
