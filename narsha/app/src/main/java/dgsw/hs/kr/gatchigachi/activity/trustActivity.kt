@@ -22,8 +22,6 @@ class TrustActivity : AppCompatActivity() {
         var UserAdapter = UserGridAdapter(this, DataService.UserData)
         //val UserAdapter = UserGridAdapter(context = this, UserData = testArray)
 
-
-
         list_trust_view.adapter = UserAdapter
     }
 }

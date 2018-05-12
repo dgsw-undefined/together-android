@@ -3,6 +3,7 @@ package dgsw.hs.kr.gatchigachi
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_sign2.*
 
@@ -20,7 +21,8 @@ class Sign2Activity : AppCompatActivity() {
 
         btn_sign2_do_sign.setOnClickListener {
             val nextIntent = Intent(this, LoginActivity::class.java)
-
+            val animation = AnimationUtils.loadAnimation(this,R.anim.button_anim)
+            btn_sign2_do_sign.startAnimation(animation)
             val tec: String = edit_sign2_tec.text.toString()
             val position: String = edit_sign2_position.text.toString()
             val github: String = edit_sign2_github.text.toString()
@@ -36,7 +38,10 @@ class Sign2Activity : AppCompatActivity() {
 
         btn_sign2_to_sign.setOnClickListener {
             val nextIntent = Intent(this, SignActivity::class.java)
+            val animation = AnimationUtils.loadAnimation(this,R.anim.button_anim)
+            btn_sign2_to_sign.startAnimation(animation)
             startActivity(nextIntent)
+
         }
 
     }
