@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.TextView
 import android.widget.Toast
 import dgsw.hs.kr.gatchigachi.R
@@ -19,11 +21,15 @@ class SignActivity : AppCompatActivity() {
         setContentView(R.layout.activity_sign)
 
         btn_sign_to_login.setOnClickListener{
+            val Button_Animation : Animation = AnimationUtils.loadAnimation(this,R.anim.button_anim)
+            Button_Animation.start()
             val nextIntent = Intent(this, LoginActivity::class.java)
             startActivity(nextIntent)
         }
 
         btn_sign_to_sign2.setOnClickListener {
+            val Button_Animation : Animation = AnimationUtils.loadAnimation(this,R.anim.button_anim)
+            Button_Animation.start()
             val nextIntent = Intent(this, Sign2Activity::class.java)
 
             val name : String = edit_sign_name.text.toString()
@@ -43,6 +49,8 @@ class SignActivity : AppCompatActivity() {
         }
 
         btn_sign_do_sign.setOnClickListener {
+            val Button_Animation : Animation = AnimationUtils.loadAnimation(this,R.anim.button_anim)
+            Button_Animation.start()
             val nextIntent = Intent(this, LoginActivity::class.java)
             val name : String = edit_sign_name.text.toString()
             val id : String = edit_sign_id.text.toString()
