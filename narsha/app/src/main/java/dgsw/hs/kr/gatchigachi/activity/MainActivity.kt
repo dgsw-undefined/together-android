@@ -1,16 +1,16 @@
 package dgsw.hs.kr.gatchigachi.activity
 
-import android.animation.ValueAnimator
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.view.animation.Animation
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
+import android.view.animation.*
 import dgsw.hs.kr.gatchigachi.DataService
 import dgsw.hs.kr.gatchigachi.DetailTeamActivity
 import dgsw.hs.kr.gatchigachi.R
@@ -33,9 +33,22 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             startActivity(nextIntent)
         }
 
-//        btn_open_detail.setOnClickListener{
-//            underline.set
-//        }
+        btn_open_detail.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked){
+                aaa.y = aaa.y+300
+
+                detail.visibility = VISIBLE
+
+            } else{
+
+                aaa.y = aaa.y-300
+
+                detail.visibility = INVISIBLE
+
+
+            }
+
+        }
 
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
