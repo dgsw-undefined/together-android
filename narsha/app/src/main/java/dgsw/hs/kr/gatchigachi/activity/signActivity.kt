@@ -4,6 +4,10 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.ContactsContract
+import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.widget.TextView
 import android.widget.Toast
 import dgsw.hs.kr.gatchigachi.R
 import dgsw.hs.kr.gatchigachi.R.layout.activity_login
@@ -17,11 +21,15 @@ class SignActivity : AppCompatActivity() {
         setContentView(R.layout.activity_sign)
 
         btn_sign_to_login.setOnClickListener{
+            val Button_Animation : Animation = AnimationUtils.loadAnimation(this,R.anim.button_anim)
+            Button_Animation.start()
             val nextIntent = Intent(this, LoginActivity::class.java)
             startActivity(nextIntent)
         }
 
         btn_sign_to_sign2.setOnClickListener {
+            val Button_Animation : Animation = AnimationUtils.loadAnimation(this,R.anim.button_anim)
+            Button_Animation.start()
             val nextIntent = Intent(this, Sign2Activity::class.java)
 
             val name : String = edit_sign_name.text.toString()
@@ -31,16 +39,18 @@ class SignActivity : AppCompatActivity() {
             val phone : String = edit_sign_phone.text.toString()
 
             if(Check(name, id,pw, pw2, phone) == 1){
-                nextIntent.putExtra("ToSign2",name)
-                nextIntent.putExtra("ToSign2",id)
-                nextIntent.putExtra("ToSign2",pw)
-                nextIntent.putExtra("ToSign2",pw2)
-                nextIntent.putExtra("ToSign2",phone)
+                nextIntent.putExtra("name",name)
+                nextIntent.putExtra("id",id)
+                nextIntent.putExtra("pw",pw)
+                nextIntent.putExtra("pw2",pw2)
+                nextIntent.putExtra("phone",phone)
                 startActivity(nextIntent)
             }
         }
 
         btn_sign_do_sign.setOnClickListener {
+            val Button_Animation : Animation = AnimationUtils.loadAnimation(this,R.anim.button_anim)
+            Button_Animation.start()
             val nextIntent = Intent(this, LoginActivity::class.java)
             val name : String = edit_sign_name.text.toString()
             val id : String = edit_sign_id.text.toString()
@@ -49,11 +59,15 @@ class SignActivity : AppCompatActivity() {
             val phone : String = edit_sign_phone.text.toString()
 
             if(Check(name, id, pw, pw2, phone) == 1){
-                //중복 등 데이터 확인
-                startActivity(nextIntent)
+                if(call_server() == 1){
+                    startActivity(nextIntent)
+                }
             }
 
         }
+    }
+    fun call_server() : Int {
+        return 1
     }
 
     fun Check(name :String, id : String, pw: String, pw2 : String, phone : String) : Int{

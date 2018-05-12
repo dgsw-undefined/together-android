@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="top"
+    android:focusableInTouchMode="true"
+    android:focusable="true"
     android:orientation="vertical"
     android:weightSum="100"
     tools:layout_editor_absoluteY="25dp">
@@ -97,7 +99,7 @@
         android:id="@+id/linearLayout11"
         android:layout_width="match_parent"
         android:layout_height="2dip"
-        android:elevation="50dip"
+        android:elevation="3dip"
         android:layout_marginTop="125dp"
         android:background="#2d3436"
         android:orientation="horizontal"

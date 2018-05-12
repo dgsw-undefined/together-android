@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:layout_height="match_parent"
     tools:context=".sign2Activity">
 
@@ -39,7 +41,7 @@
         android:layout_height="2dip"
         android:layout_marginTop="30dp"
         android:background="#2d3436"
-        android:elevation="50dip"
+        android:elevation="3dip"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
