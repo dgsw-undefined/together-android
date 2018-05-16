@@ -1,17 +1,11 @@
 package dgsw.hs.kr.gatchigachi
 
-import android.animation.Animator
-import android.animation.AnimatorSet
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.sax.StartElementListener
-import android.view.View
-import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.Switch
 import android.widget.Toast
-import dgsw.hs.kr.gatchigachi.R.layout.activity_sign
+import dgsw.hs.kr.gatchigachi.R.anim.logo_events_test
 import dgsw.hs.kr.gatchigachi.activity.MainActivity
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -21,8 +15,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val LogoAnimation = AnimationUtils.loadAnimation(this, R.anim.logo_anim)
-        logo_login.startAnimation(LogoAnimation)
+        startAnimation()
+
 
         btn_login_to_sign.setOnClickListener {
             val nextIntent = Intent(this, SignActivity::class.java)
@@ -48,6 +42,23 @@ class LoginActivity : AppCompatActivity() {
     }
     fun call_server() : Int {
         return 1
+    }
+
+    fun startAnimation() {
+        val logo_events1 = AnimationUtils.loadAnimation(this, R.anim.logo_events1)
+        val logo_events2 = AnimationUtils.loadAnimation(this, R.anim.logo_events2)
+        val logo_events3 = AnimationUtils.loadAnimation(this, R.anim.logo_events3)
+        val logo_events4 = AnimationUtils.loadAnimation(this, R.anim.logo_events4)
+        val test = AnimationUtils.loadAnimation(this, R.anim.logo_events_test)
+
+        loginLinear1.startAnimation(logo_events1)
+        loginLinear2.startAnimation(logo_events2)
+        loginLinear3.startAnimation(logo_events3)
+        loginLinear4.startAnimation(logo_events4)
+
+
+
+        return
     }
 
     fun check(id : String, pw : String) : Int {

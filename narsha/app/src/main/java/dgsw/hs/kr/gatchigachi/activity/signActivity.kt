@@ -19,6 +19,8 @@ class SignActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign)
 
+
+
         btn_sign_to_login.setOnClickListener{
             val nextIntent = Intent(this, LoginActivity::class.java)
             val animation = AnimationUtils.loadAnimation(this,R.anim.button_anim)
@@ -68,7 +70,7 @@ class SignActivity : AppCompatActivity() {
         return 1
     }
 
-    fun Check(name :String, id : String, pw: String, pw2 : String, phone : String) : Int{
+    fun Check(name : String, id : String, pw: String, pw2 : String, phone : String) : Int{
         if (name.length == 0){
             Toast.makeText(this, "이름을 입력하세요", Toast.LENGTH_SHORT).show()
             edit_sign_name.requestFocus()
