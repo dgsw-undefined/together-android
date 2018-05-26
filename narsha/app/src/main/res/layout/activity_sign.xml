@@ -13,6 +13,7 @@
         android:id="@+id/logo_sign"
         android:layout_width="120dp"
         android:layout_height="120dp"
+        android:layout_marginBottom="30dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toTopOf="@+id/base_line"
@@ -231,10 +232,39 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="50dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:background="#00000000"
         android:text="sign"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+    <TextView
+        android:id="@+id/text_sign_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Email"
+        android:textColor="#000000"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="@+id/editText"
+        app:layout_constraintEnd_toStartOf="@+id/editText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editText" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="Email"
+        android:textAlignment="center"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="@+id/edit_sign_phone"
+        app:layout_constraintStart_toStartOf="@+id/edit_sign_phone"
         app:layout_constraintTop_toBottomOf="@+id/edit_sign_phone" />
 
 </android.support.constraint.ConstraintLayout>
