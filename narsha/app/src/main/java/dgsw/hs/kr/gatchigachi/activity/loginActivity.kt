@@ -5,7 +5,9 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.animation.AnimationUtils
 import android.widget.Toast
+import com.github.kittinunf.fuel.Fuel
 import dgsw.hs.kr.gatchigachi.R.anim.logo_events_test
+import dgsw.hs.kr.gatchigachi.R.id.loginLinear1
 import dgsw.hs.kr.gatchigachi.activity.MainActivity
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -40,11 +42,23 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
-    fun call_server() : Int {
-        return 1
+    private fun call_server() : Int {
+        Fuel.get("http://10.80.162.9:8080/user").response{ request, response, result ->
+            println(request)
+            println(response)
+            Toast.makeText(this, response.data.toString(), Toast.LENGTH_SHORT).show()
+            val (bytes, error) = result
+            if( bytes != null) {
+                println(bytes)
+            }
+            if( error != null) {
+                println(error)
+            }
+        }
+        return 0
     }
 
-    fun startAnimation() {
+    private fun startAnimation() {
         val logo_events1 = AnimationUtils.loadAnimation(this, R.anim.logo_events1)
         val logo_events2 = AnimationUtils.loadAnimation(this, R.anim.logo_events2)
         val logo_events3 = AnimationUtils.loadAnimation(this, R.anim.logo_events3)
@@ -61,14 +75,14 @@ class LoginActivity : AppCompatActivity() {
         return
     }
 
-    fun check(id : String, pw : String) : Int {
-        if(id.length == 0){
+    private fun check(id : String, pw : String) : Int {
+        if(id.isEmpty()){
             Toast.makeText(this,"ID를 입력하세요", Toast.LENGTH_SHORT).show()
             edit_login_id.requestFocus();
             return -1
         }
 
-        if(pw.length == 0){
+        if(pw.isEmpty()){
             Toast.makeText(this,"비밀번호를 입력하세요", Toast.LENGTH_SHORT).show()
             edit_login_pw.requestFocus()
             return -1

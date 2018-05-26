@@ -8,8 +8,9 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import dgsw.hs.kr.gatchigachi.R
 import dgsw.hs.kr.gatchigachi.model.User
+import dgsw.hs.kr.gatchigachi.model.User2
 
-class UserGridAdapter (val context: Context, val UserData: ArrayList<User>) : BaseAdapter() {
+class UserGridAdapter (val context: Context, val UserData: ArrayList<User2>) : BaseAdapter() {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
         val teamView : View = LayoutInflater.from(context).inflate(R.layout.user_list_item, null)
@@ -18,7 +19,7 @@ class UserGridAdapter (val context: Context, val UserData: ArrayList<User>) : Ba
 
         val user = UserData[position]
 
-        teamName.setText(user.name)
+        teamName.text = user.name
 
         return teamView
     }

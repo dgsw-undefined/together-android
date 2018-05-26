@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.animation.AnimationUtils
 import android.widget.Toast
+import dgsw.hs.kr.gatchigachi.model.User
 import kotlinx.android.synthetic.main.activity_sign2.*
 
 class Sign2Activity : AppCompatActivity() {
@@ -16,7 +17,7 @@ class Sign2Activity : AppCompatActivity() {
         val name: String = intent.getStringExtra("name")
         val id: String = intent.getStringExtra("id")
         val pw: String = intent.getStringExtra("pw")
-        val pw2: String = intent.getStringExtra("pw2")
+        val main: String = intent.getStringExtra("mail")
         val phone: String = intent.getStringExtra("phone")
 
         btn_sign2_do_sign.setOnClickListener {
@@ -30,13 +31,13 @@ class Sign2Activity : AppCompatActivity() {
             val interested: String = edit_sign2_interested.text.toString()
 
             if(Check(tec, position, github, field, interested) == 1){
-                if ( call_server() == 1){
-                    startActivity(nextIntent)
-                }
+                User(name,id,pw,phone,tec,interested,github,field,position,mail)
+
             }
         }
 
         btn_sign2_to_sign.setOnClickListener {
+
             val nextIntent = Intent(this, SignActivity::class.java)
             val animation = AnimationUtils.loadAnimation(this,R.anim.button_anim)
             btn_sign2_to_sign.startAnimation(animation)
