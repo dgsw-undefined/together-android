@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             startActivity(nextIntent)
         }
 
-        btn_open_detail.setOnCheckedChangeListener { buttonView, isChecked ->
+        btn_open_detail.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked){
                 aaa.y = aaa.y+300
 
