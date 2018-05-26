@@ -3,9 +3,9 @@ package dgsw.hs.kr.gatchigachi
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
-import dgsw.hs.kr.gatchigachi.R.anim.logo_events_test
 import dgsw.hs.kr.gatchigachi.activity.MainActivity
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -14,9 +14,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
-        startAnimation()
-
+        
 
         btn_login_to_sign.setOnClickListener {
             val nextIntent = Intent(this, SignActivity::class.java)
@@ -44,24 +42,10 @@ class LoginActivity : AppCompatActivity() {
         return 1
     }
 
-    fun startAnimation() {
-        val logo_events1 = AnimationUtils.loadAnimation(this, R.anim.logo_events1)
-        val logo_events2 = AnimationUtils.loadAnimation(this, R.anim.logo_events2)
-        val logo_events3 = AnimationUtils.loadAnimation(this, R.anim.logo_events3)
-        val logo_events4 = AnimationUtils.loadAnimation(this, R.anim.logo_events4)
-        val test = AnimationUtils.loadAnimation(this, R.anim.logo_events_test)
 
-        loginLinear1.startAnimation(logo_events1)
-        loginLinear2.startAnimation(logo_events2)
-        loginLinear3.startAnimation(logo_events3)
-        loginLinear4.startAnimation(logo_events4)
-
-
-
-        return
-    }
 
     fun check(id : String, pw : String) : Int {
+
         if(id.length == 0){
             Toast.makeText(this,"ID를 입력하세요", Toast.LENGTH_SHORT).show()
             edit_login_id.requestFocus();
@@ -80,6 +64,24 @@ class LoginActivity : AppCompatActivity() {
             return -1
         }
 
+        else if(pw.length > 8){
+            val password = edit_login_pw.text
+            var count : Int = 0
+            for(s in password){
+                if( (s >= 'a' || s <= 'z') || (s >= 'A' || s <= 'Z') ){
+                    count += 1
+                }
+                if( (s >= '0' || s <= '9')){
+                    count -= 1
+                }
+            }
+            if(count == password.length || count == -password.length){
+                Toast.makeText(this, "비밀번호는 영문고 숫자의 조합이여야 합니다.", Toast.LENGTH_SHORT).show()
+            }
+            return -1
+        }
+
         return 1
+
     }
 }
