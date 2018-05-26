@@ -1,11 +1,13 @@
 package dgsw.hs.kr.gatchigachi
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
+import dgsw.hs.kr.gatchigachi.activity.LookForActivity
 import dgsw.hs.kr.gatchigachi.activity.MainActivity
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -13,6 +15,8 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        requestedOrientation = (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         setContentView(R.layout.activity_login)
 
 
@@ -24,7 +28,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         btn_login_do_login.setOnClickListener {
-            val nextIntent = Intent(this, MainActivity::class.java)
+            val nextIntent = Intent(this, LookForActivity::class.java)
             val animation = AnimationUtils.loadAnimation(this,R.anim.button_anim)
             btn_login_do_login.startAnimation(animation)
             val id : String = edit_login_id.text.toString()
@@ -64,22 +68,7 @@ class LoginActivity : AppCompatActivity() {
             return -1
         }
 
-        else if(pw.length > 8){
-            val password = edit_login_pw.text
-            var count : Int = 0
-            for(s in password){
-                if( (s >= 'a' || s <= 'z') || (s >= 'A' || s <= 'Z') ){
-                    count += 1
-                }
-                if( (s >= '0' || s <= '9')){
-                    count -= 1
-                }
-            }
-            if(count == password.length || count == -password.length){
-                Toast.makeText(this, "비밀번호는 영문고 숫자의 조합이여야 합니다.", Toast.LENGTH_SHORT).show()
-            }
-            return -1
-        }
+
 
         return 1
 

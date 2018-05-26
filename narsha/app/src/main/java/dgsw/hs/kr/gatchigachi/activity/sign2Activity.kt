@@ -1,6 +1,7 @@
 package dgsw.hs.kr.gatchigachi
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.animation.AnimationUtils
@@ -11,6 +12,7 @@ class Sign2Activity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        requestedOrientation = (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         setContentView(R.layout.activity_sign2)
         val intent = getIntent()
         val name: String = intent.getStringExtra("name")

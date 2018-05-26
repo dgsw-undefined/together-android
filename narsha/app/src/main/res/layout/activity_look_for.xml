@@ -54,7 +54,7 @@
 
     <Button
         android:id="@+id/btn_lookfor_team"
-        android:layout_width="205dp"
+        android:layout_width="0dp"
         android:layout_height="80dp"
         android:background="#74b9ff"
         android:text="Team"
