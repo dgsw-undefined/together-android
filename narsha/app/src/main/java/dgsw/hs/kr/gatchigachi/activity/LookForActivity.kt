@@ -19,11 +19,13 @@ class LookForActivity : AppCompatActivity() {
         setContentView(R.layout.activity_look_for)
 
 
+        val list = AnimationUtils.loadAnimation(this, R.anim.search_list)
+
         search_result_list_person.visibility = View.INVISIBLE
         search_result_list_team.visibility = View.INVISIBLE
         val BtnAnimation = AnimationUtils.loadAnimation(this, R.anim.button_anim)
         btn_lookfor_person.setOnClickListener {
-
+            btn_lookfor_person.startAnimation(list)
             search_result_list_team.visibility = View.INVISIBLE
             val SearchPerson = SearchPersonAdapter(this, DataService.SearchUserData)
             search_result_list_person.adapter = SearchPerson

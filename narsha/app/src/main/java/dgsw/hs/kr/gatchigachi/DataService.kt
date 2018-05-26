@@ -21,10 +21,10 @@ object DataService {
     )
 
     val UserData = arrayListOf(
-            User2("Gun"),
-            User2("SungHwa"),
-            User2("TaeHyung"),
-            User2("Jin Hyuk")
+            User2("Gun",""),
+            User2("SungHwa",""),
+            User2("TaeHyung",""),
+            User2("Jin Hyuk","")
     )
 
     val MemberData = arrayListOf(
@@ -47,13 +47,13 @@ object DataService {
     )
 
     val SearchUserData = arrayListOf(
-            UserSearch("KimGun","Front"),
-            UserSearch("SungHwa","Front"),
-            UserSearch("Taehyung","Back"),
-            UserSearch("JinHyuk","Back"),
-            UserSearch("KimGun","Front"),
-            UserSearch("SungHwa","Front"),
-            UserSearch("Taehyung","Back"),
-            UserSearch("JinHyuk","Back")
+            User2("KimGun","Front"),
+            User2("SungHwa","Front"),
+            User2("Taehyung","Back"),
+            User2("JinHyuk","Back"),
+            User2("KimGun","Front"),
+            User2("SungHwa","Front"),
+            User2("Taehyung","Back"),
+            User2("JinHyuk","Back")
     )
 }
