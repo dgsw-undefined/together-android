@@ -12,48 +12,12 @@
     tools:layout_editor_absoluteY="25dp">
 
 
-    <LinearLayout
-        android:id="@+id/loginLinear4"
-        android:layout_width="15dp"
-        android:layout_height="55dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:background="#000000"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout11"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/loginLinear3"
-        android:layout_width="15dp"
-        android:layout_height="55dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:background="#000000"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout11"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/loginLinear2"
-        android:layout_width="15dp"
-        android:layout_height="55dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:background="#000000"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout11"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></LinearLayout>
-
     <Button
         android:id="@+id/btn_login_do_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="50dp"
         android:layout_marginTop="20dp"
         android:background="#00000000"
         android:text="Log in"
@@ -109,7 +73,7 @@
         android:id="@+id/edit_login_pw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="50dp"
         android:layout_marginTop="15dp"
         android:ems="10"
         android:hint="Password"
@@ -122,7 +86,7 @@
         android:id="@+id/edit_login_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="50dp"
         android:layout_marginTop="35dp"
         android:ems="10"
         android:hint="ID"
@@ -136,27 +100,12 @@
         android:layout_width="match_parent"
         android:layout_height="2dip"
         android:layout_marginBottom="8dp"
-        android:layout_marginTop="70dp"
         android:background="#2d3436"
         android:elevation="3dip"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/loginLinear1"
-        android:layout_width="15dp"
-        android:layout_height="55dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:background="#000000"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout11"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 

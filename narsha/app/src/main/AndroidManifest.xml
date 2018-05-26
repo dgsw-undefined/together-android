@@ -38,7 +38,11 @@
         <activity
             android:name=".MakeTeamActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-        <activity android:name=".activity.LookForActivity"></activity>
+        <activity
+            android:name=".activity.LookForActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+
+
     </application>
 
 </manifest>

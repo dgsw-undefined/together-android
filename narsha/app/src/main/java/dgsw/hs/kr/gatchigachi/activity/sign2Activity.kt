@@ -1,6 +1,7 @@
 package dgsw.hs.kr.gatchigachi
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.animation.AnimationUtils
@@ -12,12 +13,13 @@ class Sign2Activity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        requestedOrientation = (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         setContentView(R.layout.activity_sign2)
         val intent = getIntent()
         val name: String = intent.getStringExtra("name")
         val id: String = intent.getStringExtra("id")
         val pw: String = intent.getStringExtra("pw")
-        val main: String = intent.getStringExtra("mail")
+        val mail: String = intent.getStringExtra("mail")
         val phone: String = intent.getStringExtra("phone")
 
         btn_sign2_do_sign.setOnClickListener {
@@ -30,9 +32,11 @@ class Sign2Activity : AppCompatActivity() {
             val field: String = edit_sign2_field.text.toString()
             val interested: String = edit_sign2_interested.text.toString()
 
-            if(Check(tec, position, github, field, interested) == 1){
-                User(name,id,pw,phone,tec,interested,github,field,position,mail)
+            val tecArray = tec.split(" ".toRegex())
 
+            if(Check(tec, position, github, field, interested) == 1){
+                val user = User(name,id,pw,phone,tecArray.toTypedArray(),interested,github,field,position,mail)
+                println(user.toString())
             }
         }
 

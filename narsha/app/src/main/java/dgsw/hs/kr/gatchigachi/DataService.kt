@@ -4,6 +4,7 @@ import dgsw.hs.kr.gatchigachi.model.Member
 import dgsw.hs.kr.gatchigachi.model.Team
 import dgsw.hs.kr.gatchigachi.model.User
 import dgsw.hs.kr.gatchigachi.model.User2
+import dgsw.hs.kr.gatchigachi.model.*
 import java.util.*
 
 object DataService {
@@ -31,5 +32,20 @@ object DataService {
             Member("SungHwa","Front","2015-05-03"),
             Member("Taehyung","Back","2015-05-03"),
             Member("JinHyuk","Back","2015-05-03")
+    )
+
+    val SearchTeamData = arrayListOf(
+            TeamSearch("Undefined", "2015-05-03"),
+            TeamSearch("아.. 누구야", "2015_05-03"),
+            TeamSearch("바르셀로나", "2015-05-03"),
+            TeamSearch("Google", "2015-05-03"),
+            TeamSearch("레알마드리드", "2015-05-03")
+    )
+
+    val SearchUserData = arrayListOf(
+            UserSearch("KimGun","Front"),
+            UserSearch("SungHwa","Front"),
+            UserSearch("Taehyung","Back"),
+            UserSearch("JinHyuk","Back")
     )
 }

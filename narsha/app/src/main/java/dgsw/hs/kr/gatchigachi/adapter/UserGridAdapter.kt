@@ -13,15 +13,15 @@ import dgsw.hs.kr.gatchigachi.model.User2
 class UserGridAdapter (val context: Context, val UserData: ArrayList<User2>) : BaseAdapter() {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
-        val teamView : View = LayoutInflater.from(context).inflate(R.layout.user_list_item, null)
+        val UserView : View = LayoutInflater.from(context).inflate(R.layout.user_list_item, null)
 
-        val teamName : TextView = teamView.findViewById(R.id.user_name)
+        val UserName : TextView = UserView.findViewById(R.id.user_name)
 
         val user = UserData[position]
 
-        teamName.text = user.name
+        UserName.setText(user.name)
 
-        return teamView
+        return UserView
     }
 
     override fun getItem(position: Int): Any {

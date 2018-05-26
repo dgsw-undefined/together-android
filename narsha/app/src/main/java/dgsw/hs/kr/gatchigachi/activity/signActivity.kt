@@ -1,6 +1,7 @@
 package dgsw.hs.kr.gatchigachi
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.ContactsContract
@@ -17,6 +18,7 @@ class SignActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        requestedOrientation = (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         setContentView(R.layout.activity_sign)
 
 
@@ -42,7 +44,7 @@ class SignActivity : AppCompatActivity() {
                 nextIntent.putExtra("name",name)
                 nextIntent.putExtra("id",id)
                 nextIntent.putExtra("pw",pw)
-                nextIntent.putExtra("pw2",pw2)
+                nextIntent.putExtra("mail",pw2)
                 nextIntent.putExtra("phone",phone)
                 startActivity(nextIntent)
             }
