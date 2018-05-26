@@ -33,7 +33,8 @@ dependencies {
     implementation 'com.github.kittinunf.fuel:fuel-android:1.13.0' //for Android
     implementation 'com.github.kittinunf.fuel:fuel-livedata:1.13.0' //for LiveData support
     implementation 'com.github.kittinunf.fuel:fuel-rxjava:1.13.0' //for RxJava support
-    implementation 'com.github.kittinunf.fuel:fuel-coroutines:1.13.0' //for Kotlin Coroutines support
+    implementation 'com.github.kittinunf.fuel:fuel-coroutines:1.13.0'
+    //for Kotlin Coroutines support
     implementation 'com.github.kittinunf.fuel:fuel-gson:1.13.0' //for Gson support
     implementation 'com.github.kittinunf.fuel:fuel-jackson:1.13.0' //for Jackson support
     implementation 'com.github.kittinunf.fuel:fuel-moshi:1.13.0' //for Moshi support
