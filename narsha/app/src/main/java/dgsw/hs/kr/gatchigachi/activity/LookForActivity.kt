@@ -23,7 +23,7 @@ class LookForActivity : AppCompatActivity() {
         search_result_list_team.visibility = View.INVISIBLE
         val BtnAnimation = AnimationUtils.loadAnimation(this, R.anim.button_anim)
         btn_lookfor_person.setOnClickListener {
-            btn_lookfor_person.startAnimation(BtnAnimation)
+
             search_result_list_team.visibility = View.INVISIBLE
             val SearchPerson = SearchPersonAdapter(this, DataService.SearchUserData)
             search_result_list_person.adapter = SearchPerson
@@ -32,7 +32,7 @@ class LookForActivity : AppCompatActivity() {
         }
 
         btn_lookfor_team.setOnClickListener {
-            btn_lookfor_team.startAnimation(BtnAnimation)
+
             search_result_list_person.visibility = View.INVISIBLE
             val SearchTeam = SearchTeamAdaper(this, DataService.SearchTeamData)
             search_result_list_team.adapter = SearchTeam
