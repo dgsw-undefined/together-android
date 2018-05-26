@@ -56,4 +56,15 @@ object DataService {
             User2("Taehyung","Back"),
             User2("JinHyuk","Back")
     )
+
+    val BestTrusterData = arrayListOf(
+            BestTruster("KimGun",111),
+            BestTruster("SungHwa",222),
+            BestTruster("TaeHyung",333),
+            BestTruster("JinHyuk",444),
+            BestTruster("KimGun",111),
+            BestTruster("SungHwa",222),
+            BestTruster("TaeHyung",333),
+            BestTruster("JinHyuk",444)
+    )
 }

@@ -9,6 +9,7 @@ import android.widget.Toast
 import com.github.kittinunf.fuel.Fuel
 import dgsw.hs.kr.gatchigachi.R.id.*
 import dgsw.hs.kr.gatchigachi.activity.LookForActivity
+import dgsw.hs.kr.gatchigachi.activity.MainActivity
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -28,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         btn_login_do_login.setOnClickListener {
-            val nextIntent = Intent(this, LookForActivity::class.java)
+            val nextIntent = Intent(this, MainActivity::class.java)
             val animation = AnimationUtils.loadAnimation(this, R.anim.button_anim)
             btn_login_do_login.startAnimation(animation)
             val id: String = edit_login_id.text.toString()
