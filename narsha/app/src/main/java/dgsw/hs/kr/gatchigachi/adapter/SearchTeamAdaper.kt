@@ -27,7 +27,7 @@ class SearchTeamAdaper(val context: Context, val SearchTeamData : ArrayList<Team
     }
 
     override fun getCount(): Int {
-        SearchTeamData.size
+        return SearchTeamData.size
     }
 
     override fun getItem(position: Int): Any {
