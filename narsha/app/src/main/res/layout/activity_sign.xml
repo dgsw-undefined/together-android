@@ -11,7 +11,7 @@
 
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/constraintLayout3"
+        android:id="@+id/con"
         android:layout_width="0dp"
         android:layout_height="170dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -151,13 +151,13 @@
     <LinearLayout
         android:id="@+id/base_line"
         android:layout_width="match_parent"
-        android:layout_height="9dp"
+        android:layout_height="8dp"
         android:background="#9965f4"
         android:elevation="3dip"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
+        app:layout_constraintTop_toBottomOf="@+id/con">
 
     </LinearLayout>
 
