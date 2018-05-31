@@ -50,7 +50,7 @@ class SignActivity : AppCompatActivity() {
             }
         }
 
-        btn_sign_do_sign.setOnClickListener {
+        /*btn_sign_do_sign.setOnClickListener {
             val animation = AnimationUtils.loadAnimation(this,R.anim.button_anim)
             val nextIntent = Intent(this, LoginActivity::class.java)
             btn_sign_do_sign.startAnimation(animation)
@@ -66,7 +66,7 @@ class SignActivity : AppCompatActivity() {
                 }
             }
 
-        }
+        }*/
     }
     fun call_server() : Int {
         return 1
@@ -93,12 +93,12 @@ class SignActivity : AppCompatActivity() {
             edit_sign_pw.requestFocus()
             return -1
         }
-        else if(!pw.equals(pw2)){
+        /*else if(!pw.equals(pw2)){
             Toast.makeText(this,"비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
             edit_sign_PWcheck.requestFocus()
             return -1
-        }
-        if (phone.length == 0){
+        }*/
+        else if (phone.length == 0){
             Toast.makeText(this, "전화번호를 입력하세요", Toast.LENGTH_SHORT).show()
             edit_sign_phone.requestFocus()
             return -1
