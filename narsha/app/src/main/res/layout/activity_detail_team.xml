@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#7e3ff2">
 
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="2dip"
-        android:layout_marginTop="75dp"
-        android:background="#2d3436"
+        android:layout_height="9dip"
+        android:background="#9965f4"
         android:elevation="3dip"
+        android:layout_marginTop="75dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +43,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="13dp"
         android:text="Undefined"
-        android:textColor="#000000"
+        android:textColor="#ffffff"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="parent" />
@@ -54,7 +56,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:text="NarSha"
-        android:textColor="#000000"
+        android:textColor="#ffffff"
         android:textSize="17sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="@+id/textView10"
@@ -71,7 +73,7 @@
         android:layout_marginTop="8dp"
         android:background="#00000000"
         android:text="가입 신청"
-        android:textColor="#000000"
+        android:textColor="#ffffff"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -80,7 +82,7 @@
     <ListView
         android:id="@+id/team_member_list"
         android:layout_width="match_parent"
-        android:layout_height="663dp"
+        android:layout_height="665dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" /><![CDATA[
