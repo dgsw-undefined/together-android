@@ -22,7 +22,7 @@ class SearchPersonAdapter (val context: Context, val SearchUser : ArrayList<User
 
         UserName.setText(SearchUser.name)
         Userposition.setText(SearchUser.position)
-        
+
 
         return ResultView
     }

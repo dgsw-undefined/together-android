@@ -7,10 +7,16 @@ import android.os.Bundle
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import com.github.kittinunf.fuel.Fuel
+import com.github.kittinunf.fuel.android.core.Json
+import com.github.kittinunf.fuel.httpPost
+import com.google.gson.Gson
 import dgsw.hs.kr.gatchigachi.R.id.*
 import dgsw.hs.kr.gatchigachi.activity.LookForActivity
 import dgsw.hs.kr.gatchigachi.activity.MainActivity
+
+import dgsw.hs.kr.gatchigachi.model.User
 import kotlinx.android.synthetic.main.activity_login.*
+import org.json.JSONObject
 
 class LoginActivity : AppCompatActivity() {
 
@@ -39,27 +45,30 @@ class LoginActivity : AppCompatActivity() {
 
             if (check(id, pw) == 1) {
                 // 중복 등 데이터 확인
-                if (call_server() == 1) {
+                if (call_server(id,pw) == 1) {
                     startActivity(nextIntent)
                 }
             }
         }
     }
 
-    private fun call_server(): Int {
-        Fuel.get("http://10.80.162.9:8080/user").response { request, response, result ->
-            println(request)
-            println(response)
-            Toast.makeText(this, response.data.toString(), Toast.LENGTH_SHORT).show()
-            val (bytes, error) = result
-            if (bytes != null) {
-                println(bytes)
-            }
-            if (error != null) {
-                println(error)
-            }
-        }
-        return 0
+    private fun call_server(id:String,pw:String): Int {
+
+        val URL = "http://115.68.182.229/go/user/signin"
+        val json = HashMap<String,String>()
+        json.put("id",id)
+        json.put("pw",pw)
+
+        URL.httpPost()
+                .header(Pair("Content-Type", "application/json"))
+                .body(Gson().toJson(json))
+                .responseObject(User.Deserializer()) { request, response, result ->
+                    Toast.makeText(this, response.toString(), Toast.LENGTH_SHORT).show()
+                    println(response.toString())
+                    println(request.toString())
+
+                }
+        return 1
     }
 
     fun check(id: String, pw: String): Int {

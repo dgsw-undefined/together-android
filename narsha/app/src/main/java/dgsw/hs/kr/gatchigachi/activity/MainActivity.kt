@@ -12,6 +12,8 @@ import android.view.MenuItem
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.view.animation.*
+import com.github.kittinunf.fuel.httpGet
+import com.github.kittinunf.result.Result
 import dgsw.hs.kr.gatchigachi.DataService
 import dgsw.hs.kr.gatchigachi.DetailTeamActivity
 import dgsw.hs.kr.gatchigachi.R
@@ -50,6 +52,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             }
 
+        }
+
+        val URL = "http://115.68.182.229/go/user/signin"
+
+        URL.httpGet().responseString { request, response, result ->
+            //do something with response
+            when (result) {
+                is Result.Failure -> {
+                    val ex = result.getException()
+                }
+                is Result.Success -> {
+                    val data = result.get()
+                }
+            }
         }
 
         val toggle = ActionBarDrawerToggle(
