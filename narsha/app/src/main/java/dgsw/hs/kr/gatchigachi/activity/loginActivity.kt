@@ -21,6 +21,8 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
 
+
+
         btn_login_to_sign.setOnClickListener {
             val nextIntent = Intent(this, SignActivity::class.java)
             val animation = AnimationUtils.loadAnimation(this, R.anim.button_anim)
@@ -72,7 +74,9 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, "비밀번호를 입력하세요", Toast.LENGTH_SHORT).show()
             edit_login_pw.requestFocus()
             return -1
-        } else if (pw.length < 8) {
+        }
+
+        else if (pw.length < 8) {
             Toast.makeText(this, "8자 이상의 비밀번호를 입력하세요", Toast.LENGTH_SHORT).show()
             edit_login_pw.requestFocus()
             return -1
