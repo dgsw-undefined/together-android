@@ -21,8 +21,6 @@ class SignActivity : AppCompatActivity() {
         requestedOrientation = (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         setContentView(R.layout.activity_sign)
 
-
-
         btn_sign_to_sign2.setOnClickListener {
             val nextIntent = Intent(this, Sign2Activity::class.java)
             val animation = AnimationUtils.loadAnimation(this,R.anim.button_anim)
@@ -31,48 +29,27 @@ class SignActivity : AppCompatActivity() {
             val pw : String = edit_sign_pw.text.toString()
             val pwc : String = edit_sign_pwc.text.toString()
 
-            if(Check(id,pw,pwc) == 1){
+            if(CheckSign1(id,pw,pwc) == 1){
                 nextIntent.putExtra("id",id)
                 nextIntent.putExtra("pw",pw)
                 startActivity(nextIntent)
             }
         }
-        
-        /*btn_sign_do_sign.setOnClickListener {
-            val animation = AnimationUtils.loadAnimation(this,R.anim.button_anim)
-            val nextIntent = Intent(this, LoginActivity::class.java)
-            btn_sign_do_sign.startAnimation(animation)
-            val name : String = edit_sign_name.text.toString()
-            val id : String = edit_sign_id.text.toString()
-            val pw : String = edit_sign_pw.text.toString()
-            val pw2 : String = edit_sign_PWcheck.text.toString()
-            val phone : String = edit_sign_phone.text.toString()
-
-            if(Check(name, id, pw, pw2, phone) == 1){
-                if(call_server() == 1){
-                    startActivity(nextIntent)
-                }
-            }
-
-        }*/
-    }
-    fun call_server() : Int {
-        return 1
     }
 
-    fun Check(id : String, pw: String, pwc : String) : Int{
+    fun CheckSign1(id : String, pw: String, pwc : String) : Int{
 
-        if (id.length == 0){
+        if (id.isEmpty()){
             Toast.makeText(this, "ID를 입력하세요", Toast.LENGTH_SHORT).show()
             edit_sign_id.requestFocus()
             return -1
         }
-        if (pw.length == 0){
+        if (pw.isEmpty()){
             Toast.makeText(this, "비밀번호를 입력하세요", Toast.LENGTH_SHORT).show()
             edit_sign_pw.requestFocus()
             return -1
         }
-        else if(pw.length < 8){
+        else if(pw.isEmpty()){
             Toast.makeText(this,"8자 이상 비밀번호를 입력하세요", Toast.LENGTH_SHORT).show()
             edit_sign_pw.requestFocus()
             return -1

@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#7e3ff2">
+    android:background="#7e3ff2"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
 
 
     <android.support.constraint.ConstraintLayout
@@ -19,7 +21,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <EditText
-            android:id="@+id/edit_sign2_position"
+            android:id="@+id/edit_sign3_position"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
@@ -30,13 +32,13 @@
             app:layout_constraintDimensionRatio="6.4:1"
             android:inputType="textPersonName"
             android:textAlignment="center"
-            app:layout_constraintBottom_toTopOf="@+id/btn_sign2_to_sign3"
+            app:layout_constraintBottom_toTopOf="@+id/btn_sign3_to_sign4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_sign2_interested" />
+            app:layout_constraintTop_toBottomOf="@+id/edit_sign3_interested" />
 
         <EditText
-            android:id="@+id/edit_sign2_tec"
+            android:id="@+id/edit_sign3_tec"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginEnd="50dp"
@@ -47,13 +49,13 @@
             app:layout_constraintDimensionRatio="6.4:1"
             android:inputType="textPersonName"
             android:textAlignment="center"
-            app:layout_constraintBottom_toTopOf="@+id/edit_sign2_interested"
+            app:layout_constraintBottom_toTopOf="@+id/edit_sign3_interested"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/edit_sign2_interested"
+            android:id="@+id/edit_sign3_interested"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginEnd="50dp"
@@ -62,14 +64,14 @@
             android:hint="Interested"
             android:inputType="textPersonName"
             android:textAlignment="center"
-            app:layout_constraintBottom_toTopOf="@+id/edit_sign2_position"
+            app:layout_constraintBottom_toTopOf="@+id/edit_sign3_position"
             app:layout_constraintDimensionRatio="6.4:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_sign2_tec" />
+            app:layout_constraintTop_toBottomOf="@+id/edit_sign3_tec" />
 
         <Button
-            android:id="@+id/btn_sign2_to_sign3"
+            android:id="@+id/btn_sign3_to_sign4"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="#9965f4"
@@ -90,8 +92,8 @@
             android:text="사용 기술"
             android:textColor="#000000"
             android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/edit_sign2_tec"
-            app:layout_constraintStart_toStartOf="@+id/edit_sign2_tec" />
+            app:layout_constraintBottom_toTopOf="@+id/edit_sign3_tec"
+            app:layout_constraintStart_toStartOf="@+id/edit_sign3_tec" />
 
         <TextView
             android:id="@+id/textView9"
@@ -102,8 +104,8 @@
             android:text="관심사"
             android:textColor="#000000"
             android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/edit_sign2_interested"
-            app:layout_constraintStart_toStartOf="@+id/edit_sign2_interested" />
+            app:layout_constraintBottom_toTopOf="@+id/edit_sign3_interested"
+            app:layout_constraintStart_toStartOf="@+id/edit_sign3_interested" />
 
         <TextView
             android:id="@+id/textView12"
@@ -114,8 +116,8 @@
             android:text="직책"
             android:textColor="#000000"
             android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/edit_sign2_position"
-            app:layout_constraintStart_toStartOf="@+id/edit_sign2_position" />
+            app:layout_constraintBottom_toTopOf="@+id/edit_sign3_position"
+            app:layout_constraintStart_toStartOf="@+id/edit_sign3_position" />
     </android.support.constraint.ConstraintLayout>
 
     <LinearLayout

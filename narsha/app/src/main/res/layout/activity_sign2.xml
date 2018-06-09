@@ -6,7 +6,8 @@
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:layout_height="match_parent"
-    android:background="#7e3ff2">
+    android:background="#7e3ff2"
+    >
 
 
     <android.support.constraint.ConstraintLayout
@@ -21,7 +22,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <EditText
-            android:id="@+id/edit_sign_name"
+            android:id="@+id/edit_sign2_name"
             android:layout_width="0dp"
             android:layout_height="0dp"
 
@@ -34,7 +35,7 @@
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="17sp"
-            app:layout_constraintBottom_toTopOf="@+id/edit_sign_phone"
+            app:layout_constraintBottom_toTopOf="@+id/edit_sign2_phone"
             app:layout_constraintDimensionRatio="6.4:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -42,7 +43,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/edit_sign_email"
+            android:id="@+id/edit_sign2_email"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
@@ -52,15 +53,15 @@
             android:hint="Email"
             android:inputType="textEmailAddress"
             android:textAlignment="center"
-            app:layout_constraintBottom_toTopOf="@+id/btn_sign2_do_sign"
+            app:layout_constraintBottom_toTopOf="@+id/btn_sign2_to_sign3"
             app:layout_constraintDimensionRatio="6.4:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_sign_phone" />
+            app:layout_constraintTop_toBottomOf="@+id/edit_sign2_phone" />
 
         <EditText
-            android:id="@+id/edit_sign_phone"
+            android:id="@+id/edit_sign2_phone"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginEnd="50dp"
@@ -69,15 +70,15 @@
             android:hint="Phone"
             android:inputType="phone"
             android:textAlignment="center"
-            app:layout_constraintBottom_toTopOf="@+id/edit_sign_email"
+            app:layout_constraintBottom_toTopOf="@+id/edit_sign2_email"
             app:layout_constraintDimensionRatio="6.4:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_sign_name" />
+            app:layout_constraintTop_toBottomOf="@+id/edit_sign2_name" />
 
         <Button
-            android:id="@+id/btn_sign2_do_sign"
+            android:id="@+id/btn_sign2_to_sign3"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="#9965f4"
@@ -97,8 +98,8 @@
             android:text="이름"
             android:textColor="#000000"
             android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/edit_sign_name"
-            app:layout_constraintStart_toStartOf="@+id/edit_sign_name" />
+            app:layout_constraintBottom_toTopOf="@+id/edit_sign2_name"
+            app:layout_constraintStart_toStartOf="@+id/edit_sign2_name" />
 
         <TextView
             android:id="@+id/textView6"
@@ -109,8 +110,8 @@
             android:text="전화번호"
             android:textColor="#000000"
             android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/edit_sign_phone"
-            app:layout_constraintStart_toStartOf="@+id/edit_sign_phone" />
+            app:layout_constraintBottom_toTopOf="@+id/edit_sign2_phone"
+            app:layout_constraintStart_toStartOf="@+id/edit_sign2_phone" />
 
         <TextView
             android:id="@+id/textView7"
@@ -121,8 +122,8 @@
             android:text="이메일"
             android:textColor="#000000"
             android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/edit_sign_email"
-            app:layout_constraintStart_toStartOf="@+id/edit_sign_email" />
+            app:layout_constraintBottom_toTopOf="@+id/edit_sign2_email"
+            app:layout_constraintStart_toStartOf="@+id/edit_sign2_email" />
     </android.support.constraint.ConstraintLayout>
 
     <LinearLayout
