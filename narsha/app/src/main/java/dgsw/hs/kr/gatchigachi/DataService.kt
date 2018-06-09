@@ -21,10 +21,10 @@ object DataService {
     )
 
     val UserData = arrayListOf(
-            User2("Gun"),
-            User2("SungHwa"),
-            User2("TaeHyung"),
-            User2("Jin Hyuk")
+            User2("Gun",""),
+            User2("SungHwa",""),
+            User2("TaeHyung",""),
+            User2("Jin Hyuk","")
     )
 
     val MemberData = arrayListOf(
@@ -47,13 +47,24 @@ object DataService {
     )
 
     val SearchUserData = arrayListOf(
-            User2("KimGun"),
-            User2("SungHwa"),
-            User2("Taehyung"),
-            User2("JinHyuk"),
-            User2("KimGun"),
-            User2("SungHwa"),
-            User2("Taehyung"),
-            User2("JinHyuk")
+            User2("KimGun","Front"),
+            User2("SungHwa","Front"),
+            User2("Taehyung","Back"),
+            User2("JinHyuk","Back"),
+            User2("KimGun","Front"),
+            User2("SungHwa","Front"),
+            User2("Taehyung","Back"),
+            User2("JinHyuk","Back")
+    )
+
+    val BestTrusterData = arrayListOf(
+            BestTruster("KimGun",111),
+            BestTruster("SungHwa",222),
+            BestTruster("TaeHyung",333),
+            BestTruster("JinHyuk",444),
+            BestTruster("KimGun",111),
+            BestTruster("SungHwa",222),
+            BestTruster("TaeHyung",333),
+            BestTruster("JinHyuk",444)
     )
 }

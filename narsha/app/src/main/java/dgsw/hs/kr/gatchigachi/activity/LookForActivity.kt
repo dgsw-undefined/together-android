@@ -7,6 +7,7 @@ import android.view.View
 import android.view.animation.AnimationUtils
 import dgsw.hs.kr.gatchigachi.DataService
 import dgsw.hs.kr.gatchigachi.R
+import dgsw.hs.kr.gatchigachi.adapter.BestTrusterAdapter
 import dgsw.hs.kr.gatchigachi.adapter.SearchPersonAdapter
 import dgsw.hs.kr.gatchigachi.adapter.SearchTeamAdaper
 import kotlinx.android.synthetic.main.activity_look_for.*
@@ -19,24 +20,28 @@ class LookForActivity : AppCompatActivity() {
         setContentView(R.layout.activity_look_for)
 
 
-        search_result_list_person.visibility = View.INVISIBLE
-        search_result_list_team.visibility = View.INVISIBLE
-        val BtnAnimation = AnimationUtils.loadAnimation(this, R.anim.button_anim)
+        val list = AnimationUtils.loadAnimation(this, R.anim.search_list)
+        val BestTruster = BestTrusterAdapter(this, DataService.BestTrusterData)
+        val SearchPerson = SearchPersonAdapter(this, DataService.SearchUserData)
+        val SearchTeam = SearchTeamAdaper(this, DataService.SearchTeamData)
+
+
+        list_search_result.adapter = BestTruster
+
         btn_lookfor_person.setOnClickListener {
 
-            search_result_list_team.visibility = View.INVISIBLE
-            val SearchPerson = SearchPersonAdapter(this, DataService.SearchUserData)
-            search_result_list_person.adapter = SearchPerson
-            search_result_list_person.visibility = View.VISIBLE
-
+            list_search_result.startAnimation(list)
+            list_search_result.adapter = SearchPerson
         }
+
+
 
         btn_lookfor_team.setOnClickListener {
 
-            search_result_list_person.visibility = View.INVISIBLE
-            val SearchTeam = SearchTeamAdaper(this, DataService.SearchTeamData)
-            search_result_list_team.adapter = SearchTeam
-            search_result_list_team.visibility = View.VISIBLE
+
+            list_search_result.startAnimation(list)
+
+            list_search_result.adapter = SearchTeam
         }
     }
 }

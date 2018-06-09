@@ -17,12 +17,12 @@ class SearchPersonAdapter (val context: Context, val SearchUser : ArrayList<User
         val UserName : TextView = ResultView.findViewById(R.id.user_name_search)
         val Userposition : TextView = ResultView.findViewById(R.id.user_position_search)
 
-        val UserSearch = SearchUserData[position]
+        val SearchUser = SearchUserData[position]
 
 
-        UserName.text = UserSearch.name
-//        Userposition.setText(UserSearch.position)
-        
+        UserName.setText(SearchUser.name)
+        Userposition.setText(SearchUser.position)
+
 
         return ResultView
     }

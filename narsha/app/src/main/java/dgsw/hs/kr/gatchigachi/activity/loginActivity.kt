@@ -13,6 +13,7 @@ import com.google.gson.Gson
 import dgsw.hs.kr.gatchigachi.R.id.*
 import dgsw.hs.kr.gatchigachi.activity.LookForActivity
 import dgsw.hs.kr.gatchigachi.activity.MainActivity
+
 import dgsw.hs.kr.gatchigachi.model.User
 import kotlinx.android.synthetic.main.activity_login.*
 import org.json.JSONObject
@@ -24,6 +25,8 @@ class LoginActivity : AppCompatActivity() {
 
         requestedOrientation = (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         setContentView(R.layout.activity_login)
+
+
 
 
         btn_login_to_sign.setOnClickListener {
@@ -80,7 +83,9 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, "비밀번호를 입력하세요", Toast.LENGTH_SHORT).show()
             edit_login_pw.requestFocus()
             return -1
-        } else if (pw.length < 8) {
+        }
+
+        else if (pw.length < 8) {
             Toast.makeText(this, "8자 이상의 비밀번호를 입력하세요", Toast.LENGTH_SHORT).show()
             edit_login_pw.requestFocus()
             return -1

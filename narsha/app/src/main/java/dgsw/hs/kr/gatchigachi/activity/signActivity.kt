@@ -37,20 +37,20 @@ class SignActivity : AppCompatActivity() {
             val name : String = edit_sign_name.text.toString()
             val id : String = edit_sign_id.text.toString()
             val pw : String = edit_sign_pw.text.toString()
-            val pw2 : String = edit_sign_PWcheck.text.toString()
             val phone : String = edit_sign_phone.text.toString()
+            val mail : String = edit_sign_email.text.toString()
 
-            if(Check(name, id,pw, pw2, phone) == 1){
+            if(Check(name, id,pw, phone, mail) == 1){
                 nextIntent.putExtra("name",name)
                 nextIntent.putExtra("id",id)
                 nextIntent.putExtra("pw",pw)
-                nextIntent.putExtra("mail",pw2)
+                nextIntent.putExtra("mail",mail)
                 nextIntent.putExtra("phone",phone)
                 startActivity(nextIntent)
             }
         }
-
-        btn_sign_do_sign.setOnClickListener {
+        
+        /*btn_sign_do_sign.setOnClickListener {
             val animation = AnimationUtils.loadAnimation(this,R.anim.button_anim)
             val nextIntent = Intent(this, LoginActivity::class.java)
             btn_sign_do_sign.startAnimation(animation)
@@ -66,13 +66,13 @@ class SignActivity : AppCompatActivity() {
                 }
             }
 
-        }
+        }*/
     }
     fun call_server() : Int {
         return 1
     }
 
-    fun Check(name : String, id : String, pw: String, pw2 : String, phone : String) : Int{
+    fun Check(name : String, id : String, pw: String, phone : String, mail : String) : Int{
         if (name.length == 0){
             Toast.makeText(this, "이름을 입력하세요", Toast.LENGTH_SHORT).show()
             edit_sign_name.requestFocus()
@@ -93,15 +93,21 @@ class SignActivity : AppCompatActivity() {
             edit_sign_pw.requestFocus()
             return -1
         }
-        else if(!pw.equals(pw2)){
+        /*else if(!pw.equals(pw2)){
             Toast.makeText(this,"비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
             edit_sign_PWcheck.requestFocus()
             return -1
-        }
-        if (phone.length == 0){
+        }*/
+
+        else if (phone.length == 0){
             Toast.makeText(this, "전화번호를 입력하세요", Toast.LENGTH_SHORT).show()
             edit_sign_phone.requestFocus()
             return -1
+        }
+
+        else if(mail.length == 0){
+            Toast.makeText(this,"메일을 입력하세요.", Toast.LENGTH_SHORT).show()
+            edit_sign_email.requestFocus()
         }
         return 1
     }
