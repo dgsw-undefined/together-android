@@ -17,88 +17,56 @@ class Sign2Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         requestedOrientation = (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         setContentView(R.layout.activity_sign2)
-        /*val intent = getIntent()
-        val name: String = intent.getStringExtra("name")
+
+        val intent = getIntent()
+
         val id: String = intent.getStringExtra("id")
         val pw: String = intent.getStringExtra("pw")
-        val mail: String = intent.getStringExtra("mail")
-        val phone: String = intent.getStringExtra("phone")
+        val pwc: String = intent.getStringExtra("pwc")
 
-        btn_sign2_do_sign.setOnClickListener {
+
+        btn_sign2_to_sign3.setOnClickListener {
             val nextIntent = Intent(this, LoginActivity::class.java)
             val animation = AnimationUtils.loadAnimation(this,R.anim.button_anim)
-            btn_sign2_do_sign.startAnimation(animation)
-            val tec: String = edit_sign2_tec.text.toString()
-            val position: String = edit_sign2_position.text.toString()
-            val github: String = edit_sign2_github.text.toString()
-            val field: String = edit_sign2_field.text.toString()
-            val interested: String = edit_sign2_interested.text.toString()
+            btn_sign2_to_sign3.startAnimation(animation)
+            val name : String = edit_sign2_name.text.toString()
+            val phone : String = edit_sign2_phone.text.toString()
+            val email : String = edit_sign2_email.text.toString()
 
-            val tecArray = tec.split(" ".toRegex())
-
-            if(Check(tec, position, github, field, interested) == 1){
-
-                val user = User(name,id,pw,phone,tecArray.toTypedArray(),interested,github,field,position,mail)
-                signUpNt(user)
-
+            if(Check(name, phone, email) == 1){
+                val nextIntent = Intent(this, SignActivity::class.java)
+                val animation = AnimationUtils.loadAnimation(this,R.anim.button_anim)
+                nextIntent.putExtra("name",name)
+                nextIntent.putExtra("phone",phone)
+                nextIntent.putExtra("email",email)
+                btn_sign2_to_sign3.startAnimation(animation)
+                startActivity(nextIntent)
             }
 
         }
 
-        btn_sign2_to_sign.setOnClickListener {
-
-            val nextIntent = Intent(this, SignActivity::class.java)
-            val animation = AnimationUtils.loadAnimation(this,R.anim.button_anim)
-            btn_sign2_to_sign.startAnimation(animation)
-            startActivity(nextIntent)
-
-        }
-
     }
 
-    private fun signUpNt(user: User){
-        val URL = "http://115.68.182.229/go/user/signup"
-        URL.httpPost()
-                .header(Pair("Content-Type", "application/json"))
-                .body(Gson().toJson(user))
-                .responseObject(User.Deserializer()) { request, response, result ->
-                    Toast.makeText(this, response.toString(), Toast.LENGTH_SHORT).show()
-                    println(response.toString())
-                    println(request.toString())
-                }
-    }
 
-    private fun Check(tec: String, position: String, github : String, field : String, interested : String) : Int{
-        if(tec.isEmpty()){
-            Toast.makeText(this,"기술을 입력하세요", Toast.LENGTH_SHORT).show()
-            edit_sign2_tec.requestFocus()
+
+    private fun Check(name : String, phone : String, email : String) : Int{
+        if(name.isEmpty()){
+            Toast.makeText(this,"이름을 입력하세요", Toast.LENGTH_SHORT).show()
+            edit_sign2_name.requestFocus()
             return -1
         }
-        if(position.isEmpty()){
-            Toast.makeText(this,"직책을 입력하세요", Toast.LENGTH_SHORT).show()
-            edit_sign2_position.requestFocus()
+        if(phone.isEmpty()){
+            Toast.makeText(this,"전화번호를 입력하세요", Toast.LENGTH_SHORT).show()
+            edit_sign2_phone.requestFocus()
             return -1
         }
-        if(github.isEmpty()){
-            Toast.makeText(this,"깃허브 주소를 입력하세요", Toast.LENGTH_SHORT).show()
-            edit_sign2_github.requestFocus()
+        if(email.isEmpty()){
+            Toast.makeText(this,"이메일을 입력하세요", Toast.LENGTH_SHORT).show()
+            edit_sign2_email.requestFocus()
             return -1
         }
-        if(field.isEmpty()){
-            Toast.makeText(this,"전공을 입력하세요", Toast.LENGTH_SHORT).show()
-            edit_sign2_field.requestFocus()
-            return -1
-        }
-        if(interested.isEmpty()){
-            Toast.makeText(this,"관심분야를 입력하세요", Toast.LENGTH_SHORT).show()
-            edit_sign2_interested.requestFocus()
-            return -1
-        }
-<<<<<<< HEAD
+
         return -1;
-        */
-=======
-        return 1
->>>>>>> 630a1380bfcade8f2c4b6943c008f0fdbd1cffd1
+
     }
 }
