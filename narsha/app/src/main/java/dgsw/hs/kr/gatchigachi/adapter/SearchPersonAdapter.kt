@@ -8,9 +8,9 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import dgsw.hs.kr.gatchigachi.DataService.SearchUserData
 import dgsw.hs.kr.gatchigachi.R
-import dgsw.hs.kr.gatchigachi.model.UserSearch
+import dgsw.hs.kr.gatchigachi.model.User2
 
-class SearchPersonAdapter (val context: Context, val SearchUser : ArrayList<UserSearch>) : BaseAdapter() {
+class SearchPersonAdapter (val context: Context, val SearchUser : ArrayList<User2>) : BaseAdapter() {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val ResultView : View = LayoutInflater.from(context).inflate(R.layout.search_result_person, null)
 
@@ -20,8 +20,8 @@ class SearchPersonAdapter (val context: Context, val SearchUser : ArrayList<User
         val UserSearch = SearchUserData[position]
 
 
-        UserName.setText(UserSearch.name)
-        Userposition.setText(UserSearch.position)
+        UserName.text = UserSearch.name
+//        Userposition.setText(UserSearch.position)
         
 
         return ResultView

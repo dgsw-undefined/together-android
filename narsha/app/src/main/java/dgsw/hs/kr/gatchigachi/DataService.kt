@@ -47,13 +47,13 @@ object DataService {
     )
 
     val SearchUserData = arrayListOf(
-            UserSearch("KimGun","Front"),
-            UserSearch("SungHwa","Front"),
-            UserSearch("Taehyung","Back"),
-            UserSearch("JinHyuk","Back"),
-            UserSearch("KimGun","Front"),
-            UserSearch("SungHwa","Front"),
-            UserSearch("Taehyung","Back"),
-            UserSearch("JinHyuk","Back")
+            User2("KimGun"),
+            User2("SungHwa"),
+            User2("Taehyung"),
+            User2("JinHyuk"),
+            User2("KimGun"),
+            User2("SungHwa"),
+            User2("Taehyung"),
+            User2("JinHyuk")
     )
 }
