@@ -19,10 +19,15 @@ class Sign4Activity :AppCompatActivity() {
 
         val intent = getIntent()
 
-        val id: String = intent.getStringExtra("id")
-        val pw: String = intent.getStringExtra("pw")
-        val pwc: String = intent.getStringExtra("pwc")
-        val
+        val id : String = intent.getStringExtra("id")
+        val pw : String = intent.getStringExtra("pw")
+        val name : String = intent.getStringExtra("name")
+        val phone : String = intent.getStringExtra("phone")
+        val email : String = intent.getStringExtra("email")
+        val tec : String = intent.getStringExtra("tec")
+        val interested : String = intent.getStringExtra("interested")
+        val position : String = intent.getStringExtra("position")
+
 
         /*val tecArray = tec.split(" ".toRegex())
         val user = User(name,id,pw,phone,tecArray.toTypedArray(),interested,github,field,position,mail)*/

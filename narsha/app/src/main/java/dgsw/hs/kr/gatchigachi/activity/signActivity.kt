@@ -23,13 +23,11 @@ class SignActivity : AppCompatActivity() {
 
         btn_sign_to_sign2.setOnClickListener {
             val nextIntent = Intent(this, Sign2Activity::class.java)
-            val animation = AnimationUtils.loadAnimation(this,R.anim.button_anim)
-            btn_sign_to_sign2.startAnimation(animation)
             val id : String = edit_sign_id.text.toString()
             val pw : String = edit_sign_pw.text.toString()
             val pwc : String = edit_sign_pwc.text.toString()
 
-            if(CheckSign1(id,pw,pwc) == 1){
+            if(Check(id,pw,pwc) == 1){
                 nextIntent.putExtra("id",id)
                 nextIntent.putExtra("pw",pw)
                 startActivity(nextIntent)
@@ -37,7 +35,7 @@ class SignActivity : AppCompatActivity() {
         }
     }
 
-    fun CheckSign1(id : String, pw: String, pwc : String) : Int{
+    fun Check(id : String, pw: String, pwc : String) : Int{
 
         if (id.isEmpty()){
             Toast.makeText(this, "ID를 입력하세요", Toast.LENGTH_SHORT).show()

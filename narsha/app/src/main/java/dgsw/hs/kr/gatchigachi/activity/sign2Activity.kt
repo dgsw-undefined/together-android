@@ -22,23 +22,21 @@ class Sign2Activity : AppCompatActivity() {
 
         val id: String = intent.getStringExtra("id")
         val pw: String = intent.getStringExtra("pw")
-        val pwc: String = intent.getStringExtra("pwc")
 
 
         btn_sign2_to_sign3.setOnClickListener {
-            val nextIntent = Intent(this, LoginActivity::class.java)
-            val animation = AnimationUtils.loadAnimation(this,R.anim.button_anim)
-            btn_sign2_to_sign3.startAnimation(animation)
+            val nextIntent = Intent(this, Sign3Activity::class.java)
             val name : String = edit_sign2_name.text.toString()
             val phone : String = edit_sign2_phone.text.toString()
             val email : String = edit_sign2_email.text.toString()
 
             if(Check(name, phone, email) == 1){
-                val nextIntent = Intent(this, SignActivity::class.java)
                 val animation = AnimationUtils.loadAnimation(this,R.anim.button_anim)
                 nextIntent.putExtra("name",name)
                 nextIntent.putExtra("phone",phone)
                 nextIntent.putExtra("email",email)
+                nextIntent.putExtra("id",id)
+                nextIntent.putExtra("pw",pw)
                 btn_sign2_to_sign3.startAnimation(animation)
                 startActivity(nextIntent)
             }

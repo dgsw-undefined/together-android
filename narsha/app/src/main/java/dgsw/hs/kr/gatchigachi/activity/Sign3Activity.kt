@@ -4,7 +4,9 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.animation.AnimationUtils
 import android.widget.Toast
+import dgsw.hs.kr.gatchigachi.activity.Sign4Activity
 import kotlinx.android.synthetic.main.activity_sign3.*
 
 class Sign3Activity : AppCompatActivity() {
@@ -13,20 +15,32 @@ class Sign3Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         requestedOrientation = (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         setContentView(R.layout.activity_sign3)
-
+        val nextIntent = Intent(this, Sign4Activity::class.java)
         val intent = getIntent()
 
         val id : String = intent.getStringExtra("id")
         val pw : String = intent.getStringExtra("pw")
-        val pwc : String = intent.getStringExtra("pwc")
         val name : String = intent.getStringExtra("name")
         val phone : String = intent.getStringExtra("phone")
         val email : String = intent.getStringExtra("email")
 
-        val tec : String = edit_sign3_tec.text.toString()
-        val interested : String = edit_sign3_interested.text.toString()
-        val position : String = edit_sign3_position.text.toString()
+        btn_sign3_to_sign4.setOnClickListener {
+            val tec : String = edit_sign3_tec.text.toString()
+            val interested : String = edit_sign3_interested.text.toString()
+            val position : String = edit_sign3_position.text.toString()
 
+            if(Check(tec, interested, position) == 1){
+                nextIntent.putExtra("id",id)
+                nextIntent.putExtra("pw",pw)
+                nextIntent.putExtra("name",name)
+                nextIntent.putExtra("phone",phone)
+                nextIntent.putExtra("email",email)
+                nextIntent.putExtra("tec",tec)
+                nextIntent.putExtra("interested",interested)
+                nextIntent.putExtra("position",position)
+                startActivity(nextIntent)
+            }
+        }
 
     }
 
