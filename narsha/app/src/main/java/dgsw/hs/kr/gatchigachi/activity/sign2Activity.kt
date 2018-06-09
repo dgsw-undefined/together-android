@@ -15,7 +15,7 @@ class Sign2Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         requestedOrientation = (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         setContentView(R.layout.activity_sign2)
-        val intent = getIntent()
+        /*val intent = getIntent()
         val name: String = intent.getStringExtra("name")
         val id: String = intent.getStringExtra("id")
         val pw: String = intent.getStringExtra("pw")
@@ -81,5 +81,6 @@ class Sign2Activity : AppCompatActivity() {
             return -1
         }
         return -1;
+        */
     }
 }

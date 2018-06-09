@@ -13,7 +13,7 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,27 +22,27 @@
         </activity>
         <activity
             android:name=".Sign2Activity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".SignActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".TrustActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".DetailTeamActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.MainActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".MakeTeamActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.LookForActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-
-
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activity.Sign3Activity" />
+        <activity android:name=".activity.Sign4Activity"></activity>
     </application>
 
 </manifest>
