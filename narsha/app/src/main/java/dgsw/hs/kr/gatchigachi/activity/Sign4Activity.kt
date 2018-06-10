@@ -1,5 +1,6 @@
 package dgsw.hs.kr.gatchigachi.activity
 
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.os.PersistableBundle
@@ -7,8 +8,10 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.github.kittinunf.fuel.httpPost
 import com.google.gson.Gson
+import dgsw.hs.kr.gatchigachi.LoginActivity
 import dgsw.hs.kr.gatchigachi.R
 import dgsw.hs.kr.gatchigachi.model.User
+import kotlinx.android.synthetic.main.activity_sign4.*
 
 class Sign4Activity :AppCompatActivity() {
 
@@ -28,7 +31,10 @@ class Sign4Activity :AppCompatActivity() {
         val interested : String = intent.getStringExtra("interested")
         val position : String = intent.getStringExtra("position")
 
-
+        btn_sign4_sign.setOnClickListener {
+            val nextIntent = Intent(this, LoginActivity::class.java)
+            startActivity(nextIntent)
+        }
         /*val tecArray = tec.split(" ".toRegex())
         val user = User(name,id,pw,phone,tecArray.toTypedArray(),interested,github,field,position,mail)*/
     }

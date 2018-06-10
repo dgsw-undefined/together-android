@@ -41,8 +41,12 @@
         <activity
             android:name=".activity.LookForActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".activity.Sign3Activity" />
-        <activity android:name=".activity.Sign4Activity"></activity>
+        <activity
+            android:name=".Sign3Activity"
+            android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".activity.Sign4Activity"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

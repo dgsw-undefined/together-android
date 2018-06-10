@@ -106,6 +106,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginStart="16dp"
         android:ems="10"
+        android:backgroundTint="#9965f4"
         android:hint="Team Name"
         android:inputType="textPersonName"
         android:textAlignment="center"
@@ -118,6 +119,7 @@
 
     <EditText
         android:id="@+id/edit_make_field"
+        android:backgroundTint="#9965f4"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginEnd="32dp"
@@ -134,6 +136,7 @@
         app:layout_constraintTop_toBottomOf="@+id/edit_make_limit" />
 
     <EditText
+        android:backgroundTint="#9965f4"
         android:id="@+id/edit_make_subject"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -159,6 +162,7 @@
         android:ems="10"
         android:hint="Limit people"
         android:inputType="number"
+        android:backgroundTint="#9965f4"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/edit_make_field"
         app:layout_constraintDimensionRatio="3:0.5"

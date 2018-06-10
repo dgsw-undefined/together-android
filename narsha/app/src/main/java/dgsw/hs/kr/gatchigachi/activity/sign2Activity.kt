@@ -17,12 +17,10 @@ class Sign2Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         requestedOrientation = (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         setContentView(R.layout.activity_sign2)
-
         val intent = getIntent()
 
         val id: String = intent.getStringExtra("id")
         val pw: String = intent.getStringExtra("pw")
-
 
         btn_sign2_to_sign3.setOnClickListener {
             val nextIntent = Intent(this, Sign3Activity::class.java)
@@ -31,13 +29,11 @@ class Sign2Activity : AppCompatActivity() {
             val email : String = edit_sign2_email.text.toString()
 
             if(Check(name, phone, email) == 1){
-                val animation = AnimationUtils.loadAnimation(this,R.anim.button_anim)
                 nextIntent.putExtra("name",name)
                 nextIntent.putExtra("phone",phone)
                 nextIntent.putExtra("email",email)
                 nextIntent.putExtra("id",id)
                 nextIntent.putExtra("pw",pw)
-                btn_sign2_to_sign3.startAnimation(animation)
                 startActivity(nextIntent)
             }
 
@@ -64,7 +60,7 @@ class Sign2Activity : AppCompatActivity() {
             return -1
         }
 
-        return -1;
+        return 1;
 
     }
 }
