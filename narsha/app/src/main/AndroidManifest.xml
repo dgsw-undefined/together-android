@@ -43,10 +43,11 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Sign3Activity"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.Sign4Activity"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activity.AlarmActivity"></activity>
     </application>
 
 </manifest>

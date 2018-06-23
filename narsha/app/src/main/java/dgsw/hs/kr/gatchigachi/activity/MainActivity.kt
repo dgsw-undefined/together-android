@@ -46,13 +46,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         btn_open_detail.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked){
-                aaa.y = aaa.y+300
+                bottom_aaa.y = bottom_aaa.y+400
 
                 detail.visibility = VISIBLE
 
             } else{
 
-                aaa.y = aaa.y-300
+                bottom_aaa.y = bottom_aaa.y-400
 
                 detail.visibility = INVISIBLE
 
