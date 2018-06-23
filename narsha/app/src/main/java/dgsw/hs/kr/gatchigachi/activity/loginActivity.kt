@@ -26,8 +26,8 @@ class LoginActivity : AppCompatActivity() {
         requestedOrientation = (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         setContentView(R.layout.activity_login)
 
-
-
+        edit_login_id.setText("a")
+        edit_login_pw.setText("a12345678")
 
         btn_login_to_sign.setOnClickListener {
             val nextIntent = Intent(this, SignActivity::class.java)
