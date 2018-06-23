@@ -12,12 +12,14 @@ import android.view.MenuItem
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.view.animation.*
+import android.widget.Toast
 import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.result.Result
 import dgsw.hs.kr.gatchigachi.DataService
 import dgsw.hs.kr.gatchigachi.DetailTeamActivity
 import dgsw.hs.kr.gatchigachi.R
 import dgsw.hs.kr.gatchigachi.adapter.TeamGridAdapter
+import dgsw.hs.kr.gatchigachi.preference.Preference
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
@@ -36,6 +38,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             val nextIntent = Intent(this, DetailTeamActivity::class.java)
             startActivity(nextIntent)
         }
+
+        val preference = Preference(this)
+
+        Toast.makeText(this, preference.getToken(), Toast.LENGTH_SHORT).show()
 
         btn_open_detail.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked){
