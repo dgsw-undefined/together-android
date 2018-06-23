@@ -7,6 +7,7 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View.INVISIBLE
@@ -41,7 +42,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val preference = Preference(this)
 
-        Toast.makeText(this, preference.getToken(), Toast.LENGTH_SHORT).show()
+        Log.e("Token",preference.getToken())
 
         btn_open_detail.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked){
@@ -60,7 +61,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         }
 
-        val URL = "http://115.68.182.229/go/user/signin"
+        val URL = "http://115.68.182.229/team"
 
         URL.httpGet().responseString { request, response, result ->
             //do something with response

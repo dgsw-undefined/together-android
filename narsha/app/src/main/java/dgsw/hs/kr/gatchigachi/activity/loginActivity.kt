@@ -105,7 +105,7 @@ class LoginActivity : AppCompatActivity() {
             return -1
         }
 
-        else if (pw.length < 8) {
+        else if (pw.length < 1) {
             Toast.makeText(this, "8자 이상의 비밀번호를 입력하세요", Toast.LENGTH_SHORT).show()
             edit_login_pw.requestFocus()
             return -1
