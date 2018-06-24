@@ -10,6 +10,7 @@ import dgsw.hs.kr.gatchigachi.R
 import dgsw.hs.kr.gatchigachi.adapter.BestTrusterAdapter
 import dgsw.hs.kr.gatchigachi.adapter.SearchPersonAdapter
 import dgsw.hs.kr.gatchigachi.adapter.SearchTeamAdaper
+import dgsw.hs.kr.gatchigachi.database.DatabaseHelper
 import kotlinx.android.synthetic.main.activity_look_for.*
 
 class LookForActivity : AppCompatActivity() {
@@ -21,17 +22,18 @@ class LookForActivity : AppCompatActivity() {
 
 
         val list = AnimationUtils.loadAnimation(this, R.anim.search_list)
-        val BestTruster = BestTrusterAdapter(this, DataService.BestTrusterData)
-        val SearchPerson = SearchPersonAdapter(this, DataService.SearchUserData)
-        val SearchTeam = SearchTeamAdaper(this, DataService.SearchTeamData)
+        val bestTruster = BestTrusterAdapter(this, DataService.BestTrusterData)
+        val searchPerson = SearchPersonAdapter(this, DataService.SearchUserData)
+        val searchTeam = SearchTeamAdaper(this, DataService.SearchTeamData)
 
-
-        list_search_result.adapter = BestTruster
+        list_search_result.adapter = bestTruster
 
         btn_lookfor_person.setOnClickListener {
 
             list_search_result.startAnimation(list)
-            list_search_result.adapter = SearchPerson
+            list_search_result.adapter = searchPerson
+
+            val myDB = DatabaseHelper(this)
         }
 
 
@@ -41,7 +43,7 @@ class LookForActivity : AppCompatActivity() {
 
             list_search_result.startAnimation(list)
 
-            list_search_result.adapter = SearchTeam
+            list_search_result.adapter = searchTeam
         }
     }
 }

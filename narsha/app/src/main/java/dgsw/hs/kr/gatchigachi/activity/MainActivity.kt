@@ -7,17 +7,20 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.view.animation.*
+import android.widget.Toast
 import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.result.Result
 import dgsw.hs.kr.gatchigachi.DataService
 import dgsw.hs.kr.gatchigachi.DetailTeamActivity
 import dgsw.hs.kr.gatchigachi.R
 import dgsw.hs.kr.gatchigachi.adapter.TeamGridAdapter
+import dgsw.hs.kr.gatchigachi.preference.Preference
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.team_list_item.*
@@ -47,6 +50,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             startActivity(nextIntent)
         }
 
+        val preference = Preference(this)
+
+        Log.e("Token",preference.getToken())
+
         btn_open_detail.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked){
                 bottom_aaa.startAnimation(down_anim)
@@ -67,7 +74,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         }
 
-        val URL = "http://115.68.182.229/go/user/signin"
+        val URL = "http://115.68.182.229/team"
 
         URL.httpGet().responseString { request, response, result ->
             //do something with response
