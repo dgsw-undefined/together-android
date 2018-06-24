@@ -18,7 +18,7 @@
         android:background="#9965f4"
         android:elevation="3dip"
         android:orientation="vertical"
-        app:layout_constraintDimensionRatio="50:1"
+        app:layout_constraintDimensionRatio="100:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout8">
@@ -96,7 +96,7 @@
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/primary_color_radius"
+            android:background="@drawable/grey_radius"
             android:text="가입 신청"
             android:textColor="#000000"
             android:textSize="14sp"

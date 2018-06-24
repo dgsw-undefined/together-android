@@ -20,6 +20,10 @@ import dgsw.hs.kr.gatchigachi.R
 import dgsw.hs.kr.gatchigachi.adapter.TeamGridAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.team_list_item.*
+import kotlinx.coroutines.experimental.delay
+import java.util.*
+import kotlin.concurrent.timerTask
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -28,6 +32,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         requestedOrientation = (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
+        val down_anim = AnimationUtils.loadAnimation(this,R.anim.up_down)
+        val up_anim = AnimationUtils.loadAnimation(this, R.anim.down_up)
+
+        val timer = Timer()
+
 
         var teamAdapter = TeamGridAdapter(this, DataService.teamData)
         team_grid_view.adapter = teamAdapter
@@ -39,12 +49,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         btn_open_detail.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked){
+                bottom_aaa.startAnimation(down_anim)
+                timer.schedule(timerTask { this }, 5000)
                 bottom_aaa.y = bottom_aaa.y+400
 
                 detail.visibility = VISIBLE
 
             } else{
-
+                bottom_aaa.startAnimation(up_anim)
+                timer.schedule(timerTask { this }, 5000)
                 bottom_aaa.y = bottom_aaa.y-400
 
                 detail.visibility = INVISIBLE
