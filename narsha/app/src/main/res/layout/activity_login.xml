@@ -113,4 +113,15 @@
 
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@mipmap/ic_mainlogo_foreground"
+        tools:layout_editor_absoluteY="91dp" />
+
 </android.support.constraint.ConstraintLayout>
