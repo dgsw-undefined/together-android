@@ -7,19 +7,26 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.view.animation.*
+import android.widget.Toast
 import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.result.Result
 import dgsw.hs.kr.gatchigachi.DataService
 import dgsw.hs.kr.gatchigachi.DetailTeamActivity
 import dgsw.hs.kr.gatchigachi.R
 import dgsw.hs.kr.gatchigachi.adapter.TeamGridAdapter
+import dgsw.hs.kr.gatchigachi.preference.Preference
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.team_list_item.*
+import kotlinx.coroutines.experimental.delay
+import java.util.*
+import kotlin.concurrent.timerTask
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -29,6 +36,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+        val down_anim = AnimationUtils.loadAnimation(this,R.anim.up_down)
+        val up_anim = AnimationUtils.loadAnimation(this, R.anim.down_up)
+
+        val timer = Timer()
+
+
         var teamAdapter = TeamGridAdapter(this, DataService.teamData)
         team_grid_view.adapter = teamAdapter
 
@@ -37,15 +50,22 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             startActivity(nextIntent)
         }
 
+        val preference = Preference(this)
+
+        Log.e("Token",preference.getToken())
+
         btn_open_detail.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked){
-                aaa.y = aaa.y+300
+                bottom_aaa.startAnimation(down_anim)
+                timer.schedule(timerTask { this }, 5000)
+                bottom_aaa.y = bottom_aaa.y+400
 
                 detail.visibility = VISIBLE
 
             } else{
-
-                aaa.y = aaa.y-300
+                bottom_aaa.startAnimation(up_anim)
+                timer.schedule(timerTask { this }, 5000)
+                bottom_aaa.y = bottom_aaa.y-400
 
                 detail.visibility = INVISIBLE
 
@@ -54,7 +74,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         }
 
-        val URL = "http://115.68.182.229/go/user/signin"
+        val URL = "http://115.68.182.229/team"
 
         URL.httpGet().responseString { request, response, result ->
             //do something with response
