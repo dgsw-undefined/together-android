@@ -14,15 +14,28 @@ import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.view.animation.*
 import android.widget.Toast
+import com.github.kittinunf.forge.core.JSON
+import com.github.kittinunf.fuel.Fuel
+import com.github.kittinunf.fuel.android.extension.responseJson
+import com.github.kittinunf.fuel.core.FuelManager
 import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.result.Result
+import com.google.gson.Gson
 import dgsw.hs.kr.gatchigachi.DataService
 import dgsw.hs.kr.gatchigachi.DetailTeamActivity
 import dgsw.hs.kr.gatchigachi.R
+import dgsw.hs.kr.gatchigachi.R.id.drawer_layout
 import dgsw.hs.kr.gatchigachi.adapter.TeamGridAdapter
+import dgsw.hs.kr.gatchigachi.model.Team
+import dgsw.hs.kr.gatchigachi.model.User
 import dgsw.hs.kr.gatchigachi.preference.Preference
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import org.json.JSONObject
+import kotlin.math.log
+import com.google.gson.reflect.TypeToken
+import dgsw.hs.kr.gatchigachi.database.DBHelper
+
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -32,6 +45,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+        val myDb = DBHelper(this)
+        val preference = Preference(this)
+
         var teamAdapter = TeamGridAdapter(this, DataService.teamData)
         team_grid_view.adapter = teamAdapter
 
@@ -40,9 +56,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             startActivity(nextIntent)
         }
 
-        val preference = Preference(this)
-
-        Log.e("Token",preference.getToken())
 
         btn_open_detail.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked){
@@ -61,19 +74,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         }
 
-        val URL = "http://115.68.182.229/team"
+        val URL = "http://115.68.182.229/node/team"
 
-        URL.httpGet().responseString { request, response, result ->
-            //do something with response
-            when (result) {
-                is Result.Failure -> {
-                    val ex = result.getException()
+        URL.httpGet()
+                .header(pairs = "Authorization" to preference.getToken())
+                .responseJson { request, response, result ->
+                    result.fold(success = {json ->
+                        val teamJson = JSONObject(json.content)
+                        val jsonOutput = teamJson.getJSONArray("Data").toString()
+                        val listType = object : TypeToken<List<Team>>(){}.type
+                        val teams : List<Team> = Gson().fromJson(jsonOutput, listType)
+
+                        myDb.insertTeam(teams)
+
+                    }, failure = {
+
+                    })
                 }
-                is Result.Success -> {
-                    val data = result.get()
-                }
-            }
-        }
 
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)

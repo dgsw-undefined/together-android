@@ -1,28 +1,17 @@
 package dgsw.hs.kr.gatchigachi
 
-import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
-import android.database.sqlite.SQLiteDatabase
-import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.preference.PreferenceManager
-import android.support.annotation.RequiresApi
 import android.util.Log
 import android.view.animation.AnimationUtils
 import android.widget.Toast
-import com.github.kittinunf.fuel.Fuel
-import com.github.kittinunf.fuel.android.core.Json
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.httpPost
 import com.google.gson.Gson
-import dgsw.hs.kr.gatchigachi.R.id.*
-import dgsw.hs.kr.gatchigachi.activity.LookForActivity
 import dgsw.hs.kr.gatchigachi.activity.MainActivity
-import dgsw.hs.kr.gatchigachi.database.DatabaseHelper
-
+import dgsw.hs.kr.gatchigachi.database.DBHelper
 import dgsw.hs.kr.gatchigachi.model.User
 import dgsw.hs.kr.gatchigachi.preference.Preference
 import kotlinx.android.synthetic.main.activity_login.*
@@ -30,14 +19,18 @@ import org.json.JSONObject
 
 class LoginActivity : AppCompatActivity() {
 
+    lateinit var dbHelper : DBHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        dbHelper = DBHelper(this)
 
         requestedOrientation = (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         setContentView(R.layout.activity_login)
 
-        edit_login_id.setText("a")
-        edit_login_pw.setText("a12345678")
+        edit_login_id.setText("admin")
+        edit_login_pw.setText("admin1")
 
         btn_login_to_sign.setOnClickListener {
 
@@ -75,12 +68,20 @@ class LoginActivity : AppCompatActivity() {
                 .header(Pair("Content-Type", "application/json"))
                 .body(Gson().toJson(json))
                 .responseJson{ request, response, result ->
-                    result.fold(success = { json ->
+                    result.fold(success = {json ->
                         val loginJson = JSONObject(json.content)
-                        val token = loginJson.getString("Token")
+                        val json = loginJson.getJSONObject("Data")
+
+                        val user = Gson().fromJson(json.toString(), User::class.java)
+
+                        Log.e("Aa",user.id)
 
                         val preference = Preference(this)
-                        preference.setToken(token)
+
+                        preference.setToken(loginJson.getString("Token"))
+
+                        dbHelper.insertUser(user)
+
 
                     }, failure = { error ->
                         Log.e("error ", error.toString())
