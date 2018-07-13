@@ -62,6 +62,8 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+
+
     fun check(id: String, pw: String): Int {
 
         if (id.isEmpty()) {

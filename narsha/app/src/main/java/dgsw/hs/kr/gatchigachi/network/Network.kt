@@ -1,6 +1,7 @@
 package dgsw.hs.kr.gatchigachi.network
 
 import android.util.Log
+import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.fuel.httpPost
@@ -26,6 +27,8 @@ public class Network{
                 .header(Pair("Content-Type", "application/json"))
                 .body(Gson().toJson(json))
                 .responseJson { request, response, result ->
+                    println(request)
+                    println(response)
                     result.fold(success = {json ->
                         val loginJson = JSONObject(json.content)
                         val json = loginJson.getJSONObject("Data")
@@ -71,5 +74,5 @@ public class Network{
                 }
 
         return code
-    }
+        }
 }
