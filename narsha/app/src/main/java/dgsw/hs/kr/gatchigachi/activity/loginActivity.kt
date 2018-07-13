@@ -16,12 +16,16 @@ import dgsw.hs.kr.gatchigachi.model.User
 import dgsw.hs.kr.gatchigachi.network.Network
 import dgsw.hs.kr.gatchigachi.preference.Preference
 import kotlinx.android.synthetic.main.activity_login.*
+import org.jetbrains.anko.custom.async
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.doAsyncResult
 import org.json.JSONObject
 
 class LoginActivity : AppCompatActivity() {
 
     lateinit var myDb : DBHelper
     val network =  Network()
+    var code :Int =100
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,16 +56,20 @@ class LoginActivity : AppCompatActivity() {
 
 
             if (check(id, pw) == 1) {
-                val code = network.networt_Login(id,pw,myDb,preference)
-                // 중복 등 데이터 확인
-                if (code == 100) {
-                    val nt : Int = network.network_GetAllTeam(myDb,preference)
-                    startActivity(nextIntent)
+                network.login(id,pw,myDb,this)
+                doAsyncResult {
+                    if (code == 100) {
+                        network.getMyTeam(myDb)
+                        startActivity(nextIntent)
+                    }
                 }
             }
         }
     }
 
+    fun notifyFinish(code :Long){
+        this.code = code.toInt()
+    }
 
 
     fun check(id: String, pw: String): Int {

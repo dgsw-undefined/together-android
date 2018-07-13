@@ -7,6 +7,9 @@ import android.database.sqlite.SQLiteOpenHelper
 import dgsw.hs.kr.gatchigachi.model.Team
 import dgsw.hs.kr.gatchigachi.model.User
 import java.time.temporal.TemporalAccessor
+import java.util.*
+
+
 
 class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", null,4) {
 
@@ -21,6 +24,8 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
             db.execSQL(dbManager.CreateTableTec)
             db.execSQL(dbManager.CreateTableTruster)
             db.execSQL(dbManager.CreateTableUser)
+            db.execSQL(dbManager.CreateTableMy)
+            db.execSQL(dbManager.CreateTableMyTeam)
         }
     }
 
@@ -32,40 +37,44 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
             db.execSQL("DROP TABLE IF EXISTS " + "tec")
             db.execSQL("DROP TABLE IF EXISTS " + "truster")
             db.execSQL("DROP TABLE IF EXISTS " + "user")
+            db.execSQL("DROP TABLE IF EXISTS " + "my")
+            db.execSQL("DROP TABLE IF EXISTS " + "my_team")
         }
+        onCreate(db)
     }
 
-    fun insertUser(user:User){
+    fun insertMyinfo(user:User, token:String){
         Thread {
             val db = this.writableDatabase
 
-            val sql = "INSERT OR REPLACE INTO user VALUES(?,?,?,?,?,?,?,?,?,?)"
+            val sql = "INSERT OR REPLACE INTO my VALUES(?,?,?,?,?,?,?,?,?,?,?)"
 
             val insertStmt = db.compileStatement(sql)
 
             insertStmt.clearBindings()
 
-            insertStmt.bindLong(1, user.idx!!)
-            insertStmt.bindString(2, user.id)
-            insertStmt.bindString(3, user.name)
-            insertStmt.bindString(4, user.pw)
-            insertStmt.bindString(5, user.mail)
-            insertStmt.bindString(6, user.inter)
-            insertStmt.bindString(7, user.git)
-            insertStmt.bindString(8, user.field)
-            insertStmt.bindString(9, user.pos)
-            insertStmt.bindString(10, user.phone)
+            insertStmt.bindString(1, token)
+            insertStmt.bindLong(2, user.idx!!)
+            insertStmt.bindString(3, user.id)
+            insertStmt.bindString(4, user.name)
+            insertStmt.bindString(5, user.pw)
+            insertStmt.bindString(6, user.mail)
+            insertStmt.bindString(7, user.inter)
+            insertStmt.bindString(8, user.git)
+            insertStmt.bindString(9, user.field)
+            insertStmt.bindString(10, user.pos)
+            insertStmt.bindString(11, user.phone)
 
             insertStmt.executeInsert()
         }.run()
     }
 
-    fun insertTeam(teams: List<Team>){
+    fun insertMyTeams(teams: List<Team>){
         Thread {
             for (team in teams){
                 val db = this.writableDatabase
 
-                val sql = "INSERT OR REPLACE INTO team VALUES(?,?,?,?,?,?,?,?)"
+                val sql = "INSERT OR REPLACE INTO my_team VALUES(?,?,?,?,?,?,?,?)"
 
                 val insertStmt = db.compileStatement(sql)
 
@@ -89,7 +98,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
         val teams = java.util.ArrayList<Team>()
         val db = this.writableDatabase
 
-        val res = db.rawQuery("SELECT * FROM team ;",
+        val res = db.rawQuery("SELECT * FROM my_team ;",
                 null)
 
         while (res.moveToNext()) {
@@ -112,5 +121,24 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
 
 
         return teams
+    }
+
+    fun selectMyToken():String{
+        val db = this.writableDatabase
+
+        val res = db.rawQuery("SELECT token FROM my ORDER BY idx DESC LIMIT 1",
+                null)
+
+        val buffer = StringBuilder()
+
+        if (res.moveToFirst() != null)
+            buffer.append(res.getString(0))
+
+        val token = buffer.toString()
+
+        res.close()
+
+        return token
+
     }
 }

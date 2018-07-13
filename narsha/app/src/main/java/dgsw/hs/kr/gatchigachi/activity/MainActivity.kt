@@ -17,6 +17,7 @@ import dgsw.hs.kr.gatchigachi.R
 import dgsw.hs.kr.gatchigachi.TrustActivity
 import dgsw.hs.kr.gatchigachi.adapter.TeamGridAdapter
 import dgsw.hs.kr.gatchigachi.database.DBHelper
+import dgsw.hs.kr.gatchigachi.network.Network
 import dgsw.hs.kr.gatchigachi.preference.Preference
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
@@ -24,13 +25,14 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
+    val network =  Network()
+    lateinit var myDb : DBHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestedOrientation = (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         setContentView(R.layout.activity_main)
-
-        val myDb = DBHelper(this)
-        val preference = Preference(this)
+        myDb = DBHelper(this)
         val down_anim = AnimationUtils.loadAnimation(this, R.anim.up_down)
         val up_anim = AnimationUtils.loadAnimation(this, R.anim.down_up)
 
@@ -38,7 +40,8 @@ class MainActivity : AppCompatActivity() {
 
         user_profile.background = ShapeDrawable(OvalShape())
         user_profile.clipToOutline = true
-        var teamAdapter = TeamGridAdapter(this, DataService.teamData)
+        
+        var teamAdapter = TeamGridAdapter(this, myDb.selectAllTeam())
         team_grid_view.adapter = teamAdapter
 
         trust_count.setOnClickListener {
@@ -48,13 +51,12 @@ class MainActivity : AppCompatActivity() {
 
         truster_count.setOnClickListener {
             val nextIntent = Intent(this, TrustActivity::class.java)
-            startActivity(nextIntent);
+            startActivity(nextIntent)
         }
 
 
     }
 }
-
         /*btn_trust.setOnClickListener {
             val nextIntent = Intent(this, DetailTeamActivity::class.java)
             startActivity(nextIntent)
