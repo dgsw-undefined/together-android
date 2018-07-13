@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import dgsw.hs.kr.gatchigachi.R
+import dgsw.hs.kr.gatchigachi.R.id.team_name
 import dgsw.hs.kr.gatchigachi.database.DBHelper
 import dgsw.hs.kr.gatchigachi.model.Team
 import dgsw.hs.kr.gatchigachi.model.Team2
@@ -20,11 +21,9 @@ class TeamGridAdapter (val context: Context, val teamData: ArrayList<Team2>) : B
 
         val teamName : TextView = teamView.findViewById(R.id.team_name)
 
-        val team : Team2 = teamData[position]
-
         val teams = myDb.selectAllTeam()
 
-        teamName.text = teams[position].name
+        teamName.text = teams.get(position).name
 
         return teamView
     }
