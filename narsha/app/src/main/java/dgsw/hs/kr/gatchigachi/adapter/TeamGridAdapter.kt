@@ -7,18 +7,24 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import dgsw.hs.kr.gatchigachi.R
+import dgsw.hs.kr.gatchigachi.database.DBHelper
 import dgsw.hs.kr.gatchigachi.model.Team
+import dgsw.hs.kr.gatchigachi.model.Team2
 
-class TeamGridAdapter (val context: Context, val teamData: ArrayList<Team>) : BaseAdapter() {
+class TeamGridAdapter (val context: Context, val teamData: ArrayList<Team2>) : BaseAdapter() {
+
+    val myDb = DBHelper(context)
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
         val teamView : View = LayoutInflater.from(context).inflate(R.layout.team_list_item, null)
 
         val teamName : TextView = teamView.findViewById(R.id.team_name)
 
-        val team = teamData[position]
+        val team : Team2 = teamData[position]
 
-        teamName.setText(team.name)
+        val teams = myDb.selectAllTeam()
+
+//        teamName.text = teams[0].name
 
         return teamView
     }

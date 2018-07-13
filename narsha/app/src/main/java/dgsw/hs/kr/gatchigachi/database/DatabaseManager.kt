@@ -6,116 +6,71 @@ package dgsw.hs.kr.gatchigachi.database
 
 internal class DatabaseManager {
 
-    val createTableDepartment = "CREATE TABLE department ( " +
-            "idx INTEGER UNIQUE, " +
-            "name STRING, " +
-            "tel STRING, " +
-            "PRIMARY KEY('idx') " +
-            ")"
+    val CreateTableAlert =
+            "CREATE TABLE IF NOT EXISTS alert (" +
+                    "id bigint(20)," +
+                    "user_id bigint(20) NULL," +
+                    "docs text NOT NULL," +
+                    "type int(11) NOT NULL," +
+                    "kind int(11) NOT NULL," +
+                    "recevied_date text," +
+                    "read_date datetime NOT NULL," +
+                    "sender bigint(20) NULL," +
+                    "receiver bigint(20) NULL," +
+                    "team_id bigint(20) NULL);"
 
-    val createTableMember = (
-            "CREATE TABLE member ( " +
-                    "id STRING UNIQUE, " +
-                    "name STRING, " +
-                    "phone STRING, " +
-                    "email STRING, " +
-                    "profile_image STRING, " +
-                    "profile_image_byte BLOB, " +
-                    "status_message STRING, " +
-                    "department_idx INTEGER, " +
-                    "position STRING, " +
-                    "task STRING, " +
-                    "auth INTEGER, " +
-                    "status INTEGER, " +
-                    "is_me BOOL, " +
-                    "PRIMARY KEY('id')," +
-                    "FOREIGN KEY(department_idx) REFERENCES Department(idx) " +
-                    ")")
+    val CreateTableTeam =
+            "CREATE TABLE IF NOT EXISTS `team` (" +
+                    "`id` bigint(20) ," +
+                    "`name` varchar(255) NOT NULL," +
+                    "`subject` varchar(255) NOT NULL," +
+                    "`area` varchar(255) NOT NULL," +
+                    "`docs` text NOT NULL," +
+                    "`leader_id` bigint(20) NOT NULL," +
+                    "`member_limit` int(11) DEFAULT NULL," +
+                    "`member_count` int(11) DEFAULT '1'" +
+                    ");"
 
-    val createTableBoard = (
-            "CREATE TABLE board ( " +
-                    "idx INTEGER UNIQUE, " +
-                    "title STRING, " +
-                    "writer STRING, " +
-                    "content STRING, " +
-                    "type INTEGER, " +
-                    "write_date DATETIME, " +
-                    "modify_date DATETIME, " +
-                    "reservation_at DATETIME, " +
-                    "FOREIGN KEY(writer) REFERENCES member(id)," +
-                    "PRIMARY KEY('idx') " +
-                    ")")
+    val CreateTableTeamMember =
+            "CREATE TABLE IF NOT EXISTS `team_member` (" +
+                    "`id` bigint(20) ," +
+                    "`team_id` bigint(20) NOT NULL," +
+                    "`user_id` bigint(20) NOT NULL," +
+                    "`field` varchar(255) DEFAULT NULL," +
+                    "`inviter_id` bigint(20) NOT NULL," +
+                    "`enroll_date` datetime DEFAULT CURRENT_TIMESTAMP," +
+                    "`kickout_date` datetime DEFAULT NULL," +
+                    "`walkout_date` datetime DEFAULT NULL," +
+                    "`is_leader` int(11) NOT NULL DEFAULT '0');"
 
-    val createTableBoardReceiver = (
-            "CREATE TABLE board_receiver ( " +
-                    "idx INTEGER, " +
-                    "receiver STRING, " +
-                    "FOREIGN KEY(idx) REFERENCES board(idx)," +
-                    "FOREIGN KEY(receiver) REFERENCES member(id)," +
-                    "PRIMARY KEY('idx', 'receiver') " +
-                    ")")
+    val CreateTableTec =
+            "CREATE TABLE IF NOT EXISTS `tec` (" +
+                    "    `id` bigint(20) ," +
+                    "    `user_id` bigint(20) NOT NULL," +
+                    "    `tec_name` varchar(255) NOT NULL," +
+                    "    `tec_date` datetime DEFAULT CURRENT_TIMESTAMP" +
+                    "    );"
 
-    val createTableComment = (
-            "CREATE TABLE comment ( " +
-                    "idx INTEGER UNIQUE, " +
-                    "board_idx INTEGER, " +
-                    "content STRING, " +
-                    "writer STRING, " +
-                    "created_at DATETIME, " +
-                    "updated_at DATETIME, " +
-                    "original_name STRING, " +
-                    "upload_name STRING, " +
-                    "type STRING, " +
-                    "FOREIGN KEY(writer) REFERENCES member(id), " +
-                    "FOREIGN KEY(board_idx) REFERENCES board(idx) on delete cascade, " +
-                    "PRIMARY KEY('idx') " +
-                    ")")
+    val CreateTableTruster =
+            "CREATE TABLE IF NOT EXISTS `truster` (" +
+                    "    `id` bigint(20) ," +
+                    "    `user_id` bigint(20) NOT NULL," +
+                    "    `truster_id` bigint(20) NOT NULL," +
+                    "    `truster_date` datetime DEFAULT CURRENT_TIMESTAMP" +
+                    "    );"
 
-    val createTableToken = (
-            "CREATE TABLE token ( " +
-                    "idx INTEGER UNIQUE, " +
-                    "token STRING, " +
-                    "refresh_token STRING, " +
-                    "PRIMARY KEY('idx')" +
-                    ")")
+    val CreateTableUser =
+            "CREATE TABLE IF NOT EXISTS `user` (" +
+                    "    `idx` bigint(20)," +
+                    "    `id` varchar(255) NOT NULL," +
+                    "    `name` varchar(255) NOT NULL," +
+                    "    `pw` varchar(255) NOT NULL," +
+                    "    `email` varchar(255) NOT NULL," +
+                    "    `interested` varchar(255) NOT NULL," +
+                    "    `github` varchar(255) NOT NULL," +
+                    "    `field` varchar(255) NOT NULL," +
+                    "    `position` varchar(255) NOT NULL," +
+                    "    `phone` varchar(255) NOT NULL" +
+                    "    );"
 
-    val createTableFavorite = (
-            "CREATE TABLE favorite ( " +
-                    "idx INTEGER UNIQUE, " +
-                    "member_id STRING, " +
-                    "FOREIGN KEY(member_id) REFERENCES member(id), " +
-                    "PRIMARY KEY('idx')" +
-                    ")")
-
-    val createTableChatting = (
-            "CREATE TABLE chatting ( " +
-                    "idx INTEGER UNIQUE, " +
-                    "room_idx INTEGER, " +
-                    "message STRING, " +
-                    "member_id STRING, " +
-                    "type STRING, " +
-                    "original_name STRING, " +
-                    "upload_name STRING, " +
-                    "create_date STRING, " +
-                    "FOREIGN KEY(member_id) REFERENCES member(id), " +
-                    "FOREIGN KEY(room_idx) REFERENCES chatting_room(chat_room_idx), " +
-                    "PRIMARY KEY('idx')" +
-                    ")")
-
-    val createTableChattingRoom = (
-            "CREATE TABLE chatting_room ( " +
-                    "idx INTEGER UNIQUE, " +
-                    "type STRING, " +
-                    "name STRING, " +
-                    "member_id STRING, " +
-                    "FOREIGN KEY(member_id) REFERENCES member(id), " +
-                    "PRIMARY KEY('idx')" +
-                    ")")
-
-    val createTableChattingRoomMember = (
-            "CREATE TABLE chatting_room_member ( " +
-                    "room_idx INTEGER," +
-                    "member_idx INTEGER," +
-                    "PRIMARY KEY('room_idx', 'member_idx')" +
-                    ")")
 }

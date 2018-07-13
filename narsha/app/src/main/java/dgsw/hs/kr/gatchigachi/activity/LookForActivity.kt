@@ -10,7 +10,6 @@ import dgsw.hs.kr.gatchigachi.R
 import dgsw.hs.kr.gatchigachi.adapter.BestTrusterAdapter
 import dgsw.hs.kr.gatchigachi.adapter.SearchPersonAdapter
 import dgsw.hs.kr.gatchigachi.adapter.SearchTeamAdaper
-import dgsw.hs.kr.gatchigachi.database.DatabaseHelper
 import kotlinx.android.synthetic.main.activity_look_for.*
 
 class LookForActivity : AppCompatActivity() {
@@ -33,7 +32,7 @@ class LookForActivity : AppCompatActivity() {
             list_search_result.startAnimation(list)
             list_search_result.adapter = searchPerson
 
-            val myDB = DatabaseHelper(this)
+//            val myDB = DatabaseHelper(this)
         }
 
 

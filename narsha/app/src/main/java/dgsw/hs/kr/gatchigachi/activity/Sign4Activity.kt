@@ -3,13 +3,13 @@ package dgsw.hs.kr.gatchigachi.activity
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.github.kittinunf.fuel.httpPost
 import com.google.gson.Gson
 import dgsw.hs.kr.gatchigachi.LoginActivity
 import dgsw.hs.kr.gatchigachi.R
+import dgsw.hs.kr.gatchigachi.R.id.textView14
 import dgsw.hs.kr.gatchigachi.model.User
 import kotlinx.android.synthetic.main.activity_sign4.*
 
@@ -28,15 +28,17 @@ class Sign4Activity :AppCompatActivity() {
         val phone : String = intent.getStringExtra("phone")
         val email : String = intent.getStringExtra("email")
         val tec : String = intent.getStringExtra("tec")
-        val interested : String = intent.getStringExtra("interested")
+        val inter : String = intent.getStringExtra("interested")
+        val github : String = textView13.text.toString()
+        val field : String = textView14.text.toString()
         val position : String = intent.getStringExtra("position")
 
         btn_sign4_sign.setOnClickListener {
             val nextIntent = Intent(this, LoginActivity::class.java)
             startActivity(nextIntent)
         }
-        /*val tecArray = tec.split(" ".toRegex())
-        val user = User(name,id,pw,phone,tecArray.toTypedArray(),interested,github,field,position,mail)*/
+        val tecArray = tec.split(" ".toRegex())
+        val user = User(null,name,id,pw,phone, tecArray as ArrayList<String>,inter,github,field,position,email)
     }
 
     private fun signUpNt(user: User){
