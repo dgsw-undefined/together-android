@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         user_profile.background = ShapeDrawable(OvalShape())
         user_profile.clipToOutline = true
         var teamAdapter = TeamGridAdapter(this, DataService.teamData)
-        /*team_grid_view.adapter = teamAdapter*/
+//        team_grid_view.adapter = teamAdapter
 
     }
 }
