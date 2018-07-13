@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MainActivity">
+    tools:context=".activity.MainActivity"
+    android:background="#fafafa">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/detail"
@@ -28,7 +29,7 @@
             android:layout_marginTop="8dp"
             android:text="메일 : "
             android:textColor="#7e3ff2"
-            android:textSize="14sp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/textView23"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -40,7 +41,7 @@
             android:layout_marginStart="8dp"
             android:text="GitHub : "
             android:textColor="#7e3ff2"
-            android:textSize="14sp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/textView22"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView23" />
@@ -52,7 +53,7 @@
             android:layout_marginStart="8dp"
             android:text="직책 :  "
             android:textColor="#7e3ff2"
-            android:textSize="14sp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/textView21"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView22" />
@@ -65,7 +66,7 @@
             android:layout_marginStart="8dp"
             android:text="관심사 : "
             android:textColor="#7e3ff2"
-            android:textSize="14sp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView19" />
@@ -77,7 +78,7 @@
             android:layout_marginStart="8dp"
             android:text="기술 : "
             android:textColor="#7e3ff2"
-            android:textSize="14sp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/textView19"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView18" />
@@ -89,7 +90,7 @@
             android:layout_marginStart="8dp"
             android:text="전공 :  "
             android:textColor="#7e3ff2"
-            android:textSize="14sp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/textView18"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView16" />
@@ -102,7 +103,7 @@
             android:layout_marginTop="8dp"
             android:text="mail"
             android:textColor="#000000"
-            android:textSize="14sp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView16"
             app:layout_constraintStart_toEndOf="@+id/textView16"
             app:layout_constraintTop_toTopOf="@+id/textView16"
@@ -116,7 +117,7 @@
             android:layout_marginTop="8dp"
             android:text="field"
             android:textColor="#000000"
-            android:textSize="14sp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView23"
             app:layout_constraintStart_toEndOf="@+id/textView23"
             app:layout_constraintTop_toTopOf="@+id/textView23"
@@ -130,7 +131,7 @@
             android:layout_marginTop="8dp"
             android:text="github"
             android:textColor="#000000"
-            android:textSize="14sp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView18"
             app:layout_constraintStart_toEndOf="@+id/textView18"
             app:layout_constraintTop_toTopOf="@+id/textView18"
@@ -144,7 +145,7 @@
             android:layout_marginTop="8dp"
             android:text="tec"
             android:textColor="#000000"
-            android:textSize="14sp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView22"
             app:layout_constraintStart_toEndOf="@+id/textView22"
             app:layout_constraintTop_toTopOf="@+id/textView22"
@@ -158,7 +159,7 @@
             android:layout_marginTop="8dp"
             android:text="position"
             android:textColor="#000000"
-            android:textSize="14sp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView19"
             app:layout_constraintStart_toEndOf="@+id/textView19"
             app:layout_constraintTop_toTopOf="@+id/textView19"
@@ -172,7 +173,7 @@
             android:layout_marginTop="8dp"
             android:text="interested"
             android:textColor="#000000"
-            android:textSize="14sp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView21"
             app:layout_constraintStart_toEndOf="@+id/textView21"
             app:layout_constraintTop_toTopOf="@+id/textView21"
@@ -194,7 +195,14 @@
 
     </android.support.design.widget.AppBarLayout>
 
-
+    <include
+        android:id="@+id/include"
+        layout="@layout/content_main"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout9"
@@ -240,7 +248,7 @@
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/primary_color_radius"
+            android:background="@drawable/primary_radius"
             android:text="친구 추가"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -262,11 +270,8 @@
         <LinearLayout
             android:id="@+id/underline"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginStart="4dp"
+            android:layout_height="2dp"
             android:background="#7e3ff2"
-            android:elevation="20dip"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -294,7 +299,6 @@
             android:layout_marginStart="8dp"
             android:background="@drawable/detail_checkbox"
             android:button="@null"
-            android:elevation="20dip"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

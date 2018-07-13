@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/btn_team_detail"
     android:layout_width="180dp"
-    android:layout_height="180dp"
-    >
+    android:layout_height="180dp">
 
     <ImageView
         android:id="@+id/team_image"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/primary_color_radius"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/primary_radius"
         app:layout_constraintDimensionRatio="1:0.7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -13,18 +13,21 @@ import com.google.gson.Gson
 import dgsw.hs.kr.gatchigachi.activity.MainActivity
 import dgsw.hs.kr.gatchigachi.database.DBHelper
 import dgsw.hs.kr.gatchigachi.model.User
+import dgsw.hs.kr.gatchigachi.network.Network
 import dgsw.hs.kr.gatchigachi.preference.Preference
 import kotlinx.android.synthetic.main.activity_login.*
 import org.json.JSONObject
 
 class LoginActivity : AppCompatActivity() {
 
-    lateinit var dbHelper : DBHelper
+    lateinit var myDb : DBHelper
+    val network =  Network()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        dbHelper = DBHelper(this)
+        myDb = DBHelper(this)
+        val preference = Preference(this)
 
         requestedOrientation = (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         setContentView(R.layout.activity_login)
@@ -49,47 +52,12 @@ class LoginActivity : AppCompatActivity() {
 
             if (check(id, pw) == 1) {
                 // 중복 등 데이터 확인
-                if (call_server(id,pw) == 100) {
+                if (network.networt_Login(id,pw,myDb,preference) == 100) {
+                    val nt : Int = network.network_GetAllTeam(myDb,preference)
                     startActivity(nextIntent)
                 }
             }
         }
-    }
-
-    private fun call_server(id:String,pw:String): Int {
-
-        val URL = "http://115.68.182.229/go/user/signin"
-        val json = HashMap<String,String>()
-        json.put("id",id)
-        val put = json.put("pw", pw)
-        var code = 100
-
-        URL.httpPost()
-                .header(Pair("Content-Type", "application/json"))
-                .body(Gson().toJson(json))
-                .responseJson{ request, response, result ->
-                    result.fold(success = {json ->
-                        val loginJson = JSONObject(json.content)
-                        val json = loginJson.getJSONObject("Data")
-
-                        val user = Gson().fromJson(json.toString(), User::class.java)
-
-                        Log.e("Aa",user.id)
-
-                        val preference = Preference(this)
-
-                        preference.setToken(loginJson.getString("Token"))
-
-                        dbHelper.insertUser(user)
-
-
-                    }, failure = { error ->
-                        Log.e("error ", error.toString())
-                    })
-                    println("==========================================================================")
-                }
-
-        return code
     }
 
     fun check(id: String, pw: String): Int {

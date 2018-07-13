@@ -23,8 +23,6 @@ import com.github.kittinunf.result.Result
 import com.google.gson.Gson
 import dgsw.hs.kr.gatchigachi.DataService
 import dgsw.hs.kr.gatchigachi.DetailTeamActivity
-import dgsw.hs.kr.gatchigachi.R
-import dgsw.hs.kr.gatchigachi.R.id.drawer_layout
 import dgsw.hs.kr.gatchigachi.adapter.TeamGridAdapter
 import dgsw.hs.kr.gatchigachi.model.Team
 import dgsw.hs.kr.gatchigachi.model.User
@@ -34,8 +32,14 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 import org.json.JSONObject
 import kotlin.math.log
 import com.google.gson.reflect.TypeToken
+import dgsw.hs.kr.gatchigachi.R
+import dgsw.hs.kr.gatchigachi.R.id.*
 import dgsw.hs.kr.gatchigachi.database.DBHelper
-
+import dgsw.hs.kr.gatchigachi.network.Network
+import kotlinx.android.synthetic.main.team_list_item.*
+import kotlinx.coroutines.experimental.delay
+import java.util.*
+import kotlin.concurrent.timerTask
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -47,6 +51,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val myDb = DBHelper(this)
         val preference = Preference(this)
+        val down_anim = AnimationUtils.loadAnimation(this,R.anim.up_down)
+        val up_anim = AnimationUtils.loadAnimation(this, R.anim.down_up)
+
+        val timer = Timer()
 
         var teamAdapter = TeamGridAdapter(this, DataService.teamData)
         team_grid_view.adapter = teamAdapter
@@ -59,12 +67,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         btn_open_detail.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked){
+                bottom_aaa.startAnimation(down_anim)
+                timer.schedule(timerTask { this }, 5000)
                 bottom_aaa.y = bottom_aaa.y+400
 
                 detail.visibility = VISIBLE
 
             } else{
-
+                bottom_aaa.startAnimation(up_anim)
+                timer.schedule(timerTask { this }, 5000)
                 bottom_aaa.y = bottom_aaa.y-400
 
                 detail.visibility = INVISIBLE
@@ -73,24 +84,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
         }
-
-        val URL = "http://115.68.182.229/node/team"
-
-        URL.httpGet()
-                .header(pairs = "Authorization" to preference.getToken())
-                .responseJson { request, response, result ->
-                    result.fold(success = {json ->
-                        val teamJson = JSONObject(json.content)
-                        val jsonOutput = teamJson.getJSONArray("Data").toString()
-                        val listType = object : TypeToken<List<Team>>(){}.type
-                        val teams : List<Team> = Gson().fromJson(jsonOutput, listType)
-
-                        myDb.insertTeam(teams)
-
-                    }, failure = {
-
-                    })
-                }
 
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)

@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase
 import dgsw.hs.kr.gatchigachi.model.Team
 import dgsw.hs.kr.gatchigachi.model.User
 import org.jetbrains.anko.db.ManagedSQLiteOpenHelper
+import java.time.temporal.TemporalAccessor
 
 class DBHelper(context: Context) : ManagedSQLiteOpenHelper(context, "myDb") {
 
@@ -82,5 +83,33 @@ class DBHelper(context: Context) : ManagedSQLiteOpenHelper(context, "myDb") {
                 insertStmt.executeInsert()
             }
         }.run()
+    }
+
+    fun selectAllTeam():ArrayList<Team>{
+        val teams = java.util.ArrayList<Team>()
+        val db = this.writableDatabase
+        val res = db.rawQuery("SELECT * FROM team ;",
+                null)
+
+        while (res.moveToNext()) {
+
+            val id = res.getInt(res.getColumnIndex("idx"))
+            val name = res.getString(res.getColumnIndex("title"))
+            val subject = res.getString(res.getColumnIndex("writer"))
+            val area = res.getString(res.getColumnIndex("content"))
+            val docs = res.getString(res.getColumnIndex("type"))
+            val leader_id = res.getInt(res.getColumnIndex("write_date"))
+            val member_limit = res.getInt(res.getColumnIndex("modify_date"))
+            val member_count = res.getInt(res.getColumnIndex("reservation_at"))
+
+            val teamTemp = Team(id,name,subject,area,docs,leader_id,member_limit,member_count)
+
+            teams.add(teamTemp)
+        }
+
+        res.close()
+
+
+        return teams
     }
 }

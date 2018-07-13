@@ -7,7 +7,6 @@ data class Team(
         val area : String,
         val docs : String,
         val leader_id : Int,
-        val create_data : String,
         val member_limit : Int,
         val member_count : Int)
 
