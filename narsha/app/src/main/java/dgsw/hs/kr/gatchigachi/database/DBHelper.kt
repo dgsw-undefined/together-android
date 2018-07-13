@@ -94,14 +94,14 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
 
         while (res.moveToNext()) {
 
-            val id = res.getInt(res.getColumnIndex("idx"))
-            val name = res.getString(res.getColumnIndex("title"))
-            val subject = res.getString(res.getColumnIndex("writer"))
-            val area = res.getString(res.getColumnIndex("content"))
-            val docs = res.getString(res.getColumnIndex("type"))
-            val leader_id = res.getInt(res.getColumnIndex("write_date"))
-            val member_limit = res.getInt(res.getColumnIndex("modify_date"))
-            val member_count = res.getInt(res.getColumnIndex("reservation_at"))
+            val id = res.getInt(res.getColumnIndex("id"))
+            val name = res.getString(res.getColumnIndex("name"))
+            val subject = res.getString(res.getColumnIndex("subject"))
+            val area = res.getString(res.getColumnIndex("area"))
+            val docs = res.getString(res.getColumnIndex("docs"))
+            val leader_id = res.getInt(res.getColumnIndex("leader_id"))
+            val member_limit = res.getInt(res.getColumnIndex("member_limit"))
+            val member_count = res.getInt(res.getColumnIndex("member_count"))
 
             val teamTemp = Team(id,name,subject,area,docs,leader_id,member_limit,member_count)
 

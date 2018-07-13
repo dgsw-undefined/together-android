@@ -38,10 +38,10 @@ class MainActivity : AppCompatActivity() {
 
         user_profile.background = ShapeDrawable(OvalShape())
         user_profile.clipToOutline = true
+        
         var teamAdapter = TeamGridAdapter(this, DataService.teamData)
 //        team_grid_view.adapter = teamAdapter
 
-<<<<<<< HEAD
         trust_count.setOnClickListener {
             val nextIntent = Intent(this, TrustActivity::class.java)
             startActivity(nextIntent)
@@ -52,10 +52,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(nextIntent);
         }
 
-=======
     }
 }
->>>>>>> 574b35cc9cb58f258277d9e16fa5733760064270
         /*btn_trust.setOnClickListener {
             val nextIntent = Intent(this, DetailTeamActivity::class.java)
             startActivity(nextIntent)
