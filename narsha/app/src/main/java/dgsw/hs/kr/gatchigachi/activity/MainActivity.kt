@@ -1,5 +1,6 @@
 package dgsw.hs.kr.gatchigachi.activity
 
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.OvalShape
@@ -13,6 +14,7 @@ import android.view.animation.*
 import com.github.kittinunf.fuel.httpGet
 import dgsw.hs.kr.gatchigachi.DataService
 import dgsw.hs.kr.gatchigachi.R
+import dgsw.hs.kr.gatchigachi.TrustActivity
 import dgsw.hs.kr.gatchigachi.adapter.TeamGridAdapter
 import dgsw.hs.kr.gatchigachi.database.DBHelper
 import dgsw.hs.kr.gatchigachi.preference.Preference
@@ -39,8 +41,21 @@ class MainActivity : AppCompatActivity() {
         var teamAdapter = TeamGridAdapter(this, DataService.teamData)
 //        team_grid_view.adapter = teamAdapter
 
+<<<<<<< HEAD
+        trust_count.setOnClickListener {
+            val nextIntent = Intent(this, TrustActivity::class.java)
+            startActivity(nextIntent)
+        }
+
+        truster_count.setOnClickListener {
+            val nextIntent = Intent(this, TrustActivity::class.java)
+            startActivity(nextIntent);
+        }
+
+=======
     }
 }
+>>>>>>> 574b35cc9cb58f258277d9e16fa5733760064270
         /*btn_trust.setOnClickListener {
             val nextIntent = Intent(this, DetailTeamActivity::class.java)
             startActivity(nextIntent)

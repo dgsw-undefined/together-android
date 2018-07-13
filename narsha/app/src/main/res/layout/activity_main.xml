@@ -69,11 +69,12 @@
                         app:layout_constraintEnd_toStartOf="@+id/linearLayout7"
                         app:layout_constraintStart_toStartOf="parent" />
 
-                    <TextView
+                    <Button
                         android:id="@+id/trust_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
+                        android:background="#00000000"
                         android:text="138"
                         android:textColor="#fafafa"
                         android:textSize="28sp"
@@ -93,12 +94,13 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/linearLayout7" />
 
-                    <TextView
+                    <Button
                         android:id="@+id/truster_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:text="188"
+                        android:background="#00000000"
                         android:textColor="#fafafa"
                         android:textSize="28sp"
                         app:layout_constraintBottom_toTopOf="@+id/textView18"
