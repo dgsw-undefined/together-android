@@ -11,22 +11,25 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.animation.*
 import com.github.kittinunf.fuel.httpGet
-import com.github.kittinunf.result.Result
 import dgsw.hs.kr.gatchigachi.DataService
 import dgsw.hs.kr.gatchigachi.R
 import dgsw.hs.kr.gatchigachi.adapter.TeamGridAdapter
+import dgsw.hs.kr.gatchigachi.database.DBHelper
 import dgsw.hs.kr.gatchigachi.preference.Preference
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
-class MainActivity : AppCompatActivity(){
+
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestedOrientation = (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         setContentView(R.layout.activity_main)
 
-        val down_anim = AnimationUtils.loadAnimation(this,R.anim.up_down)
+        val myDb = DBHelper(this)
+        val preference = Preference(this)
+        val down_anim = AnimationUtils.loadAnimation(this, R.anim.up_down)
         val up_anim = AnimationUtils.loadAnimation(this, R.anim.down_up)
 
         val timer = Timer()
@@ -36,14 +39,14 @@ class MainActivity : AppCompatActivity(){
         var teamAdapter = TeamGridAdapter(this, DataService.teamData)
         team_grid_view.adapter = teamAdapter
 
+    }
+}
+
         /*btn_trust.setOnClickListener {
             val nextIntent = Intent(this, DetailTeamActivity::class.java)
             startActivity(nextIntent)
         }*/
 
-        val preference = Preference(this)
-
-        Log.e("Token",preference.getToken())
 
         /*btn_open_detail.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked){
@@ -65,27 +68,12 @@ class MainActivity : AppCompatActivity(){
 
         }*/
 
-        val URL = "http://115.68.182.229/team"
-
-        URL.httpGet().responseString { request, response, result ->
-            //do something with response
-            when (result) {
-                is Result.Failure -> {
-                    val ex = result.getException()
-                }
-                is Result.Success -> {
-                    val data = result.get()
-                }
-            }
-        }
-
         /*val toggle = ActionBarDrawerToggle(
                 this, wrap, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         wrap.addDrawerListener(toggle)
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)*/
-    }
 
     /*override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
@@ -137,4 +125,3 @@ class MainActivity : AppCompatActivity(){
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }*/
-}

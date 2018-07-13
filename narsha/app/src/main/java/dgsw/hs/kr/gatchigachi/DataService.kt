@@ -9,15 +9,15 @@ import java.util.*
 
 object DataService {
     val teamData = arrayListOf(
-            Team("undefined"),
-            Team("naver"),
-            Team("google"),
-            Team("name"),
-            Team("회덮밥"),
-            Team("해적왕원준갓"),
-            Team("레알마드리드"),
-            Team("바르셀로나"),
-            Team("아 누구야")
+            Team2("undefined"),
+            Team2("naver"),
+            Team2("google"),
+            Team2("name"),
+            Team2("회덮밥"),
+            Team2("해적왕원준갓"),
+            Team2("레알마드리드"),
+            Team2("바르셀로나"),
+            Team2("아 누구야")
     )
 
     val UserData = arrayListOf(

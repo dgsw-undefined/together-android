@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <foreground android:drawable="@mipmap/main_logo"/>
     <background android:drawable="@drawable/text"/>
-    <foreground android:drawable="@mipmap/text_profile"/>
 </adaptive-icon>
