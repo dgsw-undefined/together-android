@@ -21,10 +21,18 @@ object DataService {
     )
 
     val UserData = arrayListOf(
-            User2("Gun",""),
-            User2("SungHwa",""),
-            User2("TaeHyung",""),
-            User2("Jin Hyuk","")
+            User2("Gun","android-client"),
+            User2("SungHwa","android-client"),
+            User2("TaeHyung","android-server"),
+            User2("Jin Hyuk","android-server"),
+            User2("Gun","android-client"),
+            User2("SungHwa","android-client"),
+            User2("TaeHyung","android-server"),
+            User2("Jin Hyuk","android-server"),
+            User2("Gun","android-client"),
+            User2("SungHwa","android-client"),
+            User2("TaeHyung","android-server"),
+            User2("Jin Hyuk","android-server")
     )
 
     val MemberData = arrayListOf(
