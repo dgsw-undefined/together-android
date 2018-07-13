@@ -63,7 +63,7 @@ public class Network{
 
                         myDb.insertTeam(teams)
 
-                        code = teamJson.getInt("code")
+                        code = teamJson.getInt("Code")
 
                     }, failure = {
 
