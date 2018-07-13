@@ -41,7 +41,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 }
-
         /*btn_trust.setOnClickListener {
             val nextIntent = Intent(this, DetailTeamActivity::class.java)
             startActivity(nextIntent)

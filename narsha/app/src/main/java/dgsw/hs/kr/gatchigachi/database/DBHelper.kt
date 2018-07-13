@@ -3,12 +3,12 @@ package dgsw.hs.kr.gatchigachi.database
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteOpenHelper
 import dgsw.hs.kr.gatchigachi.model.Team
 import dgsw.hs.kr.gatchigachi.model.User
-import org.jetbrains.anko.db.ManagedSQLiteOpenHelper
 import java.time.temporal.TemporalAccessor
 
-class DBHelper(context: Context) : ManagedSQLiteOpenHelper(context, "myDb") {
+class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", null,4) {
 
     private val dbManager : DatabaseManager = DatabaseManager()
 
@@ -88,6 +88,7 @@ class DBHelper(context: Context) : ManagedSQLiteOpenHelper(context, "myDb") {
     fun selectAllTeam():ArrayList<Team>{
         val teams = java.util.ArrayList<Team>()
         val db = this.writableDatabase
+
         val res = db.rawQuery("SELECT * FROM team ;",
                 null)
 

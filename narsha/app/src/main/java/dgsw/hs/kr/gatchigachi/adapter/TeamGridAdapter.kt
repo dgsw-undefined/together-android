@@ -24,7 +24,7 @@ class TeamGridAdapter (val context: Context, val teamData: ArrayList<Team2>) : B
 
         val teams = myDb.selectAllTeam()
 
-        teamName.text = teams[0].name
+//        teamName.text = teams[0].name
 
         return teamView
     }

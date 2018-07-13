@@ -50,9 +50,11 @@ class LoginActivity : AppCompatActivity() {
             val id: String = edit_login_id.text.toString()
             val pw: String = edit_login_pw.text.toString()
 
+
             if (check(id, pw) == 1) {
+                val code = network.networt_Login(id,pw,myDb,preference)
                 // 중복 등 데이터 확인
-                if (network.networt_Login(id,pw,myDb,preference) == 100) {
+                if (code == 100) {
                     val nt : Int = network.network_GetAllTeam(myDb,preference)
                     startActivity(nextIntent)
                 }
