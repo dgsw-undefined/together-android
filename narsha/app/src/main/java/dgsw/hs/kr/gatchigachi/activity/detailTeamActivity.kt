@@ -1,8 +1,10 @@
 package dgsw.hs.kr.gatchigachi
 
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import dgsw.hs.kr.gatchigachi.R
 import dgsw.hs.kr.gatchigachi.adapter.MemberGridAdapter
 import dgsw.hs.kr.gatchigachi.adapter.TeamGridAdapter

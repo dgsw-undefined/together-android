@@ -1,18 +1,23 @@
 package dgsw.hs.kr.gatchigachi.adapter
 
 import android.content.Context
+import android.content.Intent
+import android.support.v4.content.ContextCompat.startActivity
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
+import dgsw.hs.kr.gatchigachi.DetailTeamActivity
 import dgsw.hs.kr.gatchigachi.R
 import dgsw.hs.kr.gatchigachi.R.id.team_name
+import dgsw.hs.kr.gatchigachi.TrustActivity
 import dgsw.hs.kr.gatchigachi.database.DBHelper
 import dgsw.hs.kr.gatchigachi.model.Team
 import dgsw.hs.kr.gatchigachi.model.Team2
 
-class TeamGridAdapter (val context: Context, val teamData: ArrayList<Team2>) : BaseAdapter() {
+class TeamGridAdapter (val context: Context, val teamData: ArrayList<Team>) : BaseAdapter() {
 
     val myDb = DBHelper(context)
 
@@ -21,9 +26,15 @@ class TeamGridAdapter (val context: Context, val teamData: ArrayList<Team2>) : B
 
         val teamName : TextView = teamView.findViewById(R.id.team_name)
 
-        val teams = myDb.selectAllTeam()
+        val teamId = teamData[position].id.toString()
 
-        teamName.text = teams.get(position).name
+        teamName.text = teamData[position].name
+
+        teamView.setOnClickListener {
+            val nextIntent = Intent(context, DetailTeamActivity::class.java)
+            nextIntent.putExtra("teamId", teamId)
+            context.startActivity(nextIntent)
+        }
 
         return teamView
     }
