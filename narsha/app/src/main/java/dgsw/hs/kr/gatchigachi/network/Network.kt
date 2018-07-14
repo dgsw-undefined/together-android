@@ -2,6 +2,7 @@ package dgsw.hs.kr.gatchigachi.network
 
 import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.fuel.httpPost
@@ -14,10 +15,10 @@ import dgsw.hs.kr.gatchigachi.model.Team
 import dgsw.hs.kr.gatchigachi.model.User
 import org.json.JSONObject
 
-public class Network{
+class Network{
     var code = 100
 
-    public fun login(id:String, pw:String, myDb:DBHelper, context:Context) {
+    fun login(id:String, pw:String, myDb:DBHelper, context:Context) {
         val json = HashMap<String,String>()
         json["id"] = id
         json["pw"] = pw
@@ -32,10 +33,13 @@ public class Network{
                         is Result.Success ->{
                             val loginJson = JSONObject(result.get().content)
                             val json = loginJson.getJSONObject("Data")
+                            val token = loginJson.getString("Token").toString()
+
+                            Log.e("a",token)
 
                             val user = Gson().fromJson(json.toString(), User::class.java)
 
-                            myDb.insertMyinfo(user, loginJson.getString("Token"))
+                            myDb.insertMyinfo(user, token)
 
                             (context as LoginActivity).notifyFinish(loginJson.getLong("Code"))
                         }
@@ -48,7 +52,7 @@ public class Network{
                 }
     }
 
-    public fun getMyTeam(myDb: DBHelper) : Int{
+    fun getMyTeam(myDb: DBHelper) : Int{
 
         var URL = "http://115.68.182.229/node/team"
 
@@ -71,5 +75,42 @@ public class Network{
                 }
 
         return code
-        }
+    }
+
+    fun getTeamMember(teamId:Int ,myDb: DBHelper) : Int{
+
+        var URL = "http://115.68.182.229/team/member/$teamId"
+
+        URL.httpGet()
+                .header(pairs = "Authorization" to myDb.selectMyToken())
+                .responseJson { request, response, result ->
+                    result.fold(success = {json ->
+                        val teamJson = JSONObject(json.content)
+                        val jsonOutput = teamJson.getJSONArray("Data").toString()
+                        val listType = object : TypeToken<List<Team>>(){}.type
+                        val teams : List<Team> = Gson().fromJson(jsonOutput, listType)
+
+                        myDb.insertMyTeams(teams)
+
+                        code = teamJson.getInt("Code")
+
+                    }, failure = {
+
+                    })
+                }
+
+        return code
+    }
+
+    fun signUpNt(user: User){
+        val URL = "http://115.68.182.229/go/user/signup"
+        URL.httpPost()
+                .header(Pair("Content-Type", "application/json"))
+                .body(Gson().toJson(user))
+                .responseObject(User.Deserializer()) { request, response, result ->
+                    println(response.toString())
+                    println(request.toString())
+                }
+    }
+
 }

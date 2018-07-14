@@ -26,7 +26,7 @@ class TeamGridAdapter (val context: Context, val teamData: ArrayList<Team>) : Ba
 
         val teamName : TextView = teamView.findViewById(R.id.team_name)
 
-        val teamId = teamData[position].id.toString()
+        val teamId = teamData[position].id
 
         teamName.text = teamData[position].name
 

@@ -45,7 +45,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(nextIntent)
         }
 
-
+        val user = myDb.selectMyInfo()
+        Log.e("a", user!!.name)
     }
 }
         /*btn_trust.setOnClickListener {

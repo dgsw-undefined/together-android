@@ -10,17 +10,24 @@ import com.google.gson.Gson
 import dgsw.hs.kr.gatchigachi.LoginActivity
 import dgsw.hs.kr.gatchigachi.R
 import dgsw.hs.kr.gatchigachi.R.id.textView14
+import dgsw.hs.kr.gatchigachi.database.DBHelper
 import dgsw.hs.kr.gatchigachi.model.User
+import dgsw.hs.kr.gatchigachi.network.Network
 import kotlinx.android.synthetic.main.activity_sign4.*
 
 class Sign4Activity :AppCompatActivity() {
+
+    val network = Network()
+    lateinit var myDb : DBHelper
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestedOrientation = (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         setContentView(R.layout.activity_sign4)
 
-        val intent = getIntent()
+        val intent = intent
+        myDb = DBHelper(this)
 
         val id : String = intent.getStringExtra("id")
         val pw : String = intent.getStringExtra("pw")
@@ -38,20 +45,13 @@ class Sign4Activity :AppCompatActivity() {
             startActivity(nextIntent)
         }
         val tecArray = tec.split(" ".toRegex())
-        val user = User(null,name,id,pw,phone, tecArray as ArrayList<String>,inter,github,field,position,email)
+        val user = User(null,id,name,pw,email,inter,github,field,tecArray,position,phone)
+
+        network.signUpNt(user)
+
     }
 
-    private fun signUpNt(user: User){
-        val URL = "http://115.68.182.229/go/user/signup"
-        URL.httpPost()
-                .header(Pair("Content-Type", "application/json"))
-                .body(Gson().toJson(user))
-                .responseObject(User.Deserializer()) { request, response, result ->
-                    Toast.makeText(this, response.toString(), Toast.LENGTH_SHORT).show()
-                    println(response.toString())
-                    println(request.toString())
-                }
-    }
+
 
     //private fun Check() git, field 검사
 
