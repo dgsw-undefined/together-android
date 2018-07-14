@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.animation.*
+import dgsw.hs.kr.gatchigachi.MakeTeamActivity
 import dgsw.hs.kr.gatchigachi.R
 import dgsw.hs.kr.gatchigachi.TrustActivity
 import dgsw.hs.kr.gatchigachi.adapter.TeamGridAdapter
@@ -46,8 +47,24 @@ class MainActivity : AppCompatActivity() {
             startActivity(nextIntent)
         }
 
+        add_team.setOnClickListener {
+            val nextIntent = Intent(this, MakeTeamActivity::class.java)
+            startActivity(nextIntent)
+        }
+
+        to_search.setOnClickListener {
+            val nextIntent = Intent(this, LookForActivity::class.java)
+            startActivity(nextIntent)
+        }
+
         val user = myDb.selectMyInfo()
         Log.e("a", user!!.name)
+
+        user_name.setText(user!!.name)
+        user_position.setText(user!!.pos)
+        user_mail.setText(user!!.mail)
+        user_git.setText(user!!.git)
+        user_phone.setText(user!!.phone)
     }
 
 }
