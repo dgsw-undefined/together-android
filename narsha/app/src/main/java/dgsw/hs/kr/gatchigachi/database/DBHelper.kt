@@ -1,13 +1,11 @@
 package dgsw.hs.kr.gatchigachi.database
 
-import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import dgsw.hs.kr.gatchigachi.model.Team
+import dgsw.hs.kr.gatchigachi.model.TeamMember
 import dgsw.hs.kr.gatchigachi.model.User
-import java.time.temporal.TemporalAccessor
-import java.util.*
 import kotlin.collections.ArrayList
 
 
@@ -91,6 +89,29 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
                 insertStmt.executeInsert()
             }
         }.run()
+    }
+
+    fun insertTeamMembers(teamMembers : List<TeamMember>){
+//        Thread {
+            for (teamMember in teamMembers){
+                val db = this.writableDatabase
+
+                val sql = "INSERT OR REPLACE INTO team_member VALUES(?,?,?,?,?,?,?,?)"
+
+                val insertStmt = db.compileStatement(sql)
+
+                insertStmt.bindLong(1, teamMember.id!!)
+                insertStmt.bindLong(2, teamMember.team_id!!)
+                insertStmt.bindLong(3, teamMember.user_id!!)
+                insertStmt.bindString(4,teamMember.name)
+                insertStmt.bindString(5, teamMember.field)
+                insertStmt.bindString(6, teamMember.enroll_date)
+                insertStmt.bindLong(7, teamMember.inviter_id!!)
+                insertStmt.bindLong(8, teamMember.is_leader!!)
+
+                insertStmt.executeInsert()
+            }
+//        }.run()
     }
 
     fun selectAllTeam():ArrayList<Team>{
@@ -199,6 +220,35 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
         res.close()
 
         return null
+    }
+
+    fun selectTeamMembersByTeamId(teamId: Int):ArrayList<TeamMember>{
+        val teamMembers = java.util.ArrayList<TeamMember>()
+        val db = this.writableDatabase
+
+        val res = db.rawQuery("SELECT * FROM team_member WHERE team_id = $teamId;",
+                null)
+
+        while (res.moveToNext()) {
+
+            val id = res.getLong(res.getColumnIndex("id"))
+            val teamId = res.getLong(res.getColumnIndex("team_id"))
+            val userId = res.getLong(res.getColumnIndex("user_idx"))
+            val name = res.getString(res.getColumnIndex("name"))
+            val field = res.getString(res.getColumnIndex("field"))
+            val enroll_date = res.getString(res.getColumnIndex("enroll_date"))
+            val inviterId = res.getLong(res.getColumnIndex("inviter_id"))
+            val isLeader = res.getLong(res.getColumnIndex("is_leader"))
+
+            val teamTemp = TeamMember(id,teamId,userId,name,field,inviterId,enroll_date,null,null,isLeader)
+
+            teamMembers.add(teamTemp)
+        }
+
+        res.close()
+
+
+        return teamMembers
     }
 
 }

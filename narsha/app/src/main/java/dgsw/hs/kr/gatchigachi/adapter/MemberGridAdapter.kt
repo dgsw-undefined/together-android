@@ -1,16 +1,19 @@
 package dgsw.hs.kr.gatchigachi.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import dgsw.hs.kr.gatchigachi.R
+import dgsw.hs.kr.gatchigachi.activity.MainActivity
 import dgsw.hs.kr.gatchigachi.model.Member
+import dgsw.hs.kr.gatchigachi.model.TeamMember
 import kotlinx.android.synthetic.main.activity_detail_team.view.*
 
-class MemberGridAdapter (val context: Context, val MemberData: ArrayList<Member>) : BaseAdapter() {
+class MemberGridAdapter (val context: Context, private val teamMembers: ArrayList<TeamMember>) : BaseAdapter() {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
         val memberView : View = LayoutInflater.from(context).inflate(R.layout.member_list_item, null)
 
@@ -20,26 +23,31 @@ class MemberGridAdapter (val context: Context, val MemberData: ArrayList<Member>
 
         val date : TextView = memberView.findViewById(R.id.member_sign_date)
 
-        val Member = MemberData[position]
+        val member = teamMembers[position]
 
-        memberName.setText(Member.name)
+        memberName.text = member.name
 
-        memberPosition.setText(Member.user_position)
+        memberPosition.text = member.field
 
-        date.setText(Member.date)
+        date.text = member.enroll_date
+
+        memberView.setOnClickListener {
+            val intent = Intent(context, MainActivity::class.java)
+            context.startActivity(intent)
+        }
 
         return memberView
     }
 
     override fun getItem(position: Int): Any {
-        return MemberData.get(position)
+        return teamMembers[position]
     }
 
     override fun getItemId(position: Int): Long {
-        return MemberData.get(position).hashCode().toLong()
+        return teamMembers[position].hashCode().toLong()
     }
 
     override fun getCount(): Int {
-        return MemberData.size
+        return teamMembers.size
     }
 }
