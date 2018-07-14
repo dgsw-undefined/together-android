@@ -61,6 +61,8 @@ class LoginActivity : AppCompatActivity() {
             if (check(id, pw) == 1) {
                 network.login(id,pw,myDb,this)
             }
+
+
         }
     }
 
