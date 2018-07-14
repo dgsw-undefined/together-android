@@ -5,17 +5,17 @@ import com.google.gson.Gson
 
 data class User(
         val idx: Long?,
-        val name:String,
         val id: String,
+        val name:String,
         val pw: String,
-        val phone: String,
-        val tec: ArrayList<String>,
+        val mail: String,
         val inter: String,
         val git: String,
         val field: String,
+        val tec: List<String>,
         val pos: String,
-        val mail: String
-){
+        val phone: String
+        ){
     var token :String = ""
 
     class Deserializer: ResponseDeserializable<Array<User>> {

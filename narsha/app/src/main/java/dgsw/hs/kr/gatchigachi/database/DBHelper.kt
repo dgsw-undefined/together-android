@@ -8,7 +8,7 @@ import dgsw.hs.kr.gatchigachi.model.Team
 import dgsw.hs.kr.gatchigachi.model.User
 import java.time.temporal.TemporalAccessor
 import java.util.*
-
+import kotlin.collections.ArrayList
 
 
 class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", null,4) {
@@ -44,10 +44,10 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
     }
 
     fun insertMyinfo(user:User, token:String){
-        Thread {
+//        Thread {
             val db = this.writableDatabase
 
-            val sql = "INSERT OR REPLACE INTO my VALUES(?,?,?,?,?,?,?,?,?,?,?)"
+            val sql = "INSERT OR REPLACE INTO my VALUES(?,?,?,?,?,?,?,?,?,?,?,?)"
 
             val insertStmt = db.compileStatement(sql)
 
@@ -61,12 +61,13 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
             insertStmt.bindString(6, user.mail)
             insertStmt.bindString(7, user.inter)
             insertStmt.bindString(8, user.git)
-            insertStmt.bindString(9, user.field)
-            insertStmt.bindString(10, user.pos)
-            insertStmt.bindString(11, user.phone)
+            insertStmt.bindString(9, user.tec.toString())
+            insertStmt.bindString(10, user.field)
+            insertStmt.bindString(11, user.pos)
+            insertStmt.bindString(12, user.phone)
 
             insertStmt.executeInsert()
-        }.run()
+//        }.run()
     }
 
     fun insertMyTeams(teams: List<Team>){
@@ -77,8 +78,6 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
                 val sql = "INSERT OR REPLACE INTO my_team VALUES(?,?,?,?,?,?,?,?)"
 
                 val insertStmt = db.compileStatement(sql)
-
-                insertStmt.clearBindings()
 
                 insertStmt.bindLong(1, team.id.toLong())
                 insertStmt.bindString(2, team.name)
@@ -108,11 +107,11 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
             val subject = res.getString(res.getColumnIndex("subject"))
             val area = res.getString(res.getColumnIndex("area"))
             val docs = res.getString(res.getColumnIndex("docs"))
-            val leader_id = res.getInt(res.getColumnIndex("leader_id"))
-            val member_limit = res.getInt(res.getColumnIndex("member_limit"))
-            val member_count = res.getInt(res.getColumnIndex("member_count"))
+            val leaderId = res.getInt(res.getColumnIndex("leader_id"))
+            val memberLimit = res.getInt(res.getColumnIndex("member_limit"))
+            val memberCount = res.getInt(res.getColumnIndex("member_count"))
 
-            val teamTemp = Team(id,name,subject,area,docs,leader_id,member_limit,member_count)
+            val teamTemp = Team(id,name,subject,area,docs,leaderId,memberLimit,memberCount)
 
             teams.add(teamTemp)
         }
@@ -123,16 +122,48 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
         return teams
     }
 
+    fun selectMyInfo() : User? {
+        val db = this.writableDatabase
+
+        val res = db.rawQuery("SELECT * FROM my ORDER BY idx DESC LIMIT 1",
+                null)
+
+        while (res.moveToNext()){
+
+            val token = res.getString(res.getColumnIndex("token"))
+            val idx = res.getLong(res.getColumnIndex("idx"))
+            val id = res.getString(2)
+            val name = res.getString(res.getColumnIndex("name"))
+            val pw = res.getString(res.getColumnIndex("pw"))
+            val email = res.getString(res.getColumnIndex("email"))
+            val interested = res.getString(res.getColumnIndex("interested"))
+            val github = res.getString(res.getColumnIndex("github"))
+            val tec = res.getString(res.getColumnIndex("tec"))
+            val field = res.getString(res.getColumnIndex("field"))
+            val position = res.getString(res.getColumnIndex("position"))
+            val phone = res.getString(res.getColumnIndex("phone"))
+
+            res.close()
+
+            val tecArray = tec.split(" ".toRegex())
+
+            return User(idx,id,name,pw,email,interested,github,field,tecArray,position,phone)
+        }
+
+        return null
+    }
+
     fun selectMyToken():String{
         val db = this.writableDatabase
 
         val res = db.rawQuery("SELECT token FROM my ORDER BY idx DESC LIMIT 1",
                 null)
 
-        val buffer = StringBuilder()
+        val buffer = StringBuffer()
 
-        if (res.moveToFirst() != null)
+        while (res.moveToNext()) {
             buffer.append(res.getString(0))
+        }
 
         val token = buffer.toString()
 
@@ -141,4 +172,33 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
         return token
 
     }
+
+    fun selectTeamById(teamId:Int):Team?{
+        val db = this.writableDatabase
+
+        val res = db.rawQuery("SELECT * FROM my_team WHERE id = $teamId",
+                null)
+
+        while (res.moveToNext()) {
+
+            val id = res.getInt(res.getColumnIndex("id"))
+            val name = res.getString(res.getColumnIndex("name"))
+            val subject = res.getString(res.getColumnIndex("subject"))
+            val area = res.getString(res.getColumnIndex("area"))
+            val docs = res.getString(res.getColumnIndex("docs"))
+            val leaderId = res.getInt(res.getColumnIndex("leader_id"))
+            val memberLimit = res.getInt(res.getColumnIndex("member_limit"))
+            val memberCount = res.getInt(res.getColumnIndex("member_count"))
+
+            res.close()
+
+            return Team(id,name,subject,area,docs,leaderId,memberLimit,memberCount)
+
+        }
+
+        res.close()
+
+        return null
+    }
+
 }

@@ -58,8 +58,7 @@ internal class DatabaseManager {
             "CREATE TABLE IF NOT EXISTS `tec` (" +
                     "    `id` bigint(20) ," +
                     "    `user_idx` bigint(20) NOT NULL," +
-                    "    `tec_name` varchar(255) NOT NULL," +
-                    "    `tec_date` datetime DEFAULT CURRENT_TIMESTAMP" +
+                    "    `tec_name` varchar(255) NOT NULL" +
                     "    );"
 
     val CreateTableTruster =
@@ -94,6 +93,7 @@ internal class DatabaseManager {
                     "    `email` varchar(255) NOT NULL," +
                     "    `interested` varchar(255) NOT NULL," +
                     "    `github` varchar(255) NOT NULL," +
+                    "    `tec` varchar(255) NOT NULL,"+
                     "    `field` varchar(255) NOT NULL," +
                     "    `position` varchar(255) NOT NULL," +
                     "    `phone` varchar(255) NOT NULL," +

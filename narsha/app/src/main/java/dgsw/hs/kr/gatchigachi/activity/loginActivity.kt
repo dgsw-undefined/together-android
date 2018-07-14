@@ -26,9 +26,12 @@ class LoginActivity : AppCompatActivity() {
     lateinit var myDb : DBHelper
     val network =  Network()
     var code :Int =100
+    var nextIntent = Intent()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        nextIntent = Intent(this, MainActivity::class.java)
 
         myDb = DBHelper(this)
         val preference = Preference(this)
@@ -48,7 +51,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         btn_login_do_login.setOnClickListener {
-            val nextIntent = Intent(this, MainActivity::class.java)
+
             val animation = AnimationUtils.loadAnimation(this, R.anim.button_anim)
             btn_login_do_login.startAnimation(animation)
             val id: String = edit_login_id.text.toString()
@@ -57,18 +60,15 @@ class LoginActivity : AppCompatActivity() {
 
             if (check(id, pw) == 1) {
                 network.login(id,pw,myDb,this)
-                doAsyncResult {
-                    if (code == 100) {
-                        network.getMyTeam(myDb)
-                        startActivity(nextIntent)
-                    }
-                }
             }
         }
     }
 
     fun notifyFinish(code :Long){
         this.code = code.toInt()
+        network.getMyTeam(myDb)
+        startActivity(nextIntent)
+
     }
 
 
