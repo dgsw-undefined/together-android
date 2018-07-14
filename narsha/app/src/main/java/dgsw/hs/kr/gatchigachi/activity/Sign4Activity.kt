@@ -36,8 +36,8 @@ class Sign4Activity :AppCompatActivity() {
         val email : String = intent.getStringExtra("email")
         val tec : String = intent.getStringExtra("tec")
         val inter : String = intent.getStringExtra("interested")
-        val github : String = textView13.text.toString()
-        val field : String = textView14.text.toString()
+        val github : String = edit_sign4_github.text.toString()
+        val field : String = edit_sign4_field.text.toString()
         val position : String = intent.getStringExtra("position")
 
         btn_sign4_sign.setOnClickListener {

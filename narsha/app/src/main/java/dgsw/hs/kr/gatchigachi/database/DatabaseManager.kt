@@ -28,7 +28,8 @@ internal class DatabaseManager {
                     "`docs` text NOT NULL," +
                     "`leader_id` bigint(20) NOT NULL," +
                     "`member_limit` int(11) DEFAULT NULL," +
-                    "`member_count` int(11) DEFAULT '1'" +
+                    "`member_count` int(11) DEFAULT '1'," +
+                    "primary key(id)" +
                     ");"
 
     val CreateTableMyTeam =
@@ -49,10 +50,12 @@ internal class DatabaseManager {
                     "`id` bigint(20) ," +
                     "`team_id` bigint(20) NOT NULL," +
                     "`user_idx` bigint(20) NOT NULL," +
-                    "`user_name` varchar(255) NOT NULL,"+
+                    "`name` varchar(255) NOT NULL,"+
                     "`field` varchar(255) DEFAULT NULL," +
+                    "`enroll_date` varchar(255) DEFAULT NULL,"+
                     "`inviter_id` bigint(20) NOT NULL," +
-                    "`is_leader` int(11) NOT NULL DEFAULT '0');"
+                    "`is_leader` int(11) NOT NULL DEFAULT '0'," +
+                    "primary key(id));"
 
     val CreateTableTec =
             "CREATE TABLE IF NOT EXISTS `tec` (" +

@@ -9,9 +9,11 @@ import com.github.kittinunf.fuel.httpPost
 import com.github.kittinunf.result.Result
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import dgsw.hs.kr.gatchigachi.DetailTeamActivity
 import dgsw.hs.kr.gatchigachi.LoginActivity
 import dgsw.hs.kr.gatchigachi.database.DBHelper
 import dgsw.hs.kr.gatchigachi.model.Team
+import dgsw.hs.kr.gatchigachi.model.TeamMember
 import dgsw.hs.kr.gatchigachi.model.User
 import org.json.JSONObject
 
@@ -77,28 +79,27 @@ class Network{
         return code
     }
 
-    fun getTeamMember(teamId:Int ,myDb: DBHelper) : Int{
+    fun getTeamMember(teamId:Int ,myDb: DBHelper, context: Context) : Int{
 
-        var URL = "http://115.68.182.229/team/member/$teamId"
+        var URL = "http://115.68.182.229/node/team/member/$teamId"
 
         URL.httpGet()
                 .header(pairs = "Authorization" to myDb.selectMyToken())
-                .responseJson { request, response, result ->
+                .responseJson { _, _, result ->
                     result.fold(success = {json ->
-                        val teamJson = JSONObject(json.content)
-                        val jsonOutput = teamJson.getJSONArray("Data").toString()
-                        val listType = object : TypeToken<List<Team>>(){}.type
-                        val teams : List<Team> = Gson().fromJson(jsonOutput, listType)
+                            val teamMemberJson = JSONObject(json.content)
+                            val jsonOutput = teamMemberJson.getJSONArray("Data").toString()
+                            val listType = object : TypeToken<List<TeamMember>>(){}.type
+                            val teamMembers : List<TeamMember> = Gson().fromJson(jsonOutput, listType)
 
-                        myDb.insertMyTeams(teams)
+                            myDb.insertTeamMembers(teamMembers)
 
-                        code = teamJson.getInt("Code")
+                            code = teamMemberJson.getInt("Code")
 
+                            (context as DetailTeamActivity).notifyFinish(teamMemberJson.getLong("Code"))
                     }, failure = {
-
                     })
                 }
-
         return code
     }
 

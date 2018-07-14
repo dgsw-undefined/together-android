@@ -9,11 +9,16 @@ import dgsw.hs.kr.gatchigachi.R
 import dgsw.hs.kr.gatchigachi.adapter.MemberGridAdapter
 import dgsw.hs.kr.gatchigachi.adapter.TeamGridAdapter
 import dgsw.hs.kr.gatchigachi.database.DBHelper
+import dgsw.hs.kr.gatchigachi.model.Team
+import dgsw.hs.kr.gatchigachi.network.Network
 import kotlinx.android.synthetic.main.activity_detail_team.*
 
 class DetailTeamActivity : AppCompatActivity() {
 
+    val network = Network()
     lateinit var myDb : DBHelper
+    lateinit var team : Team
+    var code = 100
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,15 +27,20 @@ class DetailTeamActivity : AppCompatActivity() {
 
         myDb = DBHelper(this)
 
-        var memberAdapter = MemberGridAdapter(this, DataService.MemberData)
-        team_member_list.adapter = memberAdapter
-
         val teamId = intent.getIntExtra("teamId",0)
 
-        val team = myDb.selectTeamById(teamId)
+        team = myDb.selectTeamById(teamId)!!
 
         team_name.text = team!!.name
         team_subject.text = team!!.subject
 
+        val teamMembers = network.getTeamMember(teamId,myDb,this)
+
+    }
+
+    fun notifyFinish(code :Long){
+        this.code = code.toInt()
+        var memberAdapter = MemberGridAdapter(this, myDb.selectTeamMembersByTeamId(team!!.id))
+        team_member_list.adapter = memberAdapter
     }
 }

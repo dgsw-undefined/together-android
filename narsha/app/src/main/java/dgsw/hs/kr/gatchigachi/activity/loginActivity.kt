@@ -68,7 +68,6 @@ class LoginActivity : AppCompatActivity() {
         this.code = code.toInt()
         network.getMyTeam(myDb)
         startActivity(nextIntent)
-
     }
 
 
