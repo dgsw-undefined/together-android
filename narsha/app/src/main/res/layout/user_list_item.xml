@@ -10,8 +10,8 @@
 
     <ImageButton
         android:id="@+id/user_profile_main"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="15dp"
         android:layout_marginTop="8dp"
@@ -38,13 +38,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_trust_do_trust"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:id="@+id/btn_trust_do_trust_on"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/long_button_radius"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/accent_stroke"
         android:text="Trust"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -52,17 +52,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_trust_do_trust2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:id="@+id/btn_trust_do_trust_off"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/accent_radius"
         android:text="Distrust"
         android:textColor="#fafafa"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="h,2:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -71,12 +72,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="12dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="position"
         android:textColor="#000000"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_trust_do_trust_off"
         app:layout_constraintStart_toEndOf="@+id/user_name"
         app:layout_constraintTop_toTopOf="parent" />
 

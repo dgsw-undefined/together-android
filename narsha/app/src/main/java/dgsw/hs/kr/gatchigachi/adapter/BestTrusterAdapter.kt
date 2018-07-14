@@ -21,7 +21,7 @@ class BestTrusterAdapter (val context: Context, val BestTrusterList : ArrayList<
 
 
         bestTrusterName.setText(BestTrusterList.name)
-        TrusterCount.setText(BestTrusterList.countTruster)
+//        TrusterCount.setText(BestTrusterList.countTruster)
         return ResultView
     }
 

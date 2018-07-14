@@ -21,20 +21,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/main_logo" />
 
-    <ImageView
-        android:id="@+id/end_splash"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout8"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/main_logo" />
-
     <LinearLayout
         android:id="@+id/linearLayout8"
         android:layout_width="0dp"
