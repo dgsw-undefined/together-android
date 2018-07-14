@@ -16,10 +16,11 @@ class UserGridAdapter (val context: Context, val UserData: ArrayList<User2>) : B
         val UserView : View = LayoutInflater.from(context).inflate(R.layout.user_list_item, null)
 
         val UserName : TextView = UserView.findViewById(R.id.user_name)
-
+        val UserPosition : TextView = UserView.findViewById(R.id.user_position)
         val user = UserData[position]
 
         UserName.setText(user.name)
+        UserPosition.setText(user.position)
 
         return UserView
     }
