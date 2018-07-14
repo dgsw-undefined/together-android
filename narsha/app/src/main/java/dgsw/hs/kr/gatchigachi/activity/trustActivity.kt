@@ -28,6 +28,5 @@ class TrustActivity : AppCompatActivity() {
 
         list_trust_view.adapter = UserAdapter
 
-
     }
 }

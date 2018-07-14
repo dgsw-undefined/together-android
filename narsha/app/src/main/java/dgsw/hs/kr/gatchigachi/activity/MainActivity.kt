@@ -66,6 +66,7 @@ class MainActivity : AppCompatActivity() {
         user_git.setText(user!!.git)
         user_phone.setText(user!!.phone)
     }
+
 }
         /*btn_trust.setOnClickListener {
             val nextIntent = Intent(this, DetailTeamActivity::class.java)
