@@ -4,21 +4,14 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.OvalShape
-import android.media.Image
 import android.os.Bundle
-import android.support.design.widget.NavigationView
-import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.animation.*
-import com.github.kittinunf.fuel.httpGet
-import dgsw.hs.kr.gatchigachi.DataService
 import dgsw.hs.kr.gatchigachi.R
 import dgsw.hs.kr.gatchigachi.TrustActivity
 import dgsw.hs.kr.gatchigachi.adapter.TeamGridAdapter
 import dgsw.hs.kr.gatchigachi.database.DBHelper
 import dgsw.hs.kr.gatchigachi.network.Network
-import dgsw.hs.kr.gatchigachi.preference.Preference
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -33,13 +26,11 @@ class MainActivity : AppCompatActivity() {
         requestedOrientation = (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         setContentView(R.layout.activity_main)
         myDb = DBHelper(this)
-        val down_anim = AnimationUtils.loadAnimation(this, R.anim.up_down)
-        val up_anim = AnimationUtils.loadAnimation(this, R.anim.down_up)
 
         val timer = Timer()
 
-        user_profile.background = ShapeDrawable(OvalShape())
-        user_profile.clipToOutline = true
+        user_profile_main.background = ShapeDrawable(OvalShape())
+        user_profile_main.clipToOutline = true
         
         var teamAdapter = TeamGridAdapter(this, myDb.selectAllTeam())
         team_grid_view.adapter = teamAdapter

@@ -2,13 +2,14 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_trust"
     android:layout_width="match_parent"
     android:layout_height="80dp"
     tools:layout_editor_absoluteY="25dp">
 
 
     <ImageButton
-        android:id="@+id/user_profile"
+        android:id="@+id/user_profile_main"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
@@ -33,7 +34,7 @@
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/user_profile"
+        app:layout_constraintStart_toEndOf="@+id/user_profile_main"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -64,16 +65,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="3dp"
-        android:background="@color/grey"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="w,"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"></LinearLayout>
 
     <TextView
         android:id="@+id/user_position"
