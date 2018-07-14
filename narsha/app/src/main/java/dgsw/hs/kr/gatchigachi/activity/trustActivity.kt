@@ -28,22 +28,7 @@ class TrustActivity : AppCompatActivity() {
 
         list_trust_view.adapter = UserAdapter
 
-//      이미지 똥글배이로 맹글기
-        user_profile_main!!.background = ShapeDrawable(OvalShape())
-        user_profile_main!!.clipToOutline = true
 
-        list_trust_view.user_profile_main.setOnClickListener {
-            val nextIntent = Intent(this, MainActivity::class.java)
-            startActivity(nextIntent)
-        }
-
-        btn_trust_do_trust2.setOnClickListener {
-//            distrust
-        }
-
-        btn_trust_do_trust.setOnClickListener {
-//            trust
-        }
 
     }
 }

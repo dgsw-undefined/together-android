@@ -6,6 +6,7 @@ import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.OvalShape
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.animation.*
 import dgsw.hs.kr.gatchigachi.R
 import dgsw.hs.kr.gatchigachi.TrustActivity
@@ -48,6 +49,7 @@ class MainActivity : AppCompatActivity() {
         val user = myDb.selectMyInfo()
         Log.e("a", user!!.name)
     }
+
 }
         /*btn_trust.setOnClickListener {
             val nextIntent = Intent(this, DetailTeamActivity::class.java)
