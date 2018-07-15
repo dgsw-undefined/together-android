@@ -9,7 +9,6 @@ import com.github.kittinunf.fuel.httpPost
 import com.google.gson.Gson
 import dgsw.hs.kr.gatchigachi.LoginActivity
 import dgsw.hs.kr.gatchigachi.R
-import dgsw.hs.kr.gatchigachi.R.id.textView14
 import dgsw.hs.kr.gatchigachi.database.DBHelper
 import dgsw.hs.kr.gatchigachi.model.User
 import dgsw.hs.kr.gatchigachi.network.Network
