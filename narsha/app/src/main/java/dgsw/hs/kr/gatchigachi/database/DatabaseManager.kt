@@ -21,19 +21,6 @@ internal class DatabaseManager {
 
     val CreateTableTeam =
             "CREATE TABLE IF NOT EXISTS `team` (" +
-                    "`id` bigint(20) ," +
-                    "`name` varchar(255) NOT NULL," +
-                    "`subject` varchar(255) NOT NULL," +
-                    "`area` varchar(255) NOT NULL," +
-                    "`docs` text NOT NULL," +
-                    "`leader_id` bigint(20) NOT NULL," +
-                    "`member_limit` int(11) DEFAULT NULL," +
-                    "`member_count` int(11) DEFAULT '1'," +
-                    "primary key(id)" +
-                    ");"
-
-    val CreateTableMyTeam =
-            "CREATE TABLE IF NOT EXISTS `my_team` (" +
                     "`id` bigint(20)," +
                     "`name` varchar(255) NOT NULL," +
                     "`subject` varchar(255) NOT NULL," +
@@ -42,6 +29,7 @@ internal class DatabaseManager {
                     "`leader_id` bigint(20) NOT NULL," +
                     "`member_limit` int(11) DEFAULT NULL," +
                     "`member_count` int(11) DEFAULT '1'," +
+                    "`is_my_team` int(11) NOT NULL,"+
                     "primary key(id)" +
                     ");"
 

@@ -8,9 +8,11 @@ data class Team(
         val docs : String?,
         val leader_id : Int?,
         val member_limit : Int?,
-        val member_count : Int?,
-        val field : String?
-)
+        val member_count : Int?
+){
+    var isMyTeam = 0
+    lateinit var field :String
+}
 
 
 

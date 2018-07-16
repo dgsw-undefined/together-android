@@ -22,7 +22,6 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
             db.execSQL(dbManager.CreateTableTruster)
             db.execSQL(dbManager.CreateTableUser)
             db.execSQL(dbManager.CreateTableToken)
-            db.execSQL(dbManager.CreateTableMyTeam)
         }
     }
 
@@ -35,7 +34,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
             db.execSQL("DROP TABLE IF EXISTS " + "truster")
             db.execSQL("DROP TABLE IF EXISTS " + "user")
             db.execSQL("DROP TABLE IF EXISTS " + "my")
-            db.execSQL("DROP TABLE IF EXISTS " + "my_team")
+            db.execSQL("DROP TABLE IF EXISTS " + "team")
         }
         onCreate(db)
     }
@@ -81,12 +80,12 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
         insertStmt.executeInsert()
     }
 
-    fun insertMyTeams(teams: List<Team>){
+    fun insertTeams(teams: List<Team>){
         Thread {
             for (team in teams){
                 val db = this.writableDatabase
 
-                val sql = "INSERT OR REPLACE INTO my_team VALUES(?,?,?,?,?,?,?,?)"
+                val sql = "INSERT OR REPLACE INTO team VALUES(?,?,?,?,?,?,?,?,?)"
 
                 val insertStmt = db.compileStatement(sql)
 
@@ -98,6 +97,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
                 insertStmt.bindLong(6, team.leader_id!!.toLong())
                 insertStmt.bindLong(7, team.member_limit!!.toLong())
                 insertStmt.bindLong(8, team.member_count!!.toLong())
+                insertStmt.bindLong(9, team.isMyTeam.toLong())
 
                 insertStmt.executeInsert()
             }
@@ -131,7 +131,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
         val teams = java.util.ArrayList<Team>()
         val db = this.writableDatabase
 
-        val res = db.rawQuery("SELECT * FROM my_team WHERE id = (SELECT team_id FROM team_member WHERE user_idx = $userIdx);",
+        val res = db.rawQuery("SELECT * FROM team WHERE id = (SELECT team_id FROM team_member WHERE user_idx = $userIdx);",
                 null)
 
         while (res.moveToNext()) {
@@ -145,7 +145,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
             val memberLimit = res.getInt(res.getColumnIndex("member_limit"))
             val memberCount = res.getInt(res.getColumnIndex("member_count"))
 
-            val teamTemp = Team(id,name,subject,area,docs,leaderId,memberLimit,memberCount,null)
+            val teamTemp = Team(id,name,subject,area,docs,leaderId,memberLimit,memberCount)
 
             teams.add(teamTemp)
         }
@@ -159,7 +159,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
         val teams = java.util.ArrayList<Team>()
         val db = this.writableDatabase
 
-        val res = db.rawQuery("SELECT * FROM my_team;",
+        val res = db.rawQuery("SELECT * FROM team WHERE is_my_team = 1;",
                 null)
 
         while (res.moveToNext()) {
@@ -173,7 +173,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
             val memberLimit = res.getInt(res.getColumnIndex("member_limit"))
             val memberCount = res.getInt(res.getColumnIndex("member_count"))
 
-            val teamTemp = Team(id,name,subject,area,docs,leaderId,memberLimit,memberCount,null)
+            val teamTemp = Team(id,name,subject,area,docs,leaderId,memberLimit,memberCount)
 
             teams.add(teamTemp)
         }
@@ -197,18 +197,18 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
             val pw = res.getString(res.getColumnIndex("pw"))
             val email = res.getString(res.getColumnIndex("email"))
             val interested = res.getString(res.getColumnIndex("interested"))
+            val profile = res.getString(res.getColumnIndex("profile"))
             val github = res.getString(res.getColumnIndex("github"))
             val tec = res.getString(res.getColumnIndex("tec"))
             val field = res.getString(res.getColumnIndex("field"))
             val position = res.getString(res.getColumnIndex("position"))
             val phone = res.getString(res.getColumnIndex("phone"))
-            val profile = "aaaa"
 
             res.close()
 
             val tecArray = tec.split(" ".toRegex())
 
-            return User(idx,id,name,pw,email,interested,github,field,profile,tecArray,position,phone)
+            return User(idx,id,name,pw,email,interested,github,profile,field,tecArray,position,phone)
         }
 
         return null
@@ -233,13 +233,13 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
             val field = res.getString(res.getColumnIndex("field"))
             val position = res.getString(res.getColumnIndex("position"))
             val phone = res.getString(res.getColumnIndex("phone"))
-            val profile = "a"
+            val profile = res.getString(res.getColumnIndex("profile"))
 
             res.close()
 
             val tecArray = tec.split(" ".toRegex())
 
-            return User(idx,id,name,pw,email,interested,github,field,profile,tecArray,position,phone)
+            return User(idx,id,name,pw,email,interested,github,profile,field,tecArray,position,phone)
         }
 
         return null
@@ -268,7 +268,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
     fun selectTeamById(teamId:Int):Team?{
         val db = this.writableDatabase
 
-        val res = db.rawQuery("SELECT * FROM my_team WHERE id = $teamId",
+        val res = db.rawQuery("SELECT * FROM team WHERE id = $teamId",
                 null)
 
         while (res.moveToNext()) {
@@ -284,7 +284,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
 
             res.close()
 
-            return Team(id,name,subject,area,docs,leaderId,memberLimit,memberCount,null)
+            return Team(id,name,subject,area,docs,leaderId,memberLimit,memberCount)
 
         }
 

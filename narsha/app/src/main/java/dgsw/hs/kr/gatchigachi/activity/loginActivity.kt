@@ -27,6 +27,7 @@ class LoginActivity : AppCompatActivity() {
     val network =  Network()
     var code :Int =100
     var nextIntent = Intent()
+    var userIdx = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,12 +69,14 @@ class LoginActivity : AppCompatActivity() {
 
     fun notifyFinish(code :Long){
         this.code = code.toInt()
-        val userIdx = myDb.selectMyInfo()!!.idx!!.toInt()
-        network.getTeam(myDb,userIdx,this)
+        userIdx = myDb.selectMyInfo()!!.idx!!.toInt()
+        network.getTeam(myDb,userIdx,this,true)
+    }
+
+    fun notifyFinish(){
         nextIntent.putExtra("userIdx", userIdx)
         startActivity(nextIntent)
     }
-
 
     fun check(id: String, pw: String): Int {
 
