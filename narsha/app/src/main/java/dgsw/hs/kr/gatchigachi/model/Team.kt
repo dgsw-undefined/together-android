@@ -1,14 +1,16 @@
 package dgsw.hs.kr.gatchigachi.model
 
 data class Team(
-        val id : Int,
-        val name : String,
-        val subject : String,
-        val area : String,
-        val docs : String,
-        val leader_id : Int,
-        val member_limit : Int,
-        val member_count : Int)
+        val id : Int?,
+        val name : String?,
+        val subject : String?,
+        val area : String?,
+        val docs : String?,
+        val leader_id : Int?,
+        val member_limit : Int?,
+        val member_count : Int?,
+        val field : String?
+)
 
 
 

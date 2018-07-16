@@ -8,12 +8,13 @@ data class User(
         val id: String,
         val name:String,
         val pw: String,
-        val mail: String,
-        val inter: String,
-        val git: String,
+        val email: String,
+        val interested: String,
+        val github: String,
+        val profile:String,
         val field: String,
         val tec: List<String>,
-        val pos: String,
+        val position: String,
         val phone: String
         ){
     var token :String = ""

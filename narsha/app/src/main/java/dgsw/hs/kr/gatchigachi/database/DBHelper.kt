@@ -44,7 +44,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
 //        Thread {
             val db = this.writableDatabase
 
-            val sql = "INSERT OR REPLACE INTO user VALUES(?,?,?,?,?,?,?,?,?,?,?,?)"
+            val sql = "INSERT OR REPLACE INTO user VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)"
 
             val insertStmt = db.compileStatement(sql)
 
@@ -54,14 +54,15 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
             insertStmt.bindString(2, user.id)
             insertStmt.bindString(3, user.name)
             insertStmt.bindString(4, user.pw)
-            insertStmt.bindString(5, user.mail)
-            insertStmt.bindString(6, user.inter)
-            insertStmt.bindString(7, user.git)
-            insertStmt.bindString(8, user.tec.toString())
-            insertStmt.bindString(9, user.field)
-            insertStmt.bindString(10, user.pos)
-            insertStmt.bindString(11, user.phone)
-            insertStmt.bindLong(12,user.isMe.toLong())
+            insertStmt.bindString(5, user.email)
+            insertStmt.bindString(6, user.interested)
+            insertStmt.bindString(7, user.github)
+            insertStmt.bindString(8,user.profile)
+            insertStmt.bindString(9, user.tec.toString())
+            insertStmt.bindString(10, user.field)
+            insertStmt.bindString(11, user.position)
+            insertStmt.bindString(12, user.phone)
+            insertStmt.bindLong(13,user.isMe.toLong())
 
             insertStmt.executeInsert()
 //        }.run()
@@ -89,14 +90,14 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
 
                 val insertStmt = db.compileStatement(sql)
 
-                insertStmt.bindLong(1, team.id.toLong())
+                insertStmt.bindLong(1, team.id!!.toLong())
                 insertStmt.bindString(2, team.name)
                 insertStmt.bindString(3, team.subject)
                 insertStmt.bindString(4, team.area)
                 insertStmt.bindString(5, team.docs)
-                insertStmt.bindLong(6, team.leader_id.toLong())
-                insertStmt.bindLong(7, team.member_limit.toLong())
-                insertStmt.bindLong(8, team.member_count.toLong())
+                insertStmt.bindLong(6, team.leader_id!!.toLong())
+                insertStmt.bindLong(7, team.member_limit!!.toLong())
+                insertStmt.bindLong(8, team.member_count!!.toLong())
 
                 insertStmt.executeInsert()
             }
@@ -126,11 +127,11 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
 //        }.run()
     }
 
-    fun selectAllTeam():ArrayList<Team>{
+    fun selectAllTeamByUserIdx(userIdx: Int):ArrayList<Team>{
         val teams = java.util.ArrayList<Team>()
         val db = this.writableDatabase
 
-        val res = db.rawQuery("SELECT * FROM my_team ;",
+        val res = db.rawQuery("SELECT * FROM my_team WHERE id = (SELECT team_id FROM team_member WHERE user_idx = $userIdx);",
                 null)
 
         while (res.moveToNext()) {
@@ -144,13 +145,12 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
             val memberLimit = res.getInt(res.getColumnIndex("member_limit"))
             val memberCount = res.getInt(res.getColumnIndex("member_count"))
 
-            val teamTemp = Team(id,name,subject,area,docs,leaderId,memberLimit,memberCount)
+            val teamTemp = Team(id,name,subject,area,docs,leaderId,memberLimit,memberCount,null)
 
             teams.add(teamTemp)
         }
 
         res.close()
-
 
         return teams
     }
@@ -158,7 +158,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
     fun selectMyInfo() : User? {
         val db = this.writableDatabase
 
-        val res = db.rawQuery("SELECT * FROM user ORDER BY is_me =  1",
+        val res = db.rawQuery("SELECT * FROM user WHERE is_me =  1",
                 null)
 
         while (res.moveToNext()){
@@ -174,12 +174,13 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
             val field = res.getString(res.getColumnIndex("field"))
             val position = res.getString(res.getColumnIndex("position"))
             val phone = res.getString(res.getColumnIndex("phone"))
+            val profile = "aaaa"
 
             res.close()
 
             val tecArray = tec.split(" ".toRegex())
 
-            return User(idx,id,name,pw,email,interested,github,field,tecArray,position,phone)
+            return User(idx,id,name,pw,email,interested,github,field,profile,tecArray,position,phone)
         }
 
         return null
@@ -204,12 +205,13 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
             val field = res.getString(res.getColumnIndex("field"))
             val position = res.getString(res.getColumnIndex("position"))
             val phone = res.getString(res.getColumnIndex("phone"))
+            val profile = "a"
 
             res.close()
 
             val tecArray = tec.split(" ".toRegex())
 
-            return User(idx,id,name,pw,email,interested,github,field,tecArray,position,phone)
+            return User(idx,id,name,pw,email,interested,github,field,profile,tecArray,position,phone)
         }
 
         return null
@@ -254,7 +256,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
 
             res.close()
 
-            return Team(id,name,subject,area,docs,leaderId,memberLimit,memberCount)
+            return Team(id,name,subject,area,docs,leaderId,memberLimit,memberCount,null)
 
         }
 

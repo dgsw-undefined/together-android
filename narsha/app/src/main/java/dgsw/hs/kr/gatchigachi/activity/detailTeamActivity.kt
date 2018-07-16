@@ -40,7 +40,7 @@ class DetailTeamActivity : AppCompatActivity() {
 
     fun notifyFinish(code :Long){
         this.code = code.toInt()
-        var memberAdapter = MemberGridAdapter(this, myDb.selectTeamMembersByTeamId(team!!.id),myDb)
+        var memberAdapter = MemberGridAdapter(this, myDb.selectTeamMembersByTeamId(team.id!!.toInt()),myDb)
         team_member_list.adapter = memberAdapter
     }
 }

@@ -74,6 +74,7 @@ internal class DatabaseManager {
                     "    `email` varchar(255) NOT NULL," +
                     "    `interested` varchar(255) NOT NULL," +
                     "    `github` varchar(255) NOT NULL," +
+                    "    `profile` varchar(255) NULL," +
                     "    `tec` varchar(255) NOT NULL,"+
                     "    `field` varchar(255) NOT NULL," +
                     "    `position` varchar(255) NOT NULL," +

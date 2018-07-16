@@ -2,6 +2,7 @@ package dgsw.hs.kr.gatchigachi.network
 
 import android.content.Context
 import android.util.Log
+import android.widget.TextView
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.fuel.httpPost
@@ -16,6 +17,7 @@ import dgsw.hs.kr.gatchigachi.model.Team
 import dgsw.hs.kr.gatchigachi.model.TeamMember
 import dgsw.hs.kr.gatchigachi.model.User
 import org.json.JSONObject
+import java.util.*
 
 class Network{
     var code = 100
@@ -57,13 +59,13 @@ class Network{
                 }
     }
 
-    fun getMyTeam(myDb: DBHelper) : Int{
+    fun getTeam(myDb: DBHelper, userIdx:Int, context: Context) : Int{
 
-        var URL = "http://115.68.182.229/node/team"
+        var URL = "http://115.68.182.229/node/team/user/$userIdx"
 
         URL.httpGet()
                 .header(pairs = "Authorization" to myDb.selectToken())
-                .responseJson { request, response, result ->
+                .responseJson { _, _, result ->
                     result.fold(success = {json ->
                         val teamJson = JSONObject(json.content)
                         val jsonOutput = teamJson.getJSONArray("Data").toString()
@@ -73,6 +75,9 @@ class Network{
                         myDb.insertMyTeams(teams)
 
                         code = teamJson.getInt("Code")
+
+                        if (myDb.selectMyInfo()!!.idx!!.toInt() != userIdx)
+                            (context as MainActivity).notifyFinish()
 
                     }, failure = {
 
@@ -113,16 +118,19 @@ class Network{
         URL.httpGet()
                 .header(pairs = "Authorization" to myDb.selectToken())
                 .responseJson { _, _, result ->
-                    result.fold(success = {json ->
+                    result.fold(
+                            success = {json ->
                                 val userJson = JSONObject(json.content)
-                                val jsonOutput = userJson.getJSONArray("Data").toString()
-                                val user : User = Gson().fromJson(jsonOutput, User::class.java)
+                                val jsonOutput = userJson.getJSONArray("Data")[0]
+
+                                val user : User = Gson().fromJson(jsonOutput.toString(), User::class.java)
 
                                 myDb.insertUser(user)
 
-                                (context as MainActivity).notifyFinish()
+                                val a = getTeam(myDb, user.idx!!.toInt(),context)
+
                     }, failure = {
-                            })
+                    })
                 }
         return code
     }
@@ -135,6 +143,42 @@ class Network{
                 .responseObject(User.Deserializer()) { request, response, result ->
                     println(response.toString())
                     println(request.toString())
+                }
+    }
+
+    fun teamRegistration(team:Team,teamLeaberFiled:String,myDb:DBHelper){
+
+        val URL = "http://115.68.182.229/node/team"
+
+        val json = Gson().toJson(team)
+
+        URL.httpPost()
+                .header("Content-Type" to "application/json")
+                .body(Gson().toJson(json), Charsets.UTF_8)
+                .responseJson { _, _, result ->
+                    when(result){
+                        is Result.Success ->{
+                            val loginJson = JSONObject(result.get().content)
+                            val json = loginJson.getJSONObject("Data")
+                            val token = loginJson.getString("Token").toString()
+
+                            Log.e("a",token)
+
+                            val user = Gson().fromJson(json.toString(), User::class.java)
+
+                            user.isMe = 1
+
+                            myDb.insertToken(token)
+                            myDb.insertUser(user)
+
+//                            (context as LoginActivity).notifyFinish(loginJson.getLong("Code"))
+                        }
+                        is Result.Failure ->{
+                            Log.e("a","a")
+                        }
+
+                    }
+                    println("==========================================================================")
                 }
     }
 

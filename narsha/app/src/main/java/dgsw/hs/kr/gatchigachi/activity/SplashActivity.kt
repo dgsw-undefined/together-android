@@ -15,7 +15,6 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         val startAnim = AnimationUtils.loadAnimation(this, R.anim.splash_start)
-        val endAnim = AnimationUtils.loadAnimation(this, R.anim.splash_end)
 
         start_splash.startAnimation(startAnim)
 

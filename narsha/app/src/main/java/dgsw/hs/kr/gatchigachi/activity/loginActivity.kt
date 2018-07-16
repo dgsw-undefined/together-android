@@ -68,8 +68,9 @@ class LoginActivity : AppCompatActivity() {
 
     fun notifyFinish(code :Long){
         this.code = code.toInt()
-        network.getMyTeam(myDb)
-        nextIntent.putExtra("userIdx", myDb.selectMyInfo()!!.idx!!.toInt())
+        val userIdx = myDb.selectMyInfo()!!.idx!!.toInt()
+        network.getTeam(myDb,userIdx,this)
+        nextIntent.putExtra("userIdx", userIdx)
         startActivity(nextIntent)
     }
 

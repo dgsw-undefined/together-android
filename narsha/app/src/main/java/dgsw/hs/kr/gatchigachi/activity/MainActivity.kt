@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
 
         if(myDb.selectMyInfo()!!.idx == userIdx.toLong()){
             user = myDb.selectMyInfo()
+            setView()
         }else{
             network.getUserByIdx(userIdx.toLong(),myDb,this)
         }
@@ -44,9 +45,6 @@ class MainActivity : AppCompatActivity() {
 
         user_profile_main.background = ShapeDrawable(OvalShape())
         user_profile_main.clipToOutline = true
-        
-        var teamAdapter = TeamGridAdapter(this, myDb.selectAllTeam())
-        team_grid_view.adapter = teamAdapter
 
         trust_count.setOnClickListener {
             val nextIntent = Intent(this, TrustActivity::class.java)
@@ -69,21 +67,22 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        user_name.text = user!!.name
-        user_position.text = user!!.pos
-        user_mail.text = user!!.mail
-        user_git.text = user!!.git
-        user_phone.text = user!!.phone
-
     }
 
     fun notifyFinish(){
         user = myDb.selectUserById(userIdx)
+        setView()
+    }
+
+    private fun setView(){
         user_name.text = user!!.name
-        user_position.text = user!!.pos
-        user_mail.text = user!!.mail
-        user_git.text = user!!.git
+        user_position.text = user!!.position
+        user_mail.text = user!!.email
+        user_git.text = user!!.github
         user_phone.text = user!!.phone
+
+        var teamAdapter = TeamGridAdapter(this, myDb.selectAllTeamByUserIdx(userIdx))
+        team_grid_view.adapter = teamAdapter
     }
 
 }
