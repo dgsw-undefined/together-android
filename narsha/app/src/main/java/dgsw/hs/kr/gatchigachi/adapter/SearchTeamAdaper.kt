@@ -23,6 +23,8 @@ class SearchTeamAdaper(val context: Context, val SearchTeamData : ArrayList<Team
         TeamName.setText(TeamSearch.name)
         Date.setText(TeamSearch.date)
 
+
+
         return ResultView
     }
 

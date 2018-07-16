@@ -144,7 +144,7 @@
                         android:layout_marginStart="100dp"
                         android:layout_marginTop="8dp"
                         android:background="@drawable/long_button_radius"
-                        android:text="Trust"
+                        android:text="Trust / 정보수정"
                         app:layout_constraintDimensionRatio="6:1"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
