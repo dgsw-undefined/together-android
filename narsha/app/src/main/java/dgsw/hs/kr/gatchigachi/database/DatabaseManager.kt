@@ -57,13 +57,6 @@ internal class DatabaseManager {
                     "`is_leader` int(11) NOT NULL DEFAULT '0'," +
                     "primary key(id));"
 
-    val CreateTableTec =
-            "CREATE TABLE IF NOT EXISTS `tec` (" +
-                    "    `id` bigint(20) ," +
-                    "    `user_idx` bigint(20) NOT NULL," +
-                    "    `tec_name` varchar(255) NOT NULL" +
-                    "    );"
-
     val CreateTableTruster =
             "CREATE TABLE IF NOT EXISTS `truster` (" +
                     "    `id` bigint(20) ," +
@@ -81,25 +74,17 @@ internal class DatabaseManager {
                     "    `email` varchar(255) NOT NULL," +
                     "    `interested` varchar(255) NOT NULL," +
                     "    `github` varchar(255) NOT NULL," +
-                    "    `field` varchar(255) NOT NULL," +
-                    "    `position` varchar(255) NOT NULL," +
-                    "    `phone` varchar(255) NOT NULL" +
-                    "    );"
-
-    val CreateTableMy =
-            "CREATE TABLE IF NOT EXISTS `my` (" +
-                    "    `token` varchar(255) NOT NULL,"+
-                    "    `idx` bigint(20)," +
-                    "    `id` varchar(255) NOT NULL," +
-                    "    `name` varchar(255) NOT NULL," +
-                    "    `pw` varchar(255) NOT NULL," +
-                    "    `email` varchar(255) NOT NULL," +
-                    "    `interested` varchar(255) NOT NULL," +
-                    "    `github` varchar(255) NOT NULL," +
                     "    `tec` varchar(255) NOT NULL,"+
                     "    `field` varchar(255) NOT NULL," +
                     "    `position` varchar(255) NOT NULL," +
                     "    `phone` varchar(255) NOT NULL," +
+                    "    `is_me` int(11)," +
                     "    primary key(idx));"
+
+    val CreateTableToken =
+            "CREATE TABLE IF NOT EXISTS `token` ("+
+            "    `idx` int(11) NOT NULL," +
+            "    `token` varchar(255) NOT NULL," +
+            "    primary key(idx));"
 
 }

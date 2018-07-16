@@ -69,6 +69,7 @@ class LoginActivity : AppCompatActivity() {
     fun notifyFinish(code :Long){
         this.code = code.toInt()
         network.getMyTeam(myDb)
+        nextIntent.putExtra("userIdx", myDb.selectMyInfo()!!.idx!!.toInt())
         startActivity(nextIntent)
     }
 

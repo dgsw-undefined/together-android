@@ -15,8 +15,6 @@ import kotlinx.android.synthetic.main.user_list_item.view.*
 
 class TrustActivity : AppCompatActivity() {
 
-    val testArray:ArrayList<User> = ArrayList()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestedOrientation = (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
