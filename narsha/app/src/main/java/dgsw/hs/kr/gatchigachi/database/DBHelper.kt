@@ -57,7 +57,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
             insertStmt.bindString(5, user.email)
             insertStmt.bindString(6, user.interested)
             insertStmt.bindString(7, user.github)
-            insertStmt.bindString(8,"aaa")
+            insertStmt.bindString(8,user.profile)
             insertStmt.bindString(9, user.tec.toString())
             insertStmt.bindString(10, user.field)
             insertStmt.bindString(11, user.position)
