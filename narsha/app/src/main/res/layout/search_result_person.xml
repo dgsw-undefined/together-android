@@ -22,17 +22,18 @@
         app:layout_constraintStart_toEndOf="@+id/user_profile_search"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/user_profile_search"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
+        android:background="#00000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_user_image" />
+        app:srcCompat="@mipmap/text_profile" />
 
     <TextView
         android:id="@+id/user_position_search"
