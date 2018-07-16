@@ -32,6 +32,11 @@ class MemberGridAdapter (val context: Context, private val teamMembers: ArrayLis
         MemberProfile.background = ShapeDrawable(OvalShape())
         MemberProfile.clipToOutline = true
 
+        MemberProfile.setOnClickListener {
+            val nextIntent = Intent(context, MainActivity::class.java)
+            context.startActivity(nextIntent)
+        }
+
         MemberName.text = Member.name
 
         MemberPosition.text = Member.field

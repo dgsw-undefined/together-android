@@ -1,6 +1,7 @@
 package dgsw.hs.kr.gatchigachi.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.OvalShape
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import dgsw.hs.kr.gatchigachi.DataService
 import dgsw.hs.kr.gatchigachi.R
+import dgsw.hs.kr.gatchigachi.activity.MainActivity
 import dgsw.hs.kr.gatchigachi.model.BestTruster
 
 class BestTrusterAdapter (val context: Context, val BestTrusterList : ArrayList<BestTruster>) : BaseAdapter() {
@@ -24,6 +26,11 @@ class BestTrusterAdapter (val context: Context, val BestTrusterList : ArrayList<
 
         UserProfile.background = ShapeDrawable(OvalShape())
         UserProfile.clipToOutline = true
+
+        UserProfile.setOnClickListener {
+            val nextIntent = Intent(context, MainActivity::class.java)
+            context.startActivity(nextIntent)
+        }
 
         bestTrusterName.setText(BestTrusterList.name)
 //        TrusterCount.setText(BestTrusterList.countTruster)

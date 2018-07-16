@@ -1,6 +1,7 @@
 package dgsw.hs.kr.gatchigachi.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.OvalShape
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import android.widget.BaseAdapter
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import dgsw.hs.kr.gatchigachi.DetailTeamActivity
 import dgsw.hs.kr.gatchigachi.R
 import dgsw.hs.kr.gatchigachi.model.TeamSearch
 
@@ -18,13 +20,19 @@ class SearchTeamAdaper(val context: Context, val SearchTeamData : ArrayList<Team
         val ResultView : View = LayoutInflater.from(context).inflate(R.layout.search_result_team, null)
 
         val TeamName : TextView = ResultView.findViewById(R.id.team_name_search)
-        val ViewInfo : Button = ResultView.findViewById(R.id.btn_searchteam_info)
+        val ViewInfo : Button = ResultView.findViewById(R.id.btn_search_team_info)
         val Date : TextView = ResultView.findViewById(R.id.date_team_search)
         val TeamProfile : ImageView = ResultView.findViewById(R.id.team_profile_search)
         val TeamSearch = SearchTeamData[position]
 
+
         TeamProfile.background = ShapeDrawable(OvalShape())
         TeamProfile.clipToOutline = true
+
+        ViewInfo.setOnClickListener {
+            val nextIntent = Intent(context, DetailTeamActivity::class.java)
+            context.startActivity(nextIntent)
+        }
 
         TeamName.setText(TeamSearch.name)
         Date.setText(TeamSearch.date)
