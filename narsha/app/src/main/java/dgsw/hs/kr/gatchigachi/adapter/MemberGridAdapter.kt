@@ -2,10 +2,13 @@ package dgsw.hs.kr.gatchigachi.adapter
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.ShapeDrawable
+import android.graphics.drawable.shapes.OvalShape
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.ImageView
 import android.widget.TextView
 import dgsw.hs.kr.gatchigachi.R
 import dgsw.hs.kr.gatchigachi.activity.MainActivity
@@ -19,28 +22,28 @@ class MemberGridAdapter (val context: Context, private val teamMembers: ArrayLis
     var code = 100
     val nextIntent = Intent(context,MainActivity::class.java)
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
-        val memberView : View = LayoutInflater.from(context).inflate(R.layout.member_list_item, null)
+        val MemberView : View = LayoutInflater.from(context).inflate(R.layout.member_list_item, null)
+        val MemberName : TextView = MemberView.findViewById(R.id.member_name)
+        val MemberPosition : TextView = MemberView.findViewById(R.id.member_position)
+        val Date : TextView = MemberView.findViewById(R.id.member_sign_date)
+        val Member = teamMembers[position]
+        val MemberProfile : ImageView = MemberView.findViewById(R.id.user_profile_member)
 
-        val memberName : TextView = memberView.findViewById(R.id.member_name)
+        MemberProfile.background = ShapeDrawable(OvalShape())
+        MemberProfile.clipToOutline = true
 
-        val memberPosition : TextView = memberView.findViewById(R.id.member_position)
+        MemberName.text = Member.name
 
-        val date : TextView = memberView.findViewById(R.id.member_sign_date)
+        MemberPosition.text = Member.field
 
-        val member = teamMembers[position]
+        Date.text = Member.enroll_date
 
-        memberName.text = member.name
-
-        memberPosition.text = member.field
-
-        date.text = member.enroll_date
-
-        memberView.setOnClickListener {
-            nextIntent.putExtra("userIdx", member.user_id!!.toInt())
+        MemberView.setOnClickListener {
+            nextIntent.putExtra("userIdx", Member.user_id!!.toInt())
             context.startActivity(nextIntent)
         }
 
-        return memberView
+        return MemberView
     }
 
     override fun getItem(position: Int): Any {

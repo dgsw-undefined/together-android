@@ -5,56 +5,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.LookForActivity"
-    tools:layout_editor_absoluteY="25dp"
-    >
-
-    <ListView
-        android:id="@+id/list_search_result"
-        android:layout_width="0dp"
-        android:layout_height="617dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
-
-    </ListView>
+    tools:layout_editor_absoluteY="25dp">
 
     <Button
         android:id="@+id/btn_lookfor_person"
         android:layout_width="0dp"
-        android:layout_height="80dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/primary_radius"
         android:text="Person"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/linearLayout5"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintDimensionRatio="5:1"
+        app:layout_constraintEnd_toStartOf="@+id/btn_lookfor_team"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_back" />
 
     <Button
         android:id="@+id/btn_lookfor_team"
         android:layout_width="0dp"
-        android:layout_height="80dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/accent_stroke"
         android:text="Team"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="5:1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/linearLayout5" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout5"
-        android:layout_width="1dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="578dp"
-        android:background="#74b9ff"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></LinearLayout>
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_lookfor_person"
+        app:layout_constraintTop_toBottomOf="@+id/search_back" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/search_back"
         android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:background="#CCCCCC"
+        android:layout_height="0dp"
+        android:background="@color/colorAccent"
+        app:layout_constraintDimensionRatio="7:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -63,10 +49,10 @@
             android:id="@+id/search_lookfor"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="8dp"
             android:layout_marginEnd="10dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/radius"
             android:queryHint="내용을 입력하세요"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -76,4 +62,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
+
+    <ListView
+        android:id="@+id/list_search_result"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_lookfor_person">
+
+    </ListView>
+
 </android.support.constraint.ConstraintLayout>

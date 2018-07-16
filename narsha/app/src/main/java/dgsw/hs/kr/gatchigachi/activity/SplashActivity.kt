@@ -17,7 +17,6 @@ class SplashActivity : AppCompatActivity() {
         val startAnim = AnimationUtils.loadAnimation(this, R.anim.splash_start)
 
         start_splash.startAnimation(startAnim)
-
         val nextIntent = Intent(this, LoginActivity::class.java)
         startActivity(nextIntent)
     }

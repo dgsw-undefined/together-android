@@ -1,6 +1,7 @@
 package dgsw.hs.kr.gatchigachi.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.OvalShape
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import dgsw.hs.kr.gatchigachi.R
 import dgsw.hs.kr.gatchigachi.R.id.user_profile_main
+import dgsw.hs.kr.gatchigachi.activity.MainActivity
 import dgsw.hs.kr.gatchigachi.model.User
 import dgsw.hs.kr.gatchigachi.model.User2
 import kotlinx.android.synthetic.main.user_list_item.*
@@ -28,9 +30,15 @@ class UserGridAdapter (val context: Context, val UserData: ArrayList<User2>) : B
         UserName.setText(user.name)
         UserPosition.setText(user.position)
 
+
         //      이미지 똥글배이로 맹글기
         UserProfileMain.background =  ShapeDrawable(OvalShape())
         UserProfileMain.clipToOutline = true
+
+        UserProfileMain.setOnClickListener {
+            val nextIntent = Intent(context, MainActivity::class.java)
+            context.startActivity(nextIntent)
+        }
 
         return UserView
     }

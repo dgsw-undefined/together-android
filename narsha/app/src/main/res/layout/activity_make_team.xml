@@ -13,7 +13,6 @@
         android:id="@+id/text_limit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:text="최대 인원"
         android:textColor="#000000"
         android:textSize="17sp"
@@ -21,21 +20,20 @@
         app:layout_constraintStart_toStartOf="@+id/member_limit" />
 
     <TextView
-        android:id="@+id/text_subject"
+        android:id="@+id/text_docs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="기획 주제"
+        android:text="설명"
         android:textColor="#000000"
         android:textSize="17sp"
-        app:layout_constraintBottom_toTopOf="@+id/edit_make_subject"
-        app:layout_constraintStart_toStartOf="@+id/edit_make_subject" />
+        app:layout_constraintBottom_toTopOf="@+id/edit_docs"
+        app:layout_constraintStart_toStartOf="@+id/edit_docs" />
 
     <EditText
-        android:id="@+id/edit_make_subject"
+        android:id="@+id/edit_docs"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
         android:background="@drawable/grey_radius"
@@ -53,7 +51,6 @@
         android:id="@+id/text_field"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:text="분야"
         android:textColor="#000000"
         android:textSize="18sp"
@@ -69,11 +66,13 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/edit_make_subject"
+        app:layout_constraintBottom_toTopOf="@+id/edit_docs"
         app:layout_constraintDimensionRatio="3.5:1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintEnd_toStartOf="@+id/member_limit"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_make_teamName" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_make_subject" />
 
     <EditText
         android:id="@+id/edit_make_teamName"
@@ -85,7 +84,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/edit_make_field"
+        app:layout_constraintBottom_toTopOf="@+id/edit_make_subject"
         app:layout_constraintDimensionRatio="7:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -96,7 +95,6 @@
         android:id="@+id/text_team_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:text="팀 이름"
         android:textColor="#000000"
         android:textSize="18sp"
@@ -107,7 +105,7 @@
         android:id="@+id/btn_make_do_make_team"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="16dp"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
         android:background="@color/colorAccent"
@@ -171,5 +169,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_delete" />
+
+    <TextView
+        android:id="@+id/text_subject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="주제"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/edit_make_subject"
+        app:layout_constraintStart_toStartOf="@+id/edit_make_subject" />
+
+    <EditText
+        android:id="@+id/edit_make_subject"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:ems="10"
+        android:backgroundTint="@color/colorAccent"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/edit_make_field"
+        app:layout_constraintDimensionRatio="7:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_make_teamName" />
 
 </android.support.constraint.ConstraintLayout>

@@ -31,8 +31,9 @@ class DetailTeamActivity : AppCompatActivity() {
 
         team = myDb.selectTeamById(teamId)!!
 
-        team_name.text = team!!.name
-        team_subject.text = team!!.subject
+        team_name_detail.text = team!!.name
+        team_subject_detail.text = team!!.subject
+        team_docs_detail.text = team!!.docs
 
         val teamMembers = network.getTeamMember(teamId,myDb,this)
 

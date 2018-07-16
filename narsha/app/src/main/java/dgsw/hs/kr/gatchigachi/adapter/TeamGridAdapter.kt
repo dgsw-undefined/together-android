@@ -50,4 +50,5 @@ class TeamGridAdapter (val context: Context, val teamData: ArrayList<Team>) : Ba
     override fun getCount(): Int {
         return teamData.size
     }
+
 }
