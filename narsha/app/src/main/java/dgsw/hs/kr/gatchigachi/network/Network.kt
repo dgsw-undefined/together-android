@@ -104,7 +104,7 @@ class Network{
 
                             code = teamMemberJson.getInt("Code")
 
-                            (context as DetailTeamActivity).notifyFinish(teamMemberJson.getLong("Code"))
+//                            (context as DetailTeamActivity).notifyFinish(teamMemberJson.getLong("Code"))
                     }, failure = {
                     })
                 }

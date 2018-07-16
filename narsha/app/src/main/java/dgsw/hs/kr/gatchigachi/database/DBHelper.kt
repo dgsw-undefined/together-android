@@ -57,7 +57,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
             insertStmt.bindString(5, user.email)
             insertStmt.bindString(6, user.interested)
             insertStmt.bindString(7, user.github)
-            insertStmt.bindString(8,user.profile)
+            insertStmt.bindString(8,"aaa")
             insertStmt.bindString(9, user.tec.toString())
             insertStmt.bindString(10, user.field)
             insertStmt.bindString(11, user.position)
@@ -132,6 +132,34 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
         val db = this.writableDatabase
 
         val res = db.rawQuery("SELECT * FROM my_team WHERE id = (SELECT team_id FROM team_member WHERE user_idx = $userIdx);",
+                null)
+
+        while (res.moveToNext()) {
+
+            val id = res.getInt(res.getColumnIndex("id"))
+            val name = res.getString(res.getColumnIndex("name"))
+            val subject = res.getString(res.getColumnIndex("subject"))
+            val area = res.getString(res.getColumnIndex("area"))
+            val docs = res.getString(res.getColumnIndex("docs"))
+            val leaderId = res.getInt(res.getColumnIndex("leader_id"))
+            val memberLimit = res.getInt(res.getColumnIndex("member_limit"))
+            val memberCount = res.getInt(res.getColumnIndex("member_count"))
+
+            val teamTemp = Team(id,name,subject,area,docs,leaderId,memberLimit,memberCount,null)
+
+            teams.add(teamTemp)
+        }
+
+        res.close()
+
+        return teams
+    }
+
+    fun selectAllMyTeam():ArrayList<Team>{
+        val teams = java.util.ArrayList<Team>()
+        val db = this.writableDatabase
+
+        val res = db.rawQuery("SELECT * FROM my_team;",
                 null)
 
         while (res.moveToNext()) {

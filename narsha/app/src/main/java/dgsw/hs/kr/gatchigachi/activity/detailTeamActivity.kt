@@ -35,8 +35,10 @@ class DetailTeamActivity : AppCompatActivity() {
         team_subject_detail.text = team!!.subject
         team_docs_detail.text = team!!.docs
 
-        val teamMembers = network.getTeamMember(teamId,myDb,this)
+//        val teamMembers = network.getTeamMember(teamId,myDb,this)
 
+        var memberAdapter = MemberGridAdapter(this, myDb.selectTeamMembersByTeamId(team.id!!.toInt()),myDb)
+        team_member_list.adapter = memberAdapter
     }
 
     fun notifyFinish(code :Long){
