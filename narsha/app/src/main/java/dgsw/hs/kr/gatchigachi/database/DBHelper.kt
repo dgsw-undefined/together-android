@@ -19,10 +19,9 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
             db.execSQL(dbManager.CreateTableAlert)
             db.execSQL(dbManager.CreateTableTeam)
             db.execSQL(dbManager.CreateTableTeamMember)
-            db.execSQL(dbManager.CreateTableTec)
             db.execSQL(dbManager.CreateTableTruster)
             db.execSQL(dbManager.CreateTableUser)
-            db.execSQL(dbManager.CreateTableMy)
+            db.execSQL(dbManager.CreateTableToken)
             db.execSQL(dbManager.CreateTableMyTeam)
         }
     }
@@ -41,31 +40,44 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
         onCreate(db)
     }
 
-    fun insertMyinfo(user:User, token:String){
+    fun insertUser(user:User){
 //        Thread {
             val db = this.writableDatabase
 
-            val sql = "INSERT OR REPLACE INTO my VALUES(?,?,?,?,?,?,?,?,?,?,?,?)"
+            val sql = "INSERT OR REPLACE INTO user VALUES(?,?,?,?,?,?,?,?,?,?,?,?)"
 
             val insertStmt = db.compileStatement(sql)
 
             insertStmt.clearBindings()
 
-            insertStmt.bindString(1, token)
-            insertStmt.bindLong(2, user.idx!!)
-            insertStmt.bindString(3, user.id)
-            insertStmt.bindString(4, user.name)
-            insertStmt.bindString(5, user.pw)
-            insertStmt.bindString(6, user.mail)
-            insertStmt.bindString(7, user.inter)
-            insertStmt.bindString(8, user.git)
-            insertStmt.bindString(9, user.tec.toString())
-            insertStmt.bindString(10, user.field)
-            insertStmt.bindString(11, user.pos)
-            insertStmt.bindString(12, user.phone)
+            insertStmt.bindLong(1, user.idx!!)
+            insertStmt.bindString(2, user.id)
+            insertStmt.bindString(3, user.name)
+            insertStmt.bindString(4, user.pw)
+            insertStmt.bindString(5, user.mail)
+            insertStmt.bindString(6, user.inter)
+            insertStmt.bindString(7, user.git)
+            insertStmt.bindString(8, user.tec.toString())
+            insertStmt.bindString(9, user.field)
+            insertStmt.bindString(10, user.pos)
+            insertStmt.bindString(11, user.phone)
+            insertStmt.bindLong(12,user.isMe.toLong())
 
             insertStmt.executeInsert()
 //        }.run()
+    }
+
+    fun insertToken(token: String){
+        val db = this.writableDatabase
+
+        val sql = "INSERT OR REPLACE INTO token VALUES(?,?)"
+
+        val insertStmt = db.compileStatement(sql)
+
+        insertStmt.bindLong(1, 1)
+        insertStmt.bindString(2, token)
+
+        insertStmt.executeInsert()
     }
 
     fun insertMyTeams(teams: List<Team>){
@@ -146,14 +158,13 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
     fun selectMyInfo() : User? {
         val db = this.writableDatabase
 
-        val res = db.rawQuery("SELECT * FROM my ORDER BY idx DESC LIMIT 1",
+        val res = db.rawQuery("SELECT * FROM user ORDER BY is_me =  1",
                 null)
 
         while (res.moveToNext()){
 
-            val token = res.getString(res.getColumnIndex("token"))
             val idx = res.getLong(res.getColumnIndex("idx"))
-            val id = res.getString(2)
+            val id = res.getString(res.getColumnIndex("id"))
             val name = res.getString(res.getColumnIndex("name"))
             val pw = res.getString(res.getColumnIndex("pw"))
             val email = res.getString(res.getColumnIndex("email"))
@@ -174,10 +185,40 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
         return null
     }
 
-    fun selectMyToken():String{
+    fun selectUserById(idx:Int) : User? {
         val db = this.writableDatabase
 
-        val res = db.rawQuery("SELECT token FROM my ORDER BY idx DESC LIMIT 1",
+        val res = db.rawQuery("SELECT * FROM user WHERE idx =  $idx",
+                null)
+
+        while (res.moveToNext()){
+
+            val idx = res.getLong(res.getColumnIndex("idx"))
+            val id = res.getString(res.getColumnIndex("id"))
+            val name = res.getString(res.getColumnIndex("name"))
+            val pw = res.getString(res.getColumnIndex("pw"))
+            val email = res.getString(res.getColumnIndex("email"))
+            val interested = res.getString(res.getColumnIndex("interested"))
+            val github = res.getString(res.getColumnIndex("github"))
+            val tec = res.getString(res.getColumnIndex("tec"))
+            val field = res.getString(res.getColumnIndex("field"))
+            val position = res.getString(res.getColumnIndex("position"))
+            val phone = res.getString(res.getColumnIndex("phone"))
+
+            res.close()
+
+            val tecArray = tec.split(" ".toRegex())
+
+            return User(idx,id,name,pw,email,interested,github,field,tecArray,position,phone)
+        }
+
+        return null
+    }
+
+    fun selectToken():String{
+        val db = this.writableDatabase
+
+        val res = db.rawQuery("SELECT token FROM token ORDER BY idx DESC LIMIT 1",
                 null)
 
         val buffer = StringBuffer()

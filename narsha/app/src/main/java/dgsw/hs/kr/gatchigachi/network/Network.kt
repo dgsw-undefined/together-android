@@ -2,7 +2,6 @@ package dgsw.hs.kr.gatchigachi.network
 
 import android.content.Context
 import android.util.Log
-import android.widget.Toast
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.fuel.httpPost
@@ -11,6 +10,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import dgsw.hs.kr.gatchigachi.DetailTeamActivity
 import dgsw.hs.kr.gatchigachi.LoginActivity
+import dgsw.hs.kr.gatchigachi.activity.MainActivity
 import dgsw.hs.kr.gatchigachi.database.DBHelper
 import dgsw.hs.kr.gatchigachi.model.Team
 import dgsw.hs.kr.gatchigachi.model.TeamMember
@@ -41,7 +41,10 @@ class Network{
 
                             val user = Gson().fromJson(json.toString(), User::class.java)
 
-                            myDb.insertMyinfo(user, token)
+                            user.isMe = 1
+
+                            myDb.insertToken(token)
+                            myDb.insertUser(user)
 
                             (context as LoginActivity).notifyFinish(loginJson.getLong("Code"))
                         }
@@ -59,7 +62,7 @@ class Network{
         var URL = "http://115.68.182.229/node/team"
 
         URL.httpGet()
-                .header(pairs = "Authorization" to myDb.selectMyToken())
+                .header(pairs = "Authorization" to myDb.selectToken())
                 .responseJson { request, response, result ->
                     result.fold(success = {json ->
                         val teamJson = JSONObject(json.content)
@@ -84,7 +87,7 @@ class Network{
         var URL = "http://115.68.182.229/node/team/member/$teamId"
 
         URL.httpGet()
-                .header(pairs = "Authorization" to myDb.selectMyToken())
+                .header(pairs = "Authorization" to myDb.selectToken())
                 .responseJson { _, _, result ->
                     result.fold(success = {json ->
                             val teamMemberJson = JSONObject(json.content)
@@ -99,6 +102,27 @@ class Network{
                             (context as DetailTeamActivity).notifyFinish(teamMemberJson.getLong("Code"))
                     }, failure = {
                     })
+                }
+        return code
+    }
+
+    fun getUserByIdx(idx: Long?, myDb:DBHelper, context: Context) : Int{
+
+        var URL = "http://115.68.182.229/node/user/$idx"
+
+        URL.httpGet()
+                .header(pairs = "Authorization" to myDb.selectToken())
+                .responseJson { _, _, result ->
+                    result.fold(success = {json ->
+                                val userJson = JSONObject(json.content)
+                                val jsonOutput = userJson.getJSONArray("Data").toString()
+                                val user : User = Gson().fromJson(jsonOutput, User::class.java)
+
+                                myDb.insertUser(user)
+
+                                (context as MainActivity).notifyFinish()
+                    }, failure = {
+                            })
                 }
         return code
     }

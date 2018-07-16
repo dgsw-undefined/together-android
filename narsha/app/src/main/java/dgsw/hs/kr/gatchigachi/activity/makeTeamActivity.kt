@@ -16,6 +16,10 @@ class MakeTeamActivity : AppCompatActivity() {
         requestedOrientation = (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         setContentView(R.layout.activity_make_team)
 
+        val teamName = edit_make_teamName.text
+        val teamField = edit_make_field.text
+        val teamMemberLimit = member_limit.selectedItem
+
         /*val countAdapter = ArrayAdapter.createFromResource(this,)*/
     }
 }

@@ -13,6 +13,7 @@ import dgsw.hs.kr.gatchigachi.R
 import dgsw.hs.kr.gatchigachi.TrustActivity
 import dgsw.hs.kr.gatchigachi.adapter.TeamGridAdapter
 import dgsw.hs.kr.gatchigachi.database.DBHelper
+import dgsw.hs.kr.gatchigachi.model.User
 import dgsw.hs.kr.gatchigachi.network.Network
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
@@ -20,14 +21,24 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    val network =  Network()
+    private val network =  Network()
     lateinit var myDb : DBHelper
+    var userIdx = 0
+    var user : User? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestedOrientation = (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         setContentView(R.layout.activity_main)
         myDb = DBHelper(this)
+
+        userIdx = intent.getIntExtra("userIdx",0)
+
+        if(myDb.selectMyInfo()!!.idx == userIdx.toLong()){
+            user = myDb.selectMyInfo()
+        }else{
+            network.getUserByIdx(userIdx.toLong(),myDb,this)
+        }
 
         val timer = Timer()
 
@@ -57,97 +68,105 @@ class MainActivity : AppCompatActivity() {
             startActivity(nextIntent)
         }
 
-        val user = myDb.selectMyInfo()
-        Log.e("a", user!!.name)
 
-        user_name.setText(user!!.name)
-        user_position.setText(user!!.pos)
-        user_mail.setText(user!!.mail)
-        user_git.setText(user!!.git)
-        user_phone.setText(user!!.phone)
+        user_name.text = user!!.name
+        user_position.text = user!!.pos
+        user_mail.text = user!!.mail
+        user_git.text = user!!.git
+        user_phone.text = user!!.phone
+
+    }
+
+    fun notifyFinish(){
+        user = myDb.selectUserById(userIdx)
+        user_name.text = user!!.name
+        user_position.text = user!!.pos
+        user_mail.text = user!!.mail
+        user_git.text = user!!.git
+        user_phone.text = user!!.phone
     }
 
 }
-        /*btn_trust.setOnClickListener {
-            val nextIntent = Intent(this, DetailTeamActivity::class.java)
-            startActivity(nextIntent)
-        }*/
+//        btn_trust.setOnClickListener {
+//            val nextIntent = Intent(this, DetailTeamActivity::class.java)
+//            startActivity(nextIntent)
+//        }
 
 
-        /*btn_open_detail.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked){
-                bottom_aaa.startAnimation(down_anim)
-                timer.schedule(timerTask { this }, 5000)
-                bottom_aaa.y = bottom_aaa.y+400
+//        btn_open_detail.setOnCheckedChangeListener { _, isChecked ->
+//            if (isChecked){
+//                bottom_aaa.startAnimation(down_anim)
+//                timer.schedule(timerTask { this }, 5000)
+//                bottom_aaa.y = bottom_aaa.y+400
+//
+//                detail.visibility = VISIBLE
+//
+//            } else{
+//                bottom_aaa.startAnimation(up_anim)
+//                timer.schedule(timerTask { this }, 5000)
+//                bottom_aaa.y = bottom_aaa.y-400
+//
+//                detail.visibility = INVISIBLE
+//
+//
+//            }
+//
+//        }
 
-                detail.visibility = VISIBLE
-
-            } else{
-                bottom_aaa.startAnimation(up_anim)
-                timer.schedule(timerTask { this }, 5000)
-                bottom_aaa.y = bottom_aaa.y-400
-
-                detail.visibility = INVISIBLE
-
-
-            }
-
-        }*/
-
-        /*val toggle = ActionBarDrawerToggle(
-                this, wrap, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        wrap.addDrawerListener(toggle)
-        toggle.syncState()
-
-        nav_view.setNavigationItemSelectedListener(this)*/
-
-    /*override fun onBackPressed() {
-        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
-            drawer_layout.closeDrawer(GravityCompat.START)
-        } else {
-            super.onBackPressed()
-        }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        when (item.itemId) {
-            R.id.action_settings -> return true
-            else -> return super.onOptionsItemSelected(item)
-        }
-    }
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        // Handle navigation view item clicks here.
-        when (item.itemId) {
-            R.id.nav_camera -> {
-                // Handle the camera action
-            }
-            R.id.nav_gallery -> {
-
-            }
-            R.id.nav_slideshow -> {
-
-            }
-            R.id.nav_manage -> {
-
-            }
-            R.id.nav_share -> {
-
-            }
-            R.id.nav_send -> {
-
-            }
-        }
-
-        drawer_layout.closeDrawer(GravityCompat.START)
-        return true
-    }*/
+//        val toggle = ActionBarDrawerToggle(
+//                this, wrap, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+//        wrap.addDrawerListener(toggle)
+//        toggle.syncState()
+//
+//        nav_view.setNavigationItemSelectedListener(this)
+//
+//    override fun onBackPressed() {
+//        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
+//            drawer_layout.closeDrawer(GravityCompat.START)
+//        } else {
+//            super.onBackPressed()
+//        }
+//    }
+//
+//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        menuInflater.inflate(R.menu.main, menu)
+//        return true
+//    }
+//
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        when (item.itemId) {
+//            R.id.action_settings -> return true
+//            else -> return super.onOptionsItemSelected(item)
+//        }
+//    }
+//
+//    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+//        // Handle navigation view item clicks here.
+//        when (item.itemId) {
+//            R.id.nav_camera -> {
+//                // Handle the camera action
+//            }
+//            R.id.nav_gallery -> {
+//
+//            }
+//            R.id.nav_slideshow -> {
+//
+//            }
+//            R.id.nav_manage -> {
+//
+//            }
+//            R.id.nav_share -> {
+//
+//            }
+//            R.id.nav_send -> {
+//
+//            }
+//        }
+//
+//        drawer_layout.closeDrawer(GravityCompat.START)
+//        return true
+//    }

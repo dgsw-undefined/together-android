@@ -17,6 +17,8 @@ data class User(
         val phone: String
         ){
     var token :String = ""
+    var isMe : Int = 0
+
 
     class Deserializer: ResponseDeserializable<Array<User>> {
        override fun deserialize(content: String): Array<User>? = Gson().fromJson(content, Array<User>::class.java)
