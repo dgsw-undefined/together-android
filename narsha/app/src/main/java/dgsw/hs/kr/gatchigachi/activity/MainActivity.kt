@@ -13,10 +13,12 @@ import dgsw.hs.kr.gatchigachi.R
 import dgsw.hs.kr.gatchigachi.TrustActivity
 import dgsw.hs.kr.gatchigachi.adapter.TeamGridAdapter
 import dgsw.hs.kr.gatchigachi.database.DBHelper
+import dgsw.hs.kr.gatchigachi.model.Team
 import dgsw.hs.kr.gatchigachi.model.User
 import dgsw.hs.kr.gatchigachi.network.Network
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
@@ -36,7 +38,8 @@ class MainActivity : AppCompatActivity() {
 
         if(myDb.selectMyInfo()!!.idx == userIdx.toLong()){
             user = myDb.selectMyInfo()
-            setView()
+            val teams = myDb.selectAllMyTeam()
+            setView(teams)
         }else{
             network.getUserByIdx(userIdx.toLong(),myDb,this)
         }
@@ -71,18 +74,23 @@ class MainActivity : AppCompatActivity() {
 
     fun notifyFinish(){
         user = myDb.selectUserById(userIdx)
-        setView()
+        val teams = myDb.selectAllTeamByUserIdx(userIdx)
+        setView(teams)
     }
 
-    private fun setView(){
+    private fun setView(teams:ArrayList<Team>){
         user_name.text = user!!.name
         user_position.text = user!!.position
         user_mail.text = user!!.email
         user_git.text = user!!.github
         user_phone.text = user!!.phone
 
-        var teamAdapter = TeamGridAdapter(this, myDb.selectAllTeamByUserIdx(userIdx))
+        var teamAdapter = TeamGridAdapter(this, teams)
         team_grid_view.adapter = teamAdapter
+
+        for (team in teams)(
+                network.getTeamMember(team.id!!.toInt(),myDb,this)
+        )
     }
 
 }
