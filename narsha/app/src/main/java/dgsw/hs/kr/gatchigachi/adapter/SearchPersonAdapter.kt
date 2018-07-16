@@ -1,10 +1,13 @@
 package dgsw.hs.kr.gatchigachi.adapter
 
 import android.content.Context
+import android.graphics.drawable.ShapeDrawable
+import android.graphics.drawable.shapes.OvalShape
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.ImageView
 import android.widget.TextView
 import dgsw.hs.kr.gatchigachi.DataService.SearchUserData
 import dgsw.hs.kr.gatchigachi.R
@@ -16,9 +19,12 @@ class SearchPersonAdapter (val context: Context, val SearchUser : ArrayList<User
 
         val UserName : TextView = ResultView.findViewById(R.id.user_name_search)
         val Userposition : TextView = ResultView.findViewById(R.id.user_position_search)
-
+        val UserProfile : ImageView = ResultView.findViewById(R.id.user_profile_search)
         val SearchUser = SearchUserData[position]
 
+
+        UserProfile.background = ShapeDrawable(OvalShape())
+        UserProfile.clipToOutline = true
 
         UserName.setText(SearchUser.name)
         Userposition.setText(SearchUser.position)

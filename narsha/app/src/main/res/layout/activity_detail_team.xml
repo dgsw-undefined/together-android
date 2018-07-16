@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fafafa"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    android:orientation="vertical"
-    android:background="#fafafa"
-    >
+    android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -123,8 +122,8 @@
                     android:layout_marginBottom="8dp"
                     android:layout_marginStart="8dp"
                     android:text="subject"
-                    android:textSize="16sp"
                     android:textColor="#000000"
+                    android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/text_subject"
                     app:layout_constraintStart_toEndOf="@+id/text_subject"
                     app:layout_constraintTop_toTopOf="@+id/text_subject"
@@ -157,13 +156,11 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/now_limit"
-                app:layout_constraintVertical_bias="0.0">
+                app:layout_constraintTop_toBottomOf="@+id/team_date">
 
             </ListView>
 
@@ -182,6 +179,15 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/team_member_list" />
+
+            <TextView
+                android:id="@+id/team_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="팀 생성 날짜"
+                app:layout_constraintEnd_toEndOf="@+id/now_limit"
+                app:layout_constraintTop_toBottomOf="@+id/now_limit" />
 
         </android.support.constraint.ConstraintLayout>
 

@@ -6,7 +6,7 @@
     android:layout_height="70dp">
 
     <ImageView
-        android:id="@+id/user_profile2"
+        android:id="@+id/user_profile_best"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginBottom="8dp"
@@ -30,7 +30,7 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/count_truster"
-        app:layout_constraintStart_toEndOf="@+id/user_profile2"
+        app:layout_constraintStart_toEndOf="@+id/user_profile_best"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView

@@ -68,7 +68,6 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/edit_docs"
         app:layout_constraintDimensionRatio="3.5:1"
-        app:layout_constraintEnd_toStartOf="@+id/spinner"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintEnd_toStartOf="@+id/member_limit"

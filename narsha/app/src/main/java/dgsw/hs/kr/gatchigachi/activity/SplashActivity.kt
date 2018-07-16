@@ -14,12 +14,8 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        val startanim = AnimationUtils.loadAnimation(this, R.anim.splash_start)
         val startAnim = AnimationUtils.loadAnimation(this, R.anim.splash_start)
-        val endAnim = AnimationUtils.loadAnimation(this, R.anim.splash_end)
-
         start_splash.startAnimation(startAnim)
-
         val nextIntent = Intent(this, LoginActivity::class.java)
         startActivity(nextIntent)
     }
