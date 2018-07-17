@@ -17,7 +17,7 @@ import dgsw.hs.kr.gatchigachi.model.User
 import dgsw.hs.kr.gatchigachi.model.User2
 import kotlinx.android.synthetic.main.user_list_item.*
 
-class UserGridAdapter (val context: Context, val UserData: ArrayList<User2>) : BaseAdapter() {
+class TrustListAdapter (val context: Context, val UserData: ArrayList<User2>) : BaseAdapter() {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
         val UserView : View = LayoutInflater.from(context).inflate(R.layout.user_list_item, null)
