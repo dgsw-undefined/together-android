@@ -10,17 +10,21 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import dgsw.hs.kr.gatchigachi.R
 import dgsw.hs.kr.gatchigachi.activity.MainActivity
 import dgsw.hs.kr.gatchigachi.database.DBHelper
 import dgsw.hs.kr.gatchigachi.model.TeamMember
 import dgsw.hs.kr.gatchigachi.network.Network
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MemberGridAdapter (val context: Context, private val teamMembers: ArrayList<TeamMember>,val myDb:DBHelper) : BaseAdapter() {
 
     val network = Network()
     var code = 100
-    val nextIntent = Intent(context,MainActivity::class.java)
+    val nextIntent = Intent(context, MainActivity::class.java)
+
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
         val MemberView : View = LayoutInflater.from(context).inflate(R.layout.member_list_item, null)
         val MemberName : TextView = MemberView.findViewById(R.id.member_name)
@@ -29,8 +33,10 @@ class MemberGridAdapter (val context: Context, private val teamMembers: ArrayLis
         val Member = teamMembers[position]
         val MemberProfile : ImageView = MemberView.findViewById(R.id.user_profile_member)
 
-        MemberProfile.background = ShapeDrawable(OvalShape())
-        MemberProfile.clipToOutline = true
+        Glide.with(MemberView)
+                .load(myDb.selectUserById(Member.user_id!!.toInt())!!.profile)
+                .apply(RequestOptions.circleCropTransform())
+                .into(MemberProfile)
 
         MemberProfile.setOnClickListener {
             val nextIntent = Intent(context, MainActivity::class.java)

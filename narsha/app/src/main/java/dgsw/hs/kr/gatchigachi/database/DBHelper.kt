@@ -127,11 +127,57 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
 //        }.run()
     }
 
+    fun selectTeamIdByUserIdx(userIdx: Int): ArrayList<Int> {
+        val teamIdList = ArrayList<Int>()
+        val db = this.writableDatabase
+
+        val res = db.rawQuery("SELECT team_id FROM team_member WHERE user_idx = $userIdx",
+        null)
+        while (res.moveToNext()){
+            val teamId = res.getInt(res.getColumnIndex("team_id"))
+
+            teamIdList.add(teamId)
+        }
+
+        return teamIdList
+    }
+
     fun selectAllTeamByUserIdx(userIdx: Int):ArrayList<Team>{
         val teams = java.util.ArrayList<Team>()
         val db = this.writableDatabase
 
-        val res = db.rawQuery("SELECT * FROM team WHERE id = (SELECT team_id FROM team_member WHERE user_idx = $userIdx);",
+        val teamIdList = selectTeamIdByUserIdx(userIdx)
+
+        for(teamId in teamIdList){
+            val res = db.rawQuery("SELECT * FROM team WHERE id = $teamId",
+                    null)
+
+            while (res.moveToNext()) {
+
+                val id = res.getInt(res.getColumnIndex("id"))
+                val name = res.getString(res.getColumnIndex("name"))
+                val subject = res.getString(res.getColumnIndex("subject"))
+                val area = res.getString(res.getColumnIndex("area"))
+                val docs = res.getString(res.getColumnIndex("docs"))
+                val leaderId = res.getInt(res.getColumnIndex("leader_id"))
+                val memberLimit = res.getInt(res.getColumnIndex("member_limit"))
+                val memberCount = res.getInt(res.getColumnIndex("member_count"))
+
+                val teamTemp = Team(id,name,subject,area,docs,leaderId,memberLimit,memberCount)
+
+                teams.add(teamTemp)
+            }
+            res.close()
+        }
+
+        return teams
+    }
+
+    fun selectAllMyTeam():ArrayList<Team>{
+        val teams = java.util.ArrayList<Team>()
+        val db = this.writableDatabase
+
+        val res = db.rawQuery("SELECT * FROM team WHERE is_my_team = 1;",
                 null)
 
         while (res.moveToNext()) {
@@ -155,11 +201,11 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
         return teams
     }
 
-    fun selectAllMyTeam():ArrayList<Team>{
+    fun selectAllTeam():ArrayList<Team>{
         val teams = java.util.ArrayList<Team>()
         val db = this.writableDatabase
 
-        val res = db.rawQuery("SELECT * FROM team WHERE is_my_team = 1;",
+        val res = db.rawQuery("SELECT * FROM team;",
                 null)
 
         while (res.moveToNext()) {
@@ -243,6 +289,39 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
         }
 
         return null
+    }
+
+    fun selectAllUser() : ArrayList<User> {
+        val users = ArrayList<User>()
+        val db = this.writableDatabase
+
+        val res = db.rawQuery("SELECT * FROM user;",
+                null)
+
+        while (res.moveToNext()){
+
+            val idx = res.getLong(res.getColumnIndex("idx"))
+            val id = res.getString(res.getColumnIndex("id"))
+            val name = res.getString(res.getColumnIndex("name"))
+            val pw = res.getString(res.getColumnIndex("pw"))
+            val email = res.getString(res.getColumnIndex("email"))
+            val interested = res.getString(res.getColumnIndex("interested"))
+            val github = res.getString(res.getColumnIndex("github"))
+            val tec = res.getString(res.getColumnIndex("tec"))
+            val field = res.getString(res.getColumnIndex("field"))
+            val position = res.getString(res.getColumnIndex("position"))
+            val phone = res.getString(res.getColumnIndex("phone"))
+            val profile = res.getString(res.getColumnIndex("profile"))
+
+
+            val tecArray = tec.split(" ".toRegex())
+
+            users.add(User(idx,id,name,pw,email,interested,github,profile,field,tecArray,position,phone))
+        }
+
+        res.close()
+
+        return users
     }
 
     fun selectToken():String{

@@ -18,6 +18,7 @@ import dgsw.hs.kr.gatchigachi.model.TeamMember
 import dgsw.hs.kr.gatchigachi.model.User
 import org.json.JSONObject
 import java.util.*
+import kotlin.collections.ArrayList
 
 class Network{
     var code = 100
@@ -85,9 +86,6 @@ class Network{
 
                         if (isMyTeam)
                             (context as LoginActivity).notifyFinish()
-                        else
-                            (context as MainActivity).notifyFinish()
-
 
                     }, failure = {
 
@@ -121,31 +119,31 @@ class Network{
         return code
     }
 
-    fun getUserByIdx(idx: Long?, myDb:DBHelper, context: Context) : Int{
-
-        var URL = "http://115.68.182.229/node/user/$idx"
-
-        URL.httpGet()
-                .header(pairs = "Authorization" to myDb.selectToken())
-                .responseJson { _, _, result ->
-                    result.fold(
-                            success = {json ->
-                                val userJson = JSONObject(json.content)
-                                val jsonOutput = userJson.getJSONArray("Data")[0]
-
-                                val user : User = Gson().fromJson(jsonOutput.toString(), User::class.java)
-
-                                myDb.insertUser(user)
-
-                                val int = 0
-
-                                val a = getTeam(myDb, user.idx!!.toInt(),context,false)
-
-                    }, failure = {
-                    })
-                }
-        return code
-    }
+//    fun getUserByIdx(idx: Long?, myDb:DBHelper, context: Context) : Int{
+//
+//        var URL = "http://115.68.182.229/node/user/$idx"
+//
+//        URL.httpGet()
+//                .header(pairs = "Authorization" to myDb.selectToken())
+//                .responseJson { _, _, result ->
+//                    result.fold(
+//                            success = {json ->
+//                                val userJson = JSONObject(json.content)
+//                                val jsonOutput = userJson.getJSONArray("Data")[0]
+//
+//                                val user : User = Gson().fromJson(jsonOutput.toString(), User::class.java)
+//
+//                                myDb.insertUser(user)
+//
+//                                val int = 0
+//
+//                                val a = getTeam(myDb, user.idx!!.toInt(),context,false)
+//
+//                    }, failure = {
+//                    })
+//                }
+//        return code
+//    }
 
     fun signUpNt(user: User){
         val URL = "http://115.68.182.229/go/user/signup"
@@ -193,5 +191,54 @@ class Network{
                     println("==========================================================================")
                 }
     }
+
+    fun getTeamList(myDb: DBHelper) {
+        var URL = "http://115.68.182.229/node/test/team_list"
+
+        URL.httpGet()
+                .header()
+                .responseJson { _, _, result ->
+                    result.fold(success = {json ->
+                        val teamJson = JSONObject(json.content)
+                        val jsonOutput = teamJson.getJSONArray("Data").toString()
+                        val listType = object : TypeToken<List<Team>>(){}.type
+                        val teams : List<Team> = Gson().fromJson(jsonOutput, listType)
+
+                        myDb.insertTeams(teams)
+
+                    }, failure = {
+
+                    })
+                }
+    }
+
+    fun getUserList(myDb: DBHelper) {
+        var URL = "http://115.68.182.229/node/user/list/1"
+
+        URL.httpGet()
+                .header()
+                .responseJson { _, _, result ->
+                    result.fold(success = {json ->
+                        val teamJson = JSONObject(json.content)
+                        val jsonOutput = teamJson.getJSONArray("Data").toString()
+                        val listType = object : TypeToken<List<User>>(){}.type
+                        val users : List<User> = Gson().fromJson(jsonOutput, listType)
+
+                        for (user in users){
+                            if(user.tec == null){
+                                user.tec = ArrayList<String>()
+                            }
+                            if (user.idx ==  myDb.selectMyInfo()!!.idx){
+                                user.isMe = 1
+                            }
+                            myDb.insertUser(user)
+                        }
+
+                    }, failure = {
+
+                    })
+                }
+    }
+
 
 }

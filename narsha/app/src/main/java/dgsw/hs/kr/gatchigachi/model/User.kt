@@ -13,7 +13,7 @@ data class User(
         val github: String,
         val profile:String,
         val field: String,
-        val tec: List<String>,
+        var tec: List<String>,
         val position: String,
         val phone: String
         ){
