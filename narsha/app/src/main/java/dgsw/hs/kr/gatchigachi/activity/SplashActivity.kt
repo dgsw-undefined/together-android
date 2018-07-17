@@ -1,6 +1,7 @@
 package dgsw.hs.kr.gatchigachi.activity
 
 import android.content.Intent
+import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.animation.AnimationUtils
@@ -14,15 +15,19 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
+        val uri : Uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.splash)
+        splash_video.setVideoURI(uri)
+        splash_video.start()
+
         val startAnim = AnimationUtils.loadAnimation(this, R.anim.splash_start)
 
-        start_splash.startAnimation(startAnim)
-
-        wrap_con.setOnClickListener {
+        splash_video.setOnClickListener {
             val nextIntent = Intent(this, LoginActivity::class.java)
             startActivity(nextIntent)
             this.finish()
         }
+
+
 
     }
 
