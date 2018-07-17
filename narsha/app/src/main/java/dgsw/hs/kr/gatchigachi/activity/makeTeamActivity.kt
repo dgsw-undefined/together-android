@@ -1,12 +1,12 @@
 package dgsw.hs.kr.gatchigachi
 
+import android.annotation.SuppressLint
 import android.content.pm.ActivityInfo
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.SpinnerAdapter
+import android.view.View
+import android.widget.*
 import dgsw.hs.kr.gatchigachi.R
 import dgsw.hs.kr.gatchigachi.database.DBHelper
 import dgsw.hs.kr.gatchigachi.model.Team
@@ -15,6 +15,7 @@ import java.util.ArrayList
 
 class MakeTeamActivity : AppCompatActivity() {
 
+    @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestedOrientation = (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
@@ -30,12 +31,21 @@ class MakeTeamActivity : AppCompatActivity() {
             val teamLeaderField = myDb.selectMyInfo()!!.field
 
         }
+//        val adapter = ArrayAdapter.createFromResource(this,android.R.layout.simple_spinner_dropdown_item,R.array.people)
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//        member_limit!!.adapter = adapter
+//        member_limit.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//            override fun onNothingSelected(parent: AdapterView<*>?) {
+//
+//            }
+//
+//            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) : Int{
+//                val lim = parent!!.getItemAtPosition(position).toString().toInt()
+//            }
+//        }
+//
+//    }
 
-        val adapter = ArrayAdapter.createFromResource(this,R.array.people,android.R.layout.simple_spinner_dropdown_item)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        member_limit.adapter = adapter
-
-    }
 
     override fun onResume() {
         super.onResume()
@@ -43,6 +53,5 @@ class MakeTeamActivity : AppCompatActivity() {
         edit_make_field.setText(null)
         edit_make_subject.setText(null)
         edit_make_teamName.setText(null)
-
     }
 }
