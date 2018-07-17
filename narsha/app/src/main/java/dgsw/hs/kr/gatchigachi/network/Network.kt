@@ -75,7 +75,7 @@ class Network{
                 .responseJson { res, req, result ->
                     result.fold(success = {json ->
                         val teamJson = JSONObject(json.content)
-                        if (teamJson.getInt("Code") >=200 ){
+                        if (teamJson.getInt("Code") >=202 ){
                             if (isMyTeam)
                                 (context as LoginActivity).notifyFinish(10000)
                         }else{

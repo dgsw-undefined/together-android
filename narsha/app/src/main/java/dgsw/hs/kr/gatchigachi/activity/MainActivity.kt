@@ -79,7 +79,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(nextIntent)
         }
 
-
     }
 
     private fun setView(teams:ArrayList<Team>){
@@ -99,6 +98,11 @@ class MainActivity : AppCompatActivity() {
         for (team in teams)(
                 network.getTeamMember(team.id!!.toInt(),myDb,this)
         )
+
+        if( 1 == intent.getIntExtra("isTeamListEmpty", 0)){
+            val nextIntent = Intent(this, LookForActivity::class.java)
+            startActivity(nextIntent)
+        }
     }
 
 }

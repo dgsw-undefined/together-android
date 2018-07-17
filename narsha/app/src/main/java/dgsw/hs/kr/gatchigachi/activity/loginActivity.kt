@@ -85,7 +85,7 @@ class LoginActivity : AppCompatActivity() {
 
     fun notifyFinish(code:Int){
         if (code > 1000){
-            nextIntent = Intent(this,LookForActivity::class.java)
+            nextIntent.putExtra("isTeamListEmpty", 1)
         }
         network.getTeamList(myDb)
         network.getUserList(myDb)

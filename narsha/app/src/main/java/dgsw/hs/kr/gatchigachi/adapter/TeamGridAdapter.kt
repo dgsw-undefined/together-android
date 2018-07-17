@@ -18,6 +18,11 @@ import dgsw.hs.kr.gatchigachi.database.DBHelper
 import dgsw.hs.kr.gatchigachi.model.Team
 import dgsw.hs.kr.gatchigachi.model.Team2
 import kotlinx.android.synthetic.main.team_list_item.view.*
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.request.RequestOptions
+
+
 
 class TeamGridAdapter (val context: Context, val teamData: ArrayList<Team>) : BaseAdapter() {
 
@@ -32,8 +37,12 @@ class TeamGridAdapter (val context: Context, val teamData: ArrayList<Team>) : Ba
 
         teamName.text = team.name
 
+        var requestOptions = RequestOptions()
+        requestOptions = requestOptions.transforms(CenterCrop(), RoundedCorners(20))
+
         Glide.with(context)
                 .load(team.profile)
+                .apply(requestOptions)
                 .into(teamView.team_image)
 
         teamView.setOnClickListener {
