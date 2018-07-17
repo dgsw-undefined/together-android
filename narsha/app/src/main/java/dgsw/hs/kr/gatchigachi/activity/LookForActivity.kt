@@ -10,6 +10,7 @@ import dgsw.hs.kr.gatchigachi.R
 import dgsw.hs.kr.gatchigachi.adapter.BestTrusterAdapter
 import dgsw.hs.kr.gatchigachi.adapter.SearchPersonAdapter
 import dgsw.hs.kr.gatchigachi.adapter.SearchTeamAdaper
+import dgsw.hs.kr.gatchigachi.adapter.TeamGridAdapter
 import dgsw.hs.kr.gatchigachi.database.DBHelper
 import dgsw.hs.kr.gatchigachi.network.Network
 import kotlinx.android.synthetic.main.activity_look_for.*
@@ -37,14 +38,16 @@ class LookForActivity : AppCompatActivity() {
         val list = AnimationUtils.loadAnimation(this, R.anim.search_list)
 
         val searchPerson = SearchPersonAdapter(this, users)
-        val searchTeam = SearchTeamAdaper(this, teams)
+        val searchTeam = TeamGridAdapter(this, teams)
 
+        grid_search_result.visibility = View.INVISIBLE
         list_search_result.startAnimation(list)
-
         list_search_result.adapter = searchPerson
 
         btn_lookfor_person.setOnClickListener {
 
+            grid_search_result.visibility = View.INVISIBLE
+            list_search_result.visibility = View.VISIBLE
             list_search_result.startAnimation(list)
 
             list_search_result.adapter = searchPerson
@@ -55,9 +58,11 @@ class LookForActivity : AppCompatActivity() {
 
         btn_lookfor_team.setOnClickListener {
 
-            list_search_result.startAnimation(list)
+            list_search_result.visibility = View.INVISIBLE
+            grid_search_result.visibility = View.VISIBLE
+            grid_search_result.startAnimation(list)
 
-            list_search_result.adapter = searchTeam
+            grid_search_result.adapter = searchTeam
 
         }
     }
