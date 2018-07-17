@@ -44,12 +44,9 @@ class MakeTeamActivity : AppCompatActivity() {
 //            }
 //        }
 //
-//    }
-
+//      }
     }
 
-
-    }
 
     override fun onResume() {
         super.onResume()

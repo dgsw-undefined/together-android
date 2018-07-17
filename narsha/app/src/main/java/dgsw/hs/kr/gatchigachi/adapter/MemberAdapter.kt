@@ -19,7 +19,7 @@ import dgsw.hs.kr.gatchigachi.model.TeamMember
 import dgsw.hs.kr.gatchigachi.network.Network
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MemberGridAdapter (val context: Context, private val teamMembers: ArrayList<TeamMember>,val myDb:DBHelper) : BaseAdapter() {
+class MemberAdapter (val context: Context, private val teamMembers: ArrayList<TeamMember>, val myDb:DBHelper) : BaseAdapter() {
 
     val network = Network()
     var code = 100

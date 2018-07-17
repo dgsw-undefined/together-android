@@ -1,13 +1,9 @@
 package dgsw.hs.kr.gatchigachi
 
-import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import dgsw.hs.kr.gatchigachi.R
-import dgsw.hs.kr.gatchigachi.adapter.MemberGridAdapter
-import dgsw.hs.kr.gatchigachi.adapter.TeamGridAdapter
+import dgsw.hs.kr.gatchigachi.adapter.MemberAdapter
 import dgsw.hs.kr.gatchigachi.database.DBHelper
 import dgsw.hs.kr.gatchigachi.model.Team
 import dgsw.hs.kr.gatchigachi.network.Network
@@ -37,7 +33,7 @@ class DetailTeamActivity : AppCompatActivity() {
 
 //        val teamMembers = network.getTeamMember(teamId,myDb,this)
 
-        var memberAdapter = MemberGridAdapter(this, myDb.selectTeamMembersByTeamId(team.id!!.toInt()),myDb)
+        var memberAdapter = MemberAdapter(this, myDb.selectTeamMembersByTeamId(team.id!!.toInt()),myDb)
         team_member_list.adapter = memberAdapter
 
         btn_back_detail_team.setOnClickListener {
