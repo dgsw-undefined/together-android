@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/colorAccent"
     android:focusable="true"
     android:focusableInTouchMode="true">
 
@@ -21,9 +21,9 @@
         android:ems="10"
         android:hint="Name"
         android:maxLines="1"
+        android:textColor="#ffffff"
         android:maxLength="20"
         android:inputType="textPersonName"
-        android:textColor="#000000"
         android:textColorHint="#fafafa"
         android:textCursorDrawable="@drawable/cursor_color"
         android:textSize="17sp"
