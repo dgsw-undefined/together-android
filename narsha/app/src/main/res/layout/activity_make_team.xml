@@ -162,18 +162,6 @@
         app:layout_constraintTop_toTopOf="@+id/edit_make_field"
         app:layout_constraintVertical_bias="1.0" />
 
-    <ImageButton
-        android:id="@+id/back_to_main"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="#ffffff"
-        android:tint="@color/colorAccent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_delete" />
-
     <TextView
         android:id="@+id/text_subject"
         android:layout_width="wrap_content"
