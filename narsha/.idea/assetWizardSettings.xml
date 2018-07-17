@@ -16,10 +16,25 @@
                             <entry key="launcher">
                               <value>
                                 <PersistentState>
+                                  <option name="children">
+                                    <map>
+                                      <entry key="foregroundImage">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="scalingPercent" value="215" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
+                                    </map>
+                                  </option>
                                   <option name="values">
                                     <map>
                                       <entry key="backgroundLayerName" value="splash_background22" />
-                                      <entry key="foregroundImage" value="C:\Users\Gun\Desktop\spla_image.PNG" />
+                                      <entry key="foregroundImage" value="C:\Users\Gun\Desktop\splash_replace.jpg" />
                                       <entry key="foregroundLayerName" value="splash_image2" />
                                     </map>
                                   </option>

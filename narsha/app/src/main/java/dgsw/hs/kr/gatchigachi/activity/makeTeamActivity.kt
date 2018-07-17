@@ -1,6 +1,7 @@
 package dgsw.hs.kr.gatchigachi
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import dgsw.hs.kr.gatchigachi.R
+import dgsw.hs.kr.gatchigachi.activity.MainActivity
 import dgsw.hs.kr.gatchigachi.database.DBHelper
 import dgsw.hs.kr.gatchigachi.model.Team
 import kotlinx.android.synthetic.main.activity_make_team.*
@@ -31,6 +33,8 @@ class MakeTeamActivity : AppCompatActivity() {
             val teamLeaderField = myDb.selectMyInfo()!!.field
 
         }
+
+
 //        val adapter = ArrayAdapter.createFromResource(this,android.R.layout.simple_spinner_dropdown_item,R.array.people)
 //        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 //        member_limit!!.adapter = adapter
