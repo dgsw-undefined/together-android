@@ -42,14 +42,16 @@ class Sign4Activity :AppCompatActivity() {
         val profile = "null"
 
         btn_sign4_sign.setOnClickListener {
+
+            val tecArray = tec.split(" ".toRegex())
+            val user = User(null,id,name,pw,email,inter,github,field,profile,tecArray,position,phone)
+
+            network.signUpNt(user)
+
             val nextIntent = Intent(this, LoginActivity::class.java)
             startActivity(nextIntent)
             this.finish()
         }
-        val tecArray = tec.split(" ".toRegex())
-        val user = User(null,id,name,pw,email,inter,github,field,profile,tecArray,position,phone)
-
-        network.signUpNt(user)
 
     }
 

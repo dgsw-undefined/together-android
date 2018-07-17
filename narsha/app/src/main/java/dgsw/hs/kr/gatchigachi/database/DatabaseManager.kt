@@ -27,6 +27,7 @@ internal class DatabaseManager {
                     "`area` varchar(255) NOT NULL," +
                     "`docs` text NOT NULL," +
                     "`leader_id` bigint(20) NOT NULL," +
+                    "`profile` varchar(255) NULL, "+
                     "`member_limit` int(11) DEFAULT NULL," +
                     "`member_count` int(11) DEFAULT '1'," +
                     "`is_my_team` int(11) NOT NULL,"+

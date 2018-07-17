@@ -46,7 +46,12 @@ class Network{
 
                             user.isMe = 1
 
+                            myDb.deleteMyInfo()
                             myDb.insertToken(token)
+
+                            if(user.tec == null){
+                                user.tec = ArrayList()
+                            }
                             myDb.insertUser(user)
 
                             (context as LoginActivity).notifyFinish(loginJson.getLong("Code"))
@@ -63,32 +68,38 @@ class Network{
     fun getTeam(myDb: DBHelper, userIdx:Int, context: Context, isMyTeam: Boolean) : Int{
 
         var URL = "http://115.68.182.229/node/team/user/$userIdx"
+        val token = myDb.selectToken()
 
-        URL.httpGet()
-                .header(pairs = "Authorization" to myDb.selectToken())
-                .responseJson { _, _, result ->
+        val a = URL.httpGet()
+                .header(pairs = *arrayOf("Authorization" to token))
+                .responseJson { res, req, result ->
                     result.fold(success = {json ->
                         val teamJson = JSONObject(json.content)
-                        val jsonOutput = teamJson.getJSONArray("Data").toString()
-                        val listType = object : TypeToken<List<Team>>(){}.type
-                        val teams : List<Team> = Gson().fromJson(jsonOutput, listType)
+                        if (teamJson.getInt("Code") >=200 ){
+                            if (isMyTeam)
+                                (context as LoginActivity).notifyFinish(10000)
+                        }else{
+                            val jsonOutput = teamJson.getJSONArray("Data").toString()
+                            val listType = object : TypeToken<List<Team>>(){}.type
+                            val teams : List<Team> = Gson().fromJson(jsonOutput, listType)
 
-                        var i = 0
-                        if (isMyTeam) {
-                            for (team in teams) {
-                                teams[i++].isMyTeam = 1
+                            var i = 0
+                            if (isMyTeam) {
+                                for (team in teams) {
+                                    teams[i++].isMyTeam = 1
+                                }
                             }
+
+                            myDb.insertTeams(teams)
+
+                            code = teamJson.getInt("Code")
+
+                            if (isMyTeam)
+                                (context as LoginActivity).notifyFinish(code)
+
                         }
-
-                        myDb.insertTeams(teams)
-
-                        code = teamJson.getInt("Code")
-
-                        if (isMyTeam)
-                            (context as LoginActivity).notifyFinish()
-
                     }, failure = {
-
+                        Log.e("a","A")
                     })
                 }
 
@@ -179,6 +190,7 @@ class Network{
                             user.isMe = 1
 
                             myDb.insertToken(token)
+
                             myDb.insertUser(user)
 
 //                            (context as LoginActivity).notifyFinish(loginJson.getLong("Code"))
@@ -203,6 +215,20 @@ class Network{
                         val jsonOutput = teamJson.getJSONArray("Data").toString()
                         val listType = object : TypeToken<List<Team>>(){}.type
                         val teams : List<Team> = Gson().fromJson(jsonOutput, listType)
+
+                        val myTeam = myDb.selectAllMyTeam()
+                        var i = 0
+                        var j = 0
+                        while (i < teams.size){
+                            j=0
+                            while (j < myTeam.size){
+                                if(teams[i].id == myTeam[j].id){
+                                    teams[i].isMyTeam = 1
+                                }
+                                j++
+                            }
+                            i++
+                        }
 
                         myDb.insertTeams(teams)
 

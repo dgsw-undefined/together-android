@@ -48,9 +48,6 @@ class MakeTeamActivity : AppCompatActivity() {
 
     }
 
-
-    }
-
     override fun onResume() {
         super.onResume()
 
@@ -58,4 +55,6 @@ class MakeTeamActivity : AppCompatActivity() {
         edit_make_subject.setText(null)
         edit_make_teamName.setText(null)
     }
+
+
 }

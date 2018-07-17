@@ -85,9 +85,13 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
             for (team in teams){
                 val db = this.writableDatabase
 
-                val sql = "INSERT OR REPLACE INTO team VALUES(?,?,?,?,?,?,?,?,?)"
+                val sql = "INSERT OR REPLACE INTO team VALUES(?,?,?,?,?,?,?,?,?,?)"
 
                 val insertStmt = db.compileStatement(sql)
+
+                if(team.profile == null){
+                    team.profile = "http://115.68.182.229/node/profile/team/team_default.jpg"
+                }
 
                 insertStmt.bindLong(1, team.id!!.toLong())
                 insertStmt.bindString(2, team.name)
@@ -95,9 +99,10 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
                 insertStmt.bindString(4, team.area)
                 insertStmt.bindString(5, team.docs)
                 insertStmt.bindLong(6, team.leader_id!!.toLong())
-                insertStmt.bindLong(7, team.member_limit!!.toLong())
-                insertStmt.bindLong(8, team.member_count!!.toLong())
-                insertStmt.bindLong(9, team.isMyTeam.toLong())
+                insertStmt.bindString(7,team.profile)
+                insertStmt.bindLong(8, team.member_limit!!.toLong())
+                insertStmt.bindLong(9, team.member_count!!.toLong())
+                insertStmt.bindLong(10, team.isMyTeam.toLong())
 
                 insertStmt.executeInsert()
             }
@@ -160,10 +165,11 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
                 val area = res.getString(res.getColumnIndex("area"))
                 val docs = res.getString(res.getColumnIndex("docs"))
                 val leaderId = res.getInt(res.getColumnIndex("leader_id"))
+                val profile = res.getString(res.getColumnIndex("profile"))
                 val memberLimit = res.getInt(res.getColumnIndex("member_limit"))
                 val memberCount = res.getInt(res.getColumnIndex("member_count"))
 
-                val teamTemp = Team(id,name,subject,area,docs,leaderId,memberLimit,memberCount)
+                val teamTemp = Team(id,name,subject,area,docs,leaderId,profile,memberLimit,memberCount)
 
                 teams.add(teamTemp)
             }
@@ -188,10 +194,11 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
             val area = res.getString(res.getColumnIndex("area"))
             val docs = res.getString(res.getColumnIndex("docs"))
             val leaderId = res.getInt(res.getColumnIndex("leader_id"))
+            val profile = res.getString(res.getColumnIndex("profile"))
             val memberLimit = res.getInt(res.getColumnIndex("member_limit"))
             val memberCount = res.getInt(res.getColumnIndex("member_count"))
 
-            val teamTemp = Team(id,name,subject,area,docs,leaderId,memberLimit,memberCount)
+            val teamTemp = Team(id,name,subject,area,docs,leaderId,profile,memberLimit,memberCount)
 
             teams.add(teamTemp)
         }
@@ -216,10 +223,11 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
             val area = res.getString(res.getColumnIndex("area"))
             val docs = res.getString(res.getColumnIndex("docs"))
             val leaderId = res.getInt(res.getColumnIndex("leader_id"))
+            val profile = res.getString(res.getColumnIndex("profile"))
             val memberLimit = res.getInt(res.getColumnIndex("member_limit"))
             val memberCount = res.getInt(res.getColumnIndex("member_count"))
 
-            val teamTemp = Team(id,name,subject,area,docs,leaderId,memberLimit,memberCount)
+            val teamTemp = Team(id,name,subject,area,docs,leaderId,profile,memberLimit,memberCount)
 
             teams.add(teamTemp)
         }
@@ -227,6 +235,17 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
         res.close()
 
         return teams
+    }
+
+    fun deleteMyInfo(){
+        val db = this.writableDatabase
+
+        val res = db.rawQuery("DELETE FROM user WHERE is_me =  1",
+                null)
+        res.moveToNext()
+
+        res.close()
+
     }
 
     fun selectMyInfo() : User? {
@@ -256,7 +275,6 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
 
             return User(idx,id,name,pw,email,interested,github,profile,field,tecArray,position,phone)
         }
-
         return null
     }
 
@@ -358,12 +376,13 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
             val area = res.getString(res.getColumnIndex("area"))
             val docs = res.getString(res.getColumnIndex("docs"))
             val leaderId = res.getInt(res.getColumnIndex("leader_id"))
+            val profile = res.getString(res.getColumnIndex("profile"))
             val memberLimit = res.getInt(res.getColumnIndex("member_limit"))
             val memberCount = res.getInt(res.getColumnIndex("member_count"))
 
             res.close()
 
-            return Team(id,name,subject,area,docs,leaderId,memberLimit,memberCount)
+            return Team(id,name,subject,area,docs,leaderId,profile,memberLimit,memberCount)
 
         }
 
