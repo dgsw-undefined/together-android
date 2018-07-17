@@ -1,5 +1,6 @@
 package dgsw.hs.kr.gatchigachi.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.graphics.drawable.ShapeDrawable
@@ -11,6 +12,7 @@ import android.view.animation.*
 import com.bumptech.glide.Glide
 import dgsw.hs.kr.gatchigachi.MakeTeamActivity
 import dgsw.hs.kr.gatchigachi.R
+import dgsw.hs.kr.gatchigachi.R.id.gone
 import dgsw.hs.kr.gatchigachi.TrustActivity
 import dgsw.hs.kr.gatchigachi.adapter.TeamGridAdapter
 import dgsw.hs.kr.gatchigachi.database.DBHelper
@@ -28,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     var userIdx = 0
     var user : User? = null
 
+    @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestedOrientation = (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
@@ -36,12 +39,19 @@ class MainActivity : AppCompatActivity() {
 
         userIdx = intent.getIntExtra("userIdx",0)
 
+        Log.e("userId",userIdx.toString())
+
         if(myDb.selectMyInfo()!!.idx == userIdx.toLong()){
             user = myDb.selectMyInfo()
             val teams = myDb.selectAllMyTeam()
+            Log.e("teams",teams.toString())
+            btn_do_trust.text = "정보수정"
             setView(teams)
         }else{
-            network.getUserByIdx(userIdx.toLong(),myDb,this)
+            user = myDb.selectUserById(userIdx)
+            val teams = myDb.selectAllTeamByUserIdx(userIdx)
+            btn_do_trust.text = "Trust"
+            setView(teams)
         }
 
         val timer = Timer()
@@ -70,12 +80,6 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-    }
-
-    fun notifyFinish(){
-        user = myDb.selectUserById(userIdx)
-        val teams = myDb.selectAllTeamByUserIdx(userIdx)
-        setView(teams)
     }
 
     private fun setView(teams:ArrayList<Team>){

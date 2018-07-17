@@ -13,44 +13,44 @@ import android.widget.ImageView
 import android.widget.TextView
 import dgsw.hs.kr.gatchigachi.DetailTeamActivity
 import dgsw.hs.kr.gatchigachi.R
+import dgsw.hs.kr.gatchigachi.model.Team
 import dgsw.hs.kr.gatchigachi.model.TeamSearch
 
-class SearchTeamAdaper(val context: Context, val SearchTeamData : ArrayList<TeamSearch>) : BaseAdapter() {
+class SearchTeamAdaper(val context: Context, val teams : ArrayList<Team>) : BaseAdapter() {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val ResultView : View = LayoutInflater.from(context).inflate(R.layout.search_result_team, null)
 
-        val TeamName : TextView = ResultView.findViewById(R.id.team_name_search)
-        val ViewInfo : Button = ResultView.findViewById(R.id.btn_search_team_info)
-        val Date : TextView = ResultView.findViewById(R.id.date_team_search)
-        val TeamProfile : ImageView = ResultView.findViewById(R.id.team_profile_search)
-        val TeamSearch = SearchTeamData[position]
+        val teamName : TextView = ResultView.findViewById(R.id.team_name_search)
+        val viewInfo : Button = ResultView.findViewById(R.id.btn_search_team_info)
+        val date : TextView = ResultView.findViewById(R.id.date_team_search)
+        val teamProfile : ImageView = ResultView.findViewById(R.id.team_profile_search)
+        val team= teams[position]
 
 
-        TeamProfile.background = ShapeDrawable(OvalShape())
-        TeamProfile.clipToOutline = true
+        teamProfile.background = ShapeDrawable(OvalShape())
+        teamProfile.clipToOutline = true
 
-        ViewInfo.setOnClickListener {
+        viewInfo.setOnClickListener {
             val nextIntent = Intent(context, DetailTeamActivity::class.java)
+            nextIntent.putExtra("teamId",team.id)
             context.startActivity(nextIntent)
         }
 
-        TeamName.setText(TeamSearch.name)
-        Date.setText(TeamSearch.date)
-
-
+        teamName.text = team.name
+        date.text = team.area
 
         return ResultView
     }
 
     override fun getCount(): Int {
-        return SearchTeamData.size
+        return teams.size
     }
 
     override fun getItem(position: Int): Any {
-        return SearchTeamData.get(position)
+        return teams.get(position)
     }
 
     override fun getItemId(position: Int): Long {
-        return SearchTeamData.get(position).hashCode().toLong()
+        return teams.get(position).hashCode().toLong()
     }
 }
