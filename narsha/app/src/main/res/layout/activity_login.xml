@@ -33,6 +33,7 @@
             android:layout_marginStart="40dp"
             android:layout_marginTop="8dp"
             android:backgroundTint="#ffffff"
+            android:textColor="#ffffff"
             android:drawableLeft="@drawable/person_white"
             android:drawablePadding="8dp"
             android:ems="10"
@@ -58,6 +59,7 @@
             android:layout_marginEnd="40dp"
             android:layout_marginStart="40dp"
             android:backgroundTint="#ffffff"
+            android:textColor="#ffffff"
             android:drawableLeft="@drawable/lock_white"
             android:drawablePadding="8dp"
             android:ems="10"
@@ -98,7 +100,6 @@
             android:layout_marginStart="40dp"
             android:background="@drawable/primary_radius"
             android:text="Log in"
-
             android:textColor="#000000"
             android:textAlignment="center"
             app:layout_constraintBottom_toTopOf="@+id/btn_login_to_sign"

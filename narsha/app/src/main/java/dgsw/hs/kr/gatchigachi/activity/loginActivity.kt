@@ -20,6 +20,11 @@ import org.jetbrains.anko.custom.async
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.doAsyncResult
 import org.json.JSONObject
+import android.content.DialogInterface
+import android.os.Looper
+import android.support.v7.app.AlertDialog
+import dgsw.hs.kr.gatchigachi.activity.LookForActivity
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -35,13 +40,16 @@ class LoginActivity : AppCompatActivity() {
         nextIntent = Intent(this, MainActivity::class.java)
 
         myDb = DBHelper(this)
-        val preference = Preference(this)
+        val user = myDb.selectMyInfo()
+
 
         requestedOrientation = (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         setContentView(R.layout.activity_login)
 
-        edit_login_id.setText("admin")
-        edit_login_pw.setText("admin1")
+        if(user!= null){
+            userIdx = user.idx!!.toInt()
+            notifyFinish(100.toLong())
+        }
 
         btn_login_to_sign.setOnClickListener {
 
@@ -59,6 +67,7 @@ class LoginActivity : AppCompatActivity() {
             val id: String = edit_login_id.text.toString()
             val pw: String = edit_login_pw.text.toString()
 
+            Log.e("a","a")
 
             if (check(id, pw) == 1) {
                 network.login(id,pw,myDb,this)
@@ -74,7 +83,10 @@ class LoginActivity : AppCompatActivity() {
         network.getTeam(myDb,userIdx,this,true)
     }
 
-    fun notifyFinish(){
+    fun notifyFinish(code:Int){
+        if (code > 1000){
+            nextIntent = Intent(this,LookForActivity::class.java)
+        }
         network.getTeamList(myDb)
         network.getUserList(myDb)
         nextIntent.putExtra("userIdx", userIdx)

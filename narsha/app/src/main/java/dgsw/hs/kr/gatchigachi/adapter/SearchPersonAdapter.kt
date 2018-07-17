@@ -20,30 +20,30 @@ import dgsw.hs.kr.gatchigachi.model.User2
 
 class SearchPersonAdapter (val context: Context, private val userList : ArrayList<User>) : BaseAdapter() {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val ResultView : View = LayoutInflater.from(context).inflate(R.layout.search_result_person, null)
+        val resultView : View = LayoutInflater.from(context).inflate(R.layout.search_result_person, null)
 
-        val userName : TextView = ResultView.findViewById(R.id.user_name_search)
-        val userposition : TextView = ResultView.findViewById(R.id.user_position_search)
-        val userProfile : ImageView = ResultView.findViewById(R.id.user_profile_search)
+        val userName : TextView = resultView.findViewById(R.id.user_name_search)
+        val userPosition : TextView = resultView.findViewById(R.id.user_position_search)
+        val userProfile : ImageView = resultView.findViewById(R.id.user_profile_search)
         val user = userList[position]
 
 
-        Glide.with(ResultView)
+        Glide.with(resultView)
                 .load(user.profile)
                 .apply(RequestOptions.circleCropTransform())
                 .into(userProfile)
 
-        userProfile.setOnClickListener {
+        resultView.setOnClickListener {
             val nextIntent = Intent(context, MainActivity::class.java)
-            nextIntent.putExtra("userId",user.id)
+            nextIntent.putExtra("userIdx",user.idx!!.toInt())
             context.startActivity(nextIntent)
         }
 
         userName.text = user.name
-        userposition.text = user.position
+        userPosition.text = user.position
 
 
-        return ResultView
+        return resultView
     }
 
     override fun getCount(): Int {

@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import dgsw.hs.kr.gatchigachi.DetailTeamActivity
 import dgsw.hs.kr.gatchigachi.R
 import dgsw.hs.kr.gatchigachi.R.id.team_name
@@ -16,6 +17,7 @@ import dgsw.hs.kr.gatchigachi.TrustActivity
 import dgsw.hs.kr.gatchigachi.database.DBHelper
 import dgsw.hs.kr.gatchigachi.model.Team
 import dgsw.hs.kr.gatchigachi.model.Team2
+import kotlinx.android.synthetic.main.team_list_item.view.*
 
 class TeamGridAdapter (val context: Context, val teamData: ArrayList<Team>) : BaseAdapter() {
 
@@ -26,13 +28,17 @@ class TeamGridAdapter (val context: Context, val teamData: ArrayList<Team>) : Ba
 
         val teamName : TextView = teamView.findViewById(R.id.team_name)
 
-        val teamId = teamData[position].id
+        val team = teamData[position]
 
-        teamName.text = teamData[position].name
+        teamName.text = team.name
+
+        Glide.with(context)
+                .load(team.profile)
+                .into(teamView.team_image)
 
         teamView.setOnClickListener {
             val nextIntent = Intent(context, DetailTeamActivity::class.java)
-            nextIntent.putExtra("teamId", teamId)
+            nextIntent.putExtra("teamId", team.id)
             context.startActivity(nextIntent)
         }
 
