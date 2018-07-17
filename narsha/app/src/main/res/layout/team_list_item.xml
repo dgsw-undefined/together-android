@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/btn_team_detail"
     android:layout_width="180dp"
-    android:layout_height="180dp">
+    android:layout_height="170dp">
 
     <TextView
         android:id="@+id/team_name"
@@ -13,20 +13,24 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="팀 이름"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/out_wrap" />
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/out_border"
+        android:id="@+id/out_wrap"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/primary_radius"
-        app:layout_constraintBottom_toTopOf="@+id/team_name"
+        app:layout_constraintDimensionRatio="1:0.75"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -41,10 +45,8 @@
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.621"
             app:srcCompat="@drawable/ic_group_black_24dp" />
 
     </android.support.constraint.ConstraintLayout>
