@@ -9,6 +9,7 @@ import com.github.kittinunf.fuel.httpPost
 import com.google.gson.Gson
 import dgsw.hs.kr.gatchigachi.LoginActivity
 import dgsw.hs.kr.gatchigachi.R
+import dgsw.hs.kr.gatchigachi.SignActivity
 import dgsw.hs.kr.gatchigachi.database.DBHelper
 import dgsw.hs.kr.gatchigachi.model.User
 import dgsw.hs.kr.gatchigachi.network.Network
@@ -43,6 +44,7 @@ class Sign4Activity :AppCompatActivity() {
         btn_sign4_sign.setOnClickListener {
             val nextIntent = Intent(this, LoginActivity::class.java)
             startActivity(nextIntent)
+            this.finish()
         }
         val tecArray = tec.split(" ".toRegex())
         val user = User(null,id,name,pw,email,inter,github,field,profile,tecArray,position,phone)
@@ -51,8 +53,11 @@ class Sign4Activity :AppCompatActivity() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
 
-
-    //private fun Check() git, field 검사
+        edit_sign4_field.setText(null)
+        edit_sign4_github.setText(null)
+    }
 
 }

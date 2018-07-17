@@ -31,4 +31,13 @@ class MakeTeamActivity : AppCompatActivity() {
 
         /*val countAdapter = ArrayAdapter.createFromResource(this,)*/
     }
+
+    override fun onResume() {
+        super.onResume()
+
+        edit_make_field.setText(null)
+        edit_make_subject.setText(null)
+        edit_make_teamName.setText(null)
+
+    }
 }

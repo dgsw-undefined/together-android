@@ -45,4 +45,5 @@ class LookForActivity : AppCompatActivity() {
             list_search_result.adapter = searchTeam
         }
     }
+
 }

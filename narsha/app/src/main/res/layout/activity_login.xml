@@ -59,7 +59,7 @@
             android:drawablePadding="8dp"
             android:ems="10"
             android:hint="Password"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             android:singleLine="true"
             android:textColorHint="#ffffff"
             android:textCursorDrawable="@drawable/cursor_color"

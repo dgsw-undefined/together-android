@@ -63,4 +63,12 @@ class Sign2Activity : AppCompatActivity() {
         return 1;
 
     }
+
+    override fun onResume() {
+        super.onResume()
+
+        edit_sign2_email.setText(null)
+        edit_sign2_phone.setText(null)
+        edit_sign2_name.setText(null)
+    }
 }

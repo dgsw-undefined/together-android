@@ -46,4 +46,6 @@ class DetailTeamActivity : AppCompatActivity() {
         var memberAdapter = MemberGridAdapter(this, myDb.selectTeamMembersByTeamId(team.id!!.toInt()),myDb)
         team_member_list.adapter = memberAdapter
     }
+
+
 }
