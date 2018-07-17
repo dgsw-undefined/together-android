@@ -21,9 +21,9 @@ class MakeTeamActivity : AppCompatActivity() {
         requestedOrientation = (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         setContentView(R.layout.activity_make_team)
 
-        val myDb  = DBHelper(this)
+        val myDb = DBHelper(this)
 
-        btn_make_do_make_team.setOnClickListener{
+        btn_make_do_make_team.setOnClickListener {
             val teamName = edit_make_teamName.text
             val area = edit_make_field.text
             val teamMemberLimit = member_limit.selectedItem
@@ -46,6 +46,9 @@ class MakeTeamActivity : AppCompatActivity() {
 //
 //    }
 
+
+
+    }
 
     override fun onResume() {
         super.onResume()
