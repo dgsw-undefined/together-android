@@ -15,9 +15,25 @@ import android.support.v4.content.ContextCompat.startActivity
 
 class SplashActivity : AppCompatActivity() {
 
+    private var mDelayHandler: Handler? = null
+    private val SPLASH_DELAY: Long = 3000
+
+    internal val mRunnable: Runnable = Runnable {
+        if (!isFinishing) {
+            val intent = Intent(applicationContext, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+
+        mDelayHandler = Handler() 
+
+        //Navigate with delay
+        mDelayHandler!!.postDelayed(mRunnable, SPLASH_DELAY)
 
         val uri : Uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.splash)
         splash_video.setVideoURI(uri)
@@ -37,6 +53,11 @@ class SplashActivity : AppCompatActivity() {
             startActivity(nextIntent)
             this.finish()
         }
+//        splash_video.setOnClickListener {
+//            val nextIntent = Intent(this, LoginActivity::class.java)
+//            startActivity(nextIntent)
+//            this.finish()
+//        }
 
 
 

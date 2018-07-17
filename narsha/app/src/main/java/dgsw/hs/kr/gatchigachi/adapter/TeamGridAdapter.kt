@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import dgsw.hs.kr.gatchigachi.DetailTeamActivity
@@ -32,6 +33,7 @@ class TeamGridAdapter (val context: Context, val teamData: ArrayList<Team>) : Ba
         val teamView : View = LayoutInflater.from(context).inflate(R.layout.team_list_item, null)
 
         val teamName : TextView = teamView.findViewById(R.id.team_name)
+        val teamImage : ImageView = teamView.findViewById(R.id.team_image)
 
         val team = teamData[position]
 
@@ -43,7 +45,7 @@ class TeamGridAdapter (val context: Context, val teamData: ArrayList<Team>) : Ba
         Glide.with(context)
                 .load(team.profile)
                 .apply(requestOptions)
-                .into(teamView.team_image)
+                .into(teamImage)
 
         teamView.setOnClickListener {
             val nextIntent = Intent(context, DetailTeamActivity::class.java)
