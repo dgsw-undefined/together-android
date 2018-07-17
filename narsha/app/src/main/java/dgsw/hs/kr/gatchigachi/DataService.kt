@@ -75,4 +75,17 @@ object DataService {
             BestTruster("TaeHyung",333),
             BestTruster("JinHyuk",444)
     )
+
+    val AlarmData = arrayListOf(
+            Alarm(1, "서진혁님이 나를 Trust 했습니다"),
+            Alarm(1,"박태형님이 Undefined 팀을 떠났습니다"),
+            Alarm(1,"박태형님이 Undefined 팀과 함께하게 되었습니다."),
+            Alarm(1,"Undefined 팀 가입 신청이 거절되었습니다"),
+            Alarm(2, "Undefined 팀에 초대되었습니다."),
+            Alarm(2, "김건님이 Undefined 팀과 함께하고 싶어합니다."),
+            Alarm(2, "서진혁님이 Undefined 팀과 함께하고 싶어합니다."),
+            Alarm(2, "정성화님이 Undefined 팀과 함께하고 싶어합니다."),
+            Alarm(2, "박태형님이 Undefined 팀과 함께하고 싶어합니다.")
+
+    )
 }

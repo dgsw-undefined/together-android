@@ -3,6 +3,7 @@ package dgsw.hs.kr.gatchigachi
 import android.content.pm.ActivityInfo
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.SpinnerAdapter
@@ -10,6 +11,7 @@ import dgsw.hs.kr.gatchigachi.R
 import dgsw.hs.kr.gatchigachi.database.DBHelper
 import dgsw.hs.kr.gatchigachi.model.Team
 import kotlinx.android.synthetic.main.activity_make_team.*
+import java.util.ArrayList
 
 class MakeTeamActivity : AppCompatActivity() {
 
@@ -29,7 +31,10 @@ class MakeTeamActivity : AppCompatActivity() {
 
         }
 
-        /*val countAdapter = ArrayAdapter.createFromResource(this,)*/
+        val adapter = ArrayAdapter.createFromResource(this,R.array.people,android.R.layout.simple_spinner_dropdown_item)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        member_limit.adapter = adapter
+
     }
 
     override fun onResume() {

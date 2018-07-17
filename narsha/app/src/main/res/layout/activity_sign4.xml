@@ -57,6 +57,7 @@
         android:ems="10"
         android:hint="Field"
         android:maxLines="1"
+        android:maxLength="20"
         android:inputType="textPersonName"
         android:textColorHint="#ffffff"
         android:textCursorDrawable="@drawable/cursor_color"
