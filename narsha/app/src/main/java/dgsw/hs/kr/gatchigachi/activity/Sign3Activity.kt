@@ -64,4 +64,13 @@ class Sign3Activity : AppCompatActivity() {
         return 1
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        edit_sign3_position.setText(null)
+        edit_sign3_interested.setText(null)
+        edit_sign3_tec.setText(null)
+
+    }
+
 }

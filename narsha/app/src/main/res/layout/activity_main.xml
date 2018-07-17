@@ -27,7 +27,7 @@
                 android:id="@+id/constraintLayout10"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:layout_constraintDimensionRatio="1.2:1"
+                app:layout_constraintDimensionRatio="1.22:1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +52,6 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintDimensionRatio="h,"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.497"
                         app:layout_constraintStart_toStartOf="parent"></LinearLayout>
 
                     <TextView
@@ -191,7 +190,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="8dp"
-                app:layout_constraintDimensionRatio="1.3:1"
+                app:layout_constraintDimensionRatio="2:1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout10">
@@ -210,26 +209,17 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/comment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="여자와 여자를 좋아하는 안드로이드 괴발자입니다.\n\n여친 구합니다."
-                    android:textColor="#000000"
-                    android:textSize="15sp"
-                    app:layout_constraintBottom_toTopOf="@+id/textView24"
-                    app:layout_constraintStart_toStartOf="@+id/textView20"
-                    app:layout_constraintTop_toBottomOf="@+id/textView20" />
-
-                <TextView
                     android:id="@+id/textView22"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
                     android:text="Phone : "
                     android:textColor="#000000"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
-                    app:layout_constraintStart_toStartOf="@+id/linearLayout6" />
+                    app:layout_constraintStart_toStartOf="@+id/textView23"
+                    app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
                 <LinearLayout
                     android:id="@+id/linearLayout6"
@@ -247,23 +237,25 @@
                     android:id="@+id/textView23"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
                     android:text="Github : "
                     android:textColor="#000000"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@+id/textView22"
-                    app:layout_constraintStart_toStartOf="@+id/textView22" />
+                    app:layout_constraintStart_toStartOf="@+id/textView24"
+                    app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
                 <TextView
                     android:id="@+id/textView24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
                     android:text="Mail : "
                     android:textColor="#000000"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@+id/textView23"
-                    app:layout_constraintStart_toStartOf="@+id/textView23" />
+                    app:layout_constraintStart_toStartOf="@+id/textView20"
+                    app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
                 <TextView
                     android:id="@+id/user_mail"

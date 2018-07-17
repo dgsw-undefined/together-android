@@ -49,6 +49,7 @@ class LoginActivity : AppCompatActivity() {
             val animation = AnimationUtils.loadAnimation(this, R.anim.button_anim)
             btn_login_to_sign.startAnimation(animation)
             startActivity(nextIntent)
+            this.finish()
         }
 
         btn_login_do_login.setOnClickListener {

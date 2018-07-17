@@ -31,6 +31,7 @@ class SignActivity : AppCompatActivity() {
                 nextIntent.putExtra("id",id)
                 nextIntent.putExtra("pw",pw)
                 startActivity(nextIntent)
+                this.onPause()
             }
         }
     }
@@ -60,5 +61,12 @@ class SignActivity : AppCompatActivity() {
         }
 
         return 1
+    }
+
+    override fun onResume() {
+        super.onResume()
+        edit_sign_id.setText(null)
+        edit_sign_pw.setText(null)
+        edit_sign_pwc.setText(null)
     }
 }
