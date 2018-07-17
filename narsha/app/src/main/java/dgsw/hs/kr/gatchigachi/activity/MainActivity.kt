@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.animation.*
+import com.bumptech.glide.Glide
 import dgsw.hs.kr.gatchigachi.MakeTeamActivity
 import dgsw.hs.kr.gatchigachi.R
 import dgsw.hs.kr.gatchigachi.TrustActivity
@@ -19,7 +20,6 @@ import dgsw.hs.kr.gatchigachi.network.Network
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 import kotlin.collections.ArrayList
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -84,6 +84,10 @@ class MainActivity : AppCompatActivity() {
         user_mail.text = user!!.email
         user_git.text = user!!.github
         user_phone.text = user!!.phone
+
+        Glide.with(this)
+                .load(user!!.profile)
+                .into(user_profile_main)
 
         var teamAdapter = TeamGridAdapter(this, teams)
         team_grid_view.adapter = teamAdapter

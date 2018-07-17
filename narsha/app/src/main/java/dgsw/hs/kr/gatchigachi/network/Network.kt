@@ -59,7 +59,7 @@ class Network{
                 }
     }
 
-    fun getTeam(myDb: DBHelper, userIdx:Int, context: Context) : Int{
+    fun getTeam(myDb: DBHelper, userIdx:Int, context: Context, isMyTeam: Boolean) : Int{
 
         var URL = "http://115.68.182.229/node/team/user/$userIdx"
 
@@ -72,12 +72,22 @@ class Network{
                         val listType = object : TypeToken<List<Team>>(){}.type
                         val teams : List<Team> = Gson().fromJson(jsonOutput, listType)
 
-                        myDb.insertMyTeams(teams)
+                        var i = 0
+                        if (isMyTeam) {
+                            for (team in teams) {
+                                teams[i++].isMyTeam = 1
+                            }
+                        }
+
+                        myDb.insertTeams(teams)
 
                         code = teamJson.getInt("Code")
 
-                        if (myDb.selectMyInfo()!!.idx!!.toInt() != userIdx)
+                        if (isMyTeam)
+                            (context as LoginActivity).notifyFinish()
+                        else
                             (context as MainActivity).notifyFinish()
+
 
                     }, failure = {
 
@@ -127,7 +137,9 @@ class Network{
 
                                 myDb.insertUser(user)
 
-                                val a = getTeam(myDb, user.idx!!.toInt(),context)
+                                val int = 0
+
+                                val a = getTeam(myDb, user.idx!!.toInt(),context,false)
 
                     }, failure = {
                     })
