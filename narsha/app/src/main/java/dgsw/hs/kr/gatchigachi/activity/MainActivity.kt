@@ -21,6 +21,7 @@ import dgsw.hs.kr.gatchigachi.model.Team
 import dgsw.hs.kr.gatchigachi.model.User
 import dgsw.hs.kr.gatchigachi.network.Network
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.startActivity
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -73,8 +74,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         add_team.setOnClickListener {
-            val nextIntent = Intent(this, MakeTeamActivity::class.java)
-            startActivity(nextIntent)
+            startActivity<MakeTeamActivity>()
         }
 
         to_search.setOnClickListener {

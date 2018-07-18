@@ -37,7 +37,7 @@ class DetailTeamActivity : AppCompatActivity() {
         team_member_list.adapter = memberAdapter
 
         btn_back_detail_team.setOnClickListener {
-            this.finishActivity(0)
+            finish()
         }
     }
 

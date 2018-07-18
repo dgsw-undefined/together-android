@@ -23,7 +23,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="scalingPercent" value="215" />
+                                                <entry key="scalingPercent" value="107" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -33,9 +33,9 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="backgroundLayerName" value="splash_background22" />
-                                      <entry key="foregroundImage" value="C:\Users\Gun\Desktop\splash_replace.jpg" />
-                                      <entry key="foregroundLayerName" value="splash_image2" />
+                                      <entry key="backgroundLayerName" value="app_logo_back" />
+                                      <entry key="foregroundImage" value="C:\Users\Gun\Desktop\app_logo.png" />
+                                      <entry key="foregroundLayerName" value="app_logo_fore" />
                                     </map>
                                   </option>
                                 </PersistentState>
