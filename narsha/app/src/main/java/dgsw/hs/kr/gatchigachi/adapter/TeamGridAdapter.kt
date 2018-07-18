@@ -40,7 +40,7 @@ class TeamGridAdapter (val context: Context, val teamData: ArrayList<Team>) : Ba
         teamName.text = team.name
 
         var requestOptions = RequestOptions()
-        requestOptions = requestOptions.transforms(CenterCrop(), RoundedCorners(50))
+        requestOptions = requestOptions.transforms(CenterCrop(), RoundedCorners(20))
 
         Glide.with(context)
                 .load(team.profile)

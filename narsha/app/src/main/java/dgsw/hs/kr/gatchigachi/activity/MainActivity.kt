@@ -18,7 +18,6 @@ import dgsw.hs.kr.gatchigachi.model.Team
 import dgsw.hs.kr.gatchigachi.model.User
 import dgsw.hs.kr.gatchigachi.network.Network
 import kotlinx.android.synthetic.main.activity_main.*
-import org.jetbrains.anko.startActivity
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -71,7 +70,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         add_team.setOnClickListener {
-            startActivity<MakeTeamActivity>()
+            val nextIntent = Intent(this, MakeTeamActivity::class.java)
+            startActivity(nextIntent)
         }
 
         to_search.setOnClickListener {
@@ -96,7 +96,7 @@ class MainActivity : AppCompatActivity() {
         team_grid_view.adapter = teamAdapter
 
         for (team in teams)(
-                network.getTeamMember(team.id!!.toInt(),myDb,this,0)
+                network.getTeamMember(team.id!!.toInt(),myDb,this)
         )
 
         if( 1 == intent.getIntExtra("isTeamListEmpty", 0)){

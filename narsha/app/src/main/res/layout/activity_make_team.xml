@@ -153,15 +153,14 @@
         android:id="@+id/member_limit"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="32dp"
-        android:entries="@array/people"
-        android:spinnerMode="dropdown"
         app:layout_constraintBottom_toBottomOf="@+id/edit_make_field"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/edit_make_field"
-        app:layout_constraintTop_toTopOf="@+id/edit_make_field" />
-
+        app:layout_constraintTop_toTopOf="@+id/edit_make_field"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/text_subject"
