@@ -24,32 +24,21 @@ class MakeTeamActivity : AppCompatActivity() {
         setContentView(R.layout.activity_make_team)
 
         val myDb = DBHelper(this)
-
+        var list_of_items = arrayOf("2","3","4","5","6","7","8")
         btn_make_do_make_team.setOnClickListener {
-            val teamName = edit_make_teamName.text
-            val area = edit_make_field.text
-            val teamMemberLimit = member_limit.selectedItem
-            val teamSubject = edit_make_subject.text
+            val teamName = edit_make_teamName.toString()
+            val area = edit_make_field.toString()
+            val teamMemberLimit = member_limit.selectedItem.toString().toInt()
+            val teamSubject = edit_make_subject.toString()
             val teamLeaderField = myDb.selectMyInfo()!!.field
-
         }
 
-
-//        val adapter = ArrayAdapter.createFromResource(this,android.R.layout.simple_spinner_dropdown_item,R.array.people)
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-//        member_limit!!.adapter = adapter
-//        member_limit.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-//            override fun onNothingSelected(parent: AdapterView<*>?) {
-//
-//            }
-//
-//            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) : Int{
-//                val lim = parent!!.getItemAtPosition(position).toString().toInt()
-//            }
-//        }
-//
-//      }
+        val aa = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list_of_items)
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        member_limit!!.adapter = aa
     }
+
+
 
     override fun onResume() {
         super.onResume()
