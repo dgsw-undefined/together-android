@@ -168,7 +168,7 @@ class Network{
                 }
     }
 
-    fun teamRegistration(team:Team,teamLeaberFiled:String,myDb:DBHelper,context: Context){
+    fun teamRegistration(team:Team,teamLeaberFiled:String,myDb:DBHelper){
 
         val URL = "http://115.68.182.229/node/team"
 
@@ -194,7 +194,7 @@ class Network{
 
                             myDb.insertUser(user)
 
-                            (context as MakeTeamActivity).notifyFinish()
+//                            (context as LoginActivity).notifyFinish(loginJson.getLong("Code"))
                         }
                         is Result.Failure ->{
                             Log.e("a","a")
