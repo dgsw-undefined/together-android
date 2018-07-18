@@ -8,12 +8,9 @@ import android.graphics.drawable.shapes.OvalShape
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import android.view.animation.*
 import com.bumptech.glide.Glide
 import dgsw.hs.kr.gatchigachi.MakeTeamActivity
 import dgsw.hs.kr.gatchigachi.R
-import dgsw.hs.kr.gatchigachi.R.id.gone
-import dgsw.hs.kr.gatchigachi.R.layout.activity_main
 import dgsw.hs.kr.gatchigachi.TrustActivity
 import dgsw.hs.kr.gatchigachi.adapter.TeamGridAdapter
 import dgsw.hs.kr.gatchigachi.database.DBHelper

@@ -2,7 +2,6 @@ package dgsw.hs.kr.gatchigachi.network
 
 import android.content.Context
 import android.util.Log
-import android.widget.TextView
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.httpGet
@@ -10,22 +9,13 @@ import com.github.kittinunf.fuel.httpPost
 import com.github.kittinunf.result.Result
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import dgsw.hs.kr.gatchigachi.DetailTeamActivity
 import dgsw.hs.kr.gatchigachi.LoginActivity
 import dgsw.hs.kr.gatchigachi.MakeTeamActivity
-import dgsw.hs.kr.gatchigachi.activity.MainActivity
 import dgsw.hs.kr.gatchigachi.database.DBHelper
 import dgsw.hs.kr.gatchigachi.model.Team
 import dgsw.hs.kr.gatchigachi.model.TeamMember
 import dgsw.hs.kr.gatchigachi.model.User
 import org.json.JSONObject
-import java.io.BufferedReader
-import java.io.DataOutputStream
-import java.io.InputStreamReader
-import java.net.HttpURLConnection
-import java.net.URL
-import java.nio.charset.StandardCharsets
-import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
