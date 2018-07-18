@@ -80,7 +80,7 @@ class LoginActivity : AppCompatActivity() {
     fun notifyFinish(code :Long){
         this.code = code.toInt()
         userIdx = myDb.selectMyInfo()!!.idx!!.toInt()
-        network.getTeam(myDb,userIdx,this,true)
+        network.getTeam(myDb,userIdx,this,true,1)
     }
 
     fun notifyFinish(code:Int){

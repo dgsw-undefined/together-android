@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity() {
         team_grid_view.adapter = teamAdapter
 
         for (team in teams)(
-                network.getTeamMember(team.id!!.toInt(),myDb,this)
+                network.getTeamMember(team.id!!.toInt(),myDb,this,0)
         )
 
         if( 1 == intent.getIntExtra("isTeamListEmpty", 0)){

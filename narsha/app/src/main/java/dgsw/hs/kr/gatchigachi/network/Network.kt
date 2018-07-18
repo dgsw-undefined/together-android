@@ -3,6 +3,7 @@ package dgsw.hs.kr.gatchigachi.network
 import android.content.Context
 import android.util.Log
 import android.widget.TextView
+import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.fuel.httpPost
@@ -11,14 +12,22 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import dgsw.hs.kr.gatchigachi.DetailTeamActivity
 import dgsw.hs.kr.gatchigachi.LoginActivity
+import dgsw.hs.kr.gatchigachi.MakeTeamActivity
 import dgsw.hs.kr.gatchigachi.activity.MainActivity
 import dgsw.hs.kr.gatchigachi.database.DBHelper
 import dgsw.hs.kr.gatchigachi.model.Team
 import dgsw.hs.kr.gatchigachi.model.TeamMember
 import dgsw.hs.kr.gatchigachi.model.User
 import org.json.JSONObject
+import java.io.BufferedReader
+import java.io.DataOutputStream
+import java.io.InputStreamReader
+import java.net.HttpURLConnection
+import java.net.URL
+import java.nio.charset.StandardCharsets
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 class Network{
     var code = 100
@@ -33,9 +42,10 @@ class Network{
         url.httpPost()
                 .header("Content-Type" to "application/json")
                 .body(Gson().toJson(json), Charsets.UTF_8)
-                .responseJson { _, _, result ->
+                .responseJson { req, _, result ->
                     when(result){
                         is Result.Success ->{
+                            println(req)
                             val loginJson = JSONObject(result.get().content)
                             val json = loginJson.getJSONObject("Data")
                             val token = loginJson.getString("Token").toString()
@@ -65,7 +75,7 @@ class Network{
                 }
     }
 
-    fun getTeam(myDb: DBHelper, userIdx:Int, context: Context, isMyTeam: Boolean) : Int{
+    fun getTeam(myDb: DBHelper, userIdx:Int, context: Context, isMyTeam: Boolean,type:Int) : Int{
 
         var URL = "http://115.68.182.229/node/team/user/$userIdx"
         val token = myDb.selectToken()
@@ -94,8 +104,11 @@ class Network{
 
                             code = teamJson.getInt("Code")
 
-                            if (isMyTeam)
+                            if(type == 1){
                                 (context as LoginActivity).notifyFinish(code)
+                            }else{
+                                (context as MakeTeamActivity).notifyFinish(code)
+                            }
 
                         }
                     }, failure = {
@@ -106,12 +119,14 @@ class Network{
         return code
     }
 
-    fun getTeamMember(teamId:Int ,myDb: DBHelper, context: Context) : Int{
+    fun getTeamMember(teamId:Int ,myDb: DBHelper, context: Context,type: Int) : Int{
 
         var URL = "http://115.68.182.229/node/team/member/$teamId"
 
+        val token = myDb.selectToken()
+
         URL.httpGet()
-                .header(pairs = "Authorization" to myDb.selectToken())
+                .header(pairs = "Authorization" to token)
                 .responseJson { _, _, result ->
                     result.fold(success = {json ->
                             val teamMemberJson = JSONObject(json.content)
@@ -123,7 +138,9 @@ class Network{
 
                             code = teamMemberJson.getInt("Code")
 
-//                            (context as DetailTeamActivity).notifyFinish(teamMemberJson.getLong("Code"))
+                            if(type == 1){
+                                (context as MakeTeamActivity).notifyFinish()
+                            }
                     }, failure = {
                     })
                 }
@@ -167,33 +184,58 @@ class Network{
                 }
     }
 
-    fun teamRegistration(team:Team,teamLeaberFiled:String,myDb:DBHelper){
+    fun teamRegistration(team:Team, teamLeaberFiled:String,myDb: DBHelper, context: Context){
 
         val URL = "http://115.68.182.229/node/team"
 
+        team.field = teamLeaberFiled
+
         val json = Gson().toJson(team)
 
-        URL.httpPost()
-                .header("Content-Type" to "application/json")
-                .body(Gson().toJson(json), Charsets.UTF_8)
+        val token = myDb.selectToken()
+
+        Fuel.post(URL)
+                .header("Authorization" to token, "Content-Type" to "application/json")
+                .body(json)
                 .responseJson { _, _, result ->
                     when(result){
                         is Result.Success ->{
-                            val loginJson = JSONObject(result.get().content)
-                            val json = loginJson.getJSONObject("Data")
-                            val token = loginJson.getString("Token").toString()
+                            val json = JSONObject(result.get().content)
 
-                            Log.e("a",token)
+                            val data = json.getJSONObject("Data")
 
-                            val user = Gson().fromJson(json.toString(), User::class.java)
+                            (context as MakeTeamActivity).notifyFinish(data.getLong("id"))
+                        }
+                        is Result.Failure ->{
+                            Log.e("a","a")
+                        }
 
-                            user.isMe = 1
+                    }
+                    println("==========================================================================")
+                }
+    }
 
-                            myDb.insertToken(token)
+    fun teamMemberinvite(team:Team, teamLeaberFiled:String,myDb: DBHelper, context: Context){
 
-                            myDb.insertUser(user)
+        val URL = "http://115.68.182.229/node/team"
 
-//                            (context as LoginActivity).notifyFinish(loginJson.getLong("Code"))
+        team.field = teamLeaberFiled
+
+        val json = Gson().toJson(team)
+
+        val token = myDb.selectToken()
+
+        Fuel.post(URL)
+                .header("Authorization" to token, "Content-Type" to "application/json")
+                .body(json)
+                .responseJson { _, _, result ->
+                    when(result){
+                        is Result.Success ->{
+                            val json = JSONObject(result.get().content)
+
+                            val data = json.getJSONObject("Data")
+
+                            (context as MakeTeamActivity).notifyFinish(data.getLong("id"))
                         }
                         is Result.Failure ->{
                             Log.e("a","a")
@@ -265,6 +307,5 @@ class Network{
                     })
                 }
     }
-
 
 }

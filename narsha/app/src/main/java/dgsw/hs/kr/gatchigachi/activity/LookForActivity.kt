@@ -32,7 +32,7 @@ class LookForActivity : AppCompatActivity() {
         val users = myDb.selectAllUser()
 
         for (team in teams) {
-            network.getTeamMember(team.id!!.toInt(), myDb, this)
+            network.getTeamMember(team.id!!.toInt(), myDb, this,0)
         }
 
         val list = AnimationUtils.loadAnimation(this, R.anim.search_list)
