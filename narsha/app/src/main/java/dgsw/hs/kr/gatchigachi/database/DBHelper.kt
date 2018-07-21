@@ -45,6 +45,10 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
 
             val sql = "INSERT OR REPLACE INTO user VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)"
 
+            if(user.profile == null){
+                user.profile = "http://115.68.182.229/node/profile/team/team_default.jpg"
+            }
+
             val insertStmt = db.compileStatement(sql)
 
             insertStmt.clearBindings()
@@ -200,6 +204,8 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
 
             val teamTemp = Team(id,name,subject,area,docs,leaderId,profile,memberLimit,memberCount)
 
+            teamTemp.isMyTeam = 1
+
             teams.add(teamTemp)
         }
 
@@ -237,11 +243,35 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
         return teams
     }
 
+    fun deleteMyTeam(){
+        val db = this.writableDatabase
+
+        val res = db.rawQuery("DELETE FROM team", null)
+
+        res.moveToNext()
+
+
+        res.close()
+
+    }
+
     fun deleteMyInfo(){
         val db = this.writableDatabase
 
-        val res = db.rawQuery("DELETE FROM user WHERE is_me =  1",
-                null)
+        val res = db.rawQuery("DELETE FROM user", null)
+
+        res.moveToNext()
+
+        res.close()
+
+        deleteMyTeam()
+    }
+
+    fun deleteToken(){
+        val db = this.writableDatabase
+
+        val res = db.rawQuery("DELETE FROM token", null)
+
         res.moveToNext()
 
         res.close()
@@ -379,10 +409,16 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "undefined.db", nul
             val profile = res.getString(res.getColumnIndex("profile"))
             val memberLimit = res.getInt(res.getColumnIndex("member_limit"))
             val memberCount = res.getInt(res.getColumnIndex("member_count"))
+            val isMyTeam = res.getInt(res.getColumnIndex("is_my_team"))
 
             res.close()
 
-            return Team(id,name,subject,area,docs,leaderId,profile,memberLimit,memberCount)
+            val team = Team(id,name,subject,area,docs,leaderId,profile,memberLimit,memberCount)
+
+            team
+            team.isMyTeam = isMyTeam
+
+            return team
 
         }
 

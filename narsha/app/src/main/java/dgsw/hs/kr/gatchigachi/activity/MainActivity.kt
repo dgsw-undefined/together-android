@@ -1,6 +1,8 @@
 package dgsw.hs.kr.gatchigachi.activity
 
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.graphics.drawable.ShapeDrawable
@@ -8,19 +10,23 @@ import android.graphics.drawable.shapes.OvalShape
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.View
 import android.view.animation.*
+import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer
+import dgsw.hs.kr.gatchigachi.LoginActivity
 import dgsw.hs.kr.gatchigachi.MakeTeamActivity
 import dgsw.hs.kr.gatchigachi.R
-import dgsw.hs.kr.gatchigachi.R.id.gone
-import dgsw.hs.kr.gatchigachi.R.layout.activity_main
 import dgsw.hs.kr.gatchigachi.TrustActivity
 import dgsw.hs.kr.gatchigachi.adapter.TeamGridAdapter
 import dgsw.hs.kr.gatchigachi.database.DBHelper
 import dgsw.hs.kr.gatchigachi.model.Team
+import dgsw.hs.kr.gatchigachi.model.TeamMember
 import dgsw.hs.kr.gatchigachi.model.User
 import dgsw.hs.kr.gatchigachi.network.Network
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.toast
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -29,7 +35,22 @@ class MainActivity : AppCompatActivity() {
     private val network =  Network()
     lateinit var myDb : DBHelper
     var userIdx = 0
+    var teamId = 0
     var user : User? = null
+
+    override fun onResume() {
+        super.onResume()
+
+        if(myDb.selectMyInfo()!!.idx == userIdx.toLong()){
+            user = myDb.selectMyInfo()
+            val teams = myDb.selectAllMyTeam()
+            Log.e("teams",teams.toString())
+            btn_do_trust.text = "정보수정"
+            setView(teams)
+        }
+
+
+    }
 
     @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +60,7 @@ class MainActivity : AppCompatActivity() {
         myDb = DBHelper(this)
 
         userIdx = intent.getIntExtra("userIdx",0)
+        teamId = intent.getIntExtra("teamId", 0)
 
         Log.e("userId",userIdx.toString())
 
@@ -52,9 +74,42 @@ class MainActivity : AppCompatActivity() {
             user = myDb.selectUserById(userIdx)
             val teams = myDb.selectAllTeamByUserIdx(userIdx)
             btn_do_trust.text = "Trust"
+            add_team.visibility = View.INVISIBLE
+            log_out.visibility = View.GONE
             setView(teams)
         }
 
+        if(teamId!=0){
+            btn_do_trust.text = "추가"
+        }
+
+        log_out.setOnClickListener {
+            myDb.deleteMyInfo()
+            myDb.deleteMyTeam()
+            myDb.deleteToken()
+            val intent = Intent(this,LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        btn_do_trust.setOnClickListener{
+            if(teamId != 0){
+                val member = TeamMember(
+                        null,
+                        teamId.toLong(),
+                        userIdx.toLong(),
+                        user!!.name,
+                        user!!.field,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null
+                )
+                network.addTeamMember(member,myDb,this)
+                finish()
+            }
+        }
 
         val timer = Timer()
 
@@ -62,14 +117,20 @@ class MainActivity : AppCompatActivity() {
         user_profile_main.clipToOutline = true
         user_profile_main.bringToFront()
 
+
+
         trust_count.setOnClickListener {
-            val nextIntent = Intent(this, TrustActivity::class.java)
-            startActivity(nextIntent)
+//            val nextIntent = Intent(this, TrustActivity::class.java)
+//            startActivity(nextIntent)
+            Log.e("aaa","AA")
+            Toast.makeText(this,"아직 구현이 덜됨..........",Toast.LENGTH_SHORT).show()
         }
 
         truster_count.setOnClickListener {
-            val nextIntent = Intent(this, TrustActivity::class.java)
-            startActivity(nextIntent)
+//            val nextIntent = Intent(this, TrustActivity::class.java)
+//            startActivity(nextIntent)
+            Log.e("aaa","AA")
+            Toast.makeText(this,"아직 구현이 덜됨.......",Toast.LENGTH_SHORT).show()
         }
 
         add_team.setOnClickListener {
@@ -99,13 +160,13 @@ class MainActivity : AppCompatActivity() {
         team_grid_view.adapter = teamAdapter
 
         for (team in teams)(
-                network.getTeamMember(team.id!!.toInt(),myDb,this)
+                network.getTeamMember(team.id!!.toInt(),myDb,this,0)
         )
 
-        if( 1 == intent.getIntExtra("isTeamListEmpty", 0)){
-            val nextIntent = Intent(this, LookForActivity::class.java)
-            startActivity(nextIntent)
-        }
+//        if( 1 == intent.getIntExtra("isTeamListEmpty", 0)){
+//            val nextIntent = Intent(this, LookForActivity::class.java)
+//            startActivity(nextIntent)
+//        }
     }
 
 }

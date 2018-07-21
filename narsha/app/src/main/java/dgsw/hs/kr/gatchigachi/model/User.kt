@@ -11,7 +11,7 @@ data class User(
         val email: String,
         val interested: String,
         val github: String,
-        val profile:String,
+        var profile:String,
         val field: String,
         var tec: List<String>,
         val position: String,

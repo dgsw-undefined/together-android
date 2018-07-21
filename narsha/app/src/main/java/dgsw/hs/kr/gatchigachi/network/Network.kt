@@ -11,6 +11,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import dgsw.hs.kr.gatchigachi.DetailTeamActivity
 import dgsw.hs.kr.gatchigachi.LoginActivity
+import dgsw.hs.kr.gatchigachi.MakeTeamActivity
 import dgsw.hs.kr.gatchigachi.activity.MainActivity
 import dgsw.hs.kr.gatchigachi.database.DBHelper
 import dgsw.hs.kr.gatchigachi.model.Team
@@ -54,7 +55,7 @@ class Network{
                             }
                             myDb.insertUser(user)
 
-                            (context as LoginActivity).notifyFinish(loginJson.getLong("Code"))
+                            (context as LoginActivity).notifyFinish(user.idx!!.toLong())
                         }
                         is Result.Failure ->{
                             Log.e("a","a")
@@ -65,7 +66,7 @@ class Network{
                 }
     }
 
-    fun getTeam(myDb: DBHelper, userIdx:Int, context: Context, isMyTeam: Boolean) : Int{
+    fun getTeam(myDb: DBHelper, userIdx:Int, context: Context, isMyTeam: Boolean,type:Int) : Int{
 
         var URL = "http://115.68.182.229/node/team/user/$userIdx"
         val token = myDb.selectToken()
@@ -75,7 +76,8 @@ class Network{
                 .responseJson { res, req, result ->
                     result.fold(success = {json ->
                         val teamJson = JSONObject(json.content)
-                        if (teamJson.getInt("Code") >=202 ){
+                        println(req)
+                        if (teamJson.getInt("Code") >= 202 ){
                             if (isMyTeam)
                                 (context as LoginActivity).notifyFinish(10000)
                         }else{
@@ -94,9 +96,11 @@ class Network{
 
                             code = teamJson.getInt("Code")
 
-                            if (isMyTeam)
+                            if (type == 1){
+                                (context as MakeTeamActivity).notifyFinish(code)
+                            }else {
                                 (context as LoginActivity).notifyFinish(code)
-
+                            }
                         }
                     }, failure = {
                         Log.e("a","A")
@@ -106,7 +110,7 @@ class Network{
         return code
     }
 
-    fun getTeamMember(teamId:Int ,myDb: DBHelper, context: Context) : Int{
+    fun getTeamMember(teamId:Int ,myDb: DBHelper, context: Context, type: Int) : Int{
 
         var URL = "http://115.68.182.229/node/team/member/$teamId"
 
@@ -123,7 +127,11 @@ class Network{
 
                             code = teamMemberJson.getInt("Code")
 
-//                            (context as DetailTeamActivity).notifyFinish(teamMemberJson.getLong("Code"))
+                        if(type == 1){
+                            (context as MakeTeamActivity).notifyFinish()
+                        }else if(type == 2){
+                            (context as DetailTeamActivity).notifyFinish()
+                        }
                     }, failure = {
                     })
                 }
@@ -158,42 +166,33 @@ class Network{
 
     fun signUpNt(user: User){
         val URL = "http://115.68.182.229/go/user/signup"
+
+        val json = Gson().toJson(user)
         URL.httpPost()
                 .header(Pair("Content-Type", "application/json"))
-                .body(Gson().toJson(user))
+                .body(json)
                 .responseObject(User.Deserializer()) { request, response, result ->
                     println(response.toString())
                     println(request.toString())
                 }
     }
 
-    fun teamRegistration(team:Team,teamLeaberFiled:String,myDb:DBHelper){
+    fun teamRegistration(team:Team,myDb:DBHelper, context: Context){
 
         val URL = "http://115.68.182.229/node/team"
 
         val json = Gson().toJson(team)
 
         URL.httpPost()
-                .header("Content-Type" to "application/json")
-                .body(Gson().toJson(json), Charsets.UTF_8)
+                .header("Content-Type" to "application/json", "Authorization" to myDb.selectToken())
+                .body(json, Charsets.UTF_8)
                 .responseJson { _, _, result ->
                     when(result){
                         is Result.Success ->{
-                            val loginJson = JSONObject(result.get().content)
-                            val json = loginJson.getJSONObject("Data")
-                            val token = loginJson.getString("Token").toString()
+                            val json = JSONObject(result.get().content)
+                            val data = json.getJSONObject("Data")
 
-                            Log.e("a",token)
-
-                            val user = Gson().fromJson(json.toString(), User::class.java)
-
-                            user.isMe = 1
-
-                            myDb.insertToken(token)
-
-                            myDb.insertUser(user)
-
-//                            (context as LoginActivity).notifyFinish(loginJson.getLong("Code"))
+                            (context as MakeTeamActivity).notifyFinish(data.getLong("id"))
                         }
                         is Result.Failure ->{
                             Log.e("a","a")
@@ -263,6 +262,32 @@ class Network{
                     }, failure = {
 
                     })
+                }
+    }
+
+    fun addTeamMember(teamMember: TeamMember,myDb:DBHelper, context: Context){
+
+        val URL = "http://115.68.182.229/node/team/join"
+
+        val json = Gson().toJson(teamMember)
+
+        URL.httpPost()
+                .header("Content-Type" to "application/json", "Authorization" to myDb.selectToken())
+                .body(json, Charsets.UTF_8)
+                .responseJson { _, res, result ->
+                    when(result){
+                        is Result.Success ->{
+                            println(res)
+//                            val data = json.getJSONObject("Data")
+
+//                            (context as MakeTeamActivity).notifyFinish(data.getLong("id"))
+                        }
+                        is Result.Failure ->{
+                            Log.e("a","a")
+                        }
+
+                    }
+                    println("==========================================================================")
                 }
     }
 

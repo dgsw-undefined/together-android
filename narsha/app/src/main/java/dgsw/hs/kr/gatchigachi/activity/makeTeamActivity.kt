@@ -12,10 +12,16 @@ import dgsw.hs.kr.gatchigachi.R
 import dgsw.hs.kr.gatchigachi.activity.MainActivity
 import dgsw.hs.kr.gatchigachi.database.DBHelper
 import dgsw.hs.kr.gatchigachi.model.Team
+import dgsw.hs.kr.gatchigachi.network.Network
 import kotlinx.android.synthetic.main.activity_make_team.*
 import java.util.ArrayList
 
 class MakeTeamActivity : AppCompatActivity() {
+
+    lateinit var myDb : DBHelper
+    val network = Network()
+    var teamId = 0
+
 
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,14 +29,31 @@ class MakeTeamActivity : AppCompatActivity() {
         requestedOrientation = (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         setContentView(R.layout.activity_make_team)
 
-        val myDb = DBHelper(this)
+        myDb = DBHelper(this)
         var list_of_items = arrayOf("2","3","4","5","6","7","8")
         btn_make_do_make_team.setOnClickListener {
-            val teamName = edit_make_teamName.toString()
-            val area = edit_make_field.toString()
+            val teamName = edit_make_teamName.text.toString()
+            val area = edit_make_field.text.toString()
             val teamMemberLimit = member_limit.selectedItem.toString().toInt()
-            val teamSubject = edit_make_subject.toString()
+            val teamSubject = edit_make_subject.text.toString()
             val teamLeaderField = myDb.selectMyInfo()!!.field
+            val teamDocs = edit_docs.text.toString()
+
+            val team = Team(
+                    null,
+                    teamName,
+                    teamSubject,
+                    area,
+                    teamDocs,
+                    myDb.selectMyInfo()!!.idx!!.toInt(),
+                    null,
+                    teamMemberLimit,
+                    null
+            )
+
+            team.field = teamLeaderField
+
+            network.teamRegistration(team,myDb,this)
         }
 
         val aa = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list_of_items)
@@ -47,4 +70,21 @@ class MakeTeamActivity : AppCompatActivity() {
         edit_make_subject.setText(null)
         edit_make_teamName.setText(null)
     }
+
+    fun notifyFinish(id: Long) {
+        teamId = id.toInt()
+        network.getTeam(myDb,myDb.selectMyInfo()!!.idx!!.toInt(),this,true,1)
+    }
+
+    fun notifyFinish(id: Int) {
+        network.getTeamMember(teamId,myDb,this,1)
+    }
+
+    fun notifyFinish(){
+        val intent = Intent(this, DetailTeamActivity::class.java)
+        intent.putExtra("teamId",teamId)
+        startActivity(intent)
+        finish()
+    }
+
 }

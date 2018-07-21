@@ -29,22 +29,24 @@ class Sign4Activity :AppCompatActivity() {
         val intent = intent
         myDb = DBHelper(this)
 
-        val id : String = intent.getStringExtra("id")
-        val pw : String = intent.getStringExtra("pw")
-        val name : String = intent.getStringExtra("name")
-        val phone : String = intent.getStringExtra("phone")
-        val email : String = intent.getStringExtra("email")
-        val tec : String = intent.getStringExtra("tec")
-        val inter : String = intent.getStringExtra("interested")
-        val github : String = edit_sign4_github.text.toString()
-        val field : String = edit_sign4_field.text.toString()
-        val position : String = intent.getStringExtra("position")
-        val profile = "null"
+
 
         btn_sign4_sign.setOnClickListener {
 
+            val id : String = intent.getStringExtra("id")
+            val pw : String = intent.getStringExtra("pw")
+            val name : String = intent.getStringExtra("name")
+            val phone : String = intent.getStringExtra("phone")
+            val email : String = intent.getStringExtra("email")
+            val tec : String = intent.getStringExtra("tec")
+            val inter : String = intent.getStringExtra("interested")
+            val github : String = edit_sign4_github.text.toString()
+            val field : String = edit_sign4_field.text.toString()
+            val position : String = intent.getStringExtra("position")
+            val profile = "null"
+
             val tecArray = tec.split(" ".toRegex())
-            val user = User(null,id,name,pw,email,inter,github,field,profile,tecArray,position,phone)
+            val user = User(null,id,name,pw,email,inter,github,profile,field,tecArray,position,phone)
 
             network.signUpNt(user)
 

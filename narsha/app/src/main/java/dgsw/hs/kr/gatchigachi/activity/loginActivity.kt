@@ -42,7 +42,6 @@ class LoginActivity : AppCompatActivity() {
         myDb = DBHelper(this)
         val user = myDb.selectMyInfo()
 
-
         requestedOrientation = (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         setContentView(R.layout.activity_login)
 
@@ -77,10 +76,13 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    fun notifyFinish(code :Long){
-        this.code = code.toInt()
-        userIdx = myDb.selectMyInfo()!!.idx!!.toInt()
-        network.getTeam(myDb,userIdx,this,true)
+    fun notifyFinish(userIdx :Long){
+        if (userIdx.toInt() == 100){
+            network.getTeam(myDb, this.userIdx,this,true,0)
+            return
+        }
+        this.userIdx = userIdx.toInt()
+        network.getTeam(myDb,userIdx.toInt(),this,true,0)
     }
 
     fun notifyFinish(code:Int){
@@ -91,13 +93,14 @@ class LoginActivity : AppCompatActivity() {
         network.getUserList(myDb)
         nextIntent.putExtra("userIdx", userIdx)
         startActivity(nextIntent)
+        finish()
     }
 
     fun check(id: String, pw: String): Int {
 
         if (id.isEmpty()) {
             Toast.makeText(this, "ID를 입력하세요", Toast.LENGTH_SHORT).show()
-            edit_login_id.requestFocus();
+            edit_login_id.requestFocus()
             return -1
         }
 
