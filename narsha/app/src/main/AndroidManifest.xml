@@ -9,14 +9,15 @@
         android:icon="@mipmap/app_logo_fore"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/app_logo_fore"
-        android:usesCleartextTraffic="true"
-        android:supportsRtl="true">
+        android:supportsRtl="true"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".activity.SplashActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -49,11 +50,11 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.AlarmActivity"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppTheme" />
-
+        <activity android:name=".activity.AddTeamMemberActivity"></activity>
     </application>
 
 </manifest>

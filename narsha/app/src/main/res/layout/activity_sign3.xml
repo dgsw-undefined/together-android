@@ -20,6 +20,7 @@
         android:ems="10"
         android:hint="Tec"
         android:maxLines="1"
+        android:textColor="#ffffff"
         android:maxLength="20"
         android:inputType="textPersonName"
         android:textColorHint="#ffffff"

@@ -49,7 +49,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageButton
-                    android:id="@+id/btn_back_detail_team"
+                    android:id="@+id/btn_add_member_team"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
@@ -57,10 +57,11 @@
                     android:layout_marginTop="8dp"
                     android:background="#00000000"
                     android:tint="#ffffff"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@android:drawable/ic_delete" />
+                    app:srcCompat="@drawable/ic_add_white_40dp" />
             </android.support.constraint.ConstraintLayout>
 
             <TextView
@@ -160,12 +161,13 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/team_date">
+                app:layout_constraintTop_toBottomOf="@+id/now_limit">
 
             </ListView>
 
             <Button
                 android:id="@+id/regist_team"
+                android:visibility="invisible"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginBottom="8dp"
@@ -179,15 +181,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/team_member_list" />
-
-            <TextView
-                android:id="@+id/team_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="팀 생성 날짜"
-                app:layout_constraintEnd_toEndOf="@+id/now_limit"
-                app:layout_constraintTop_toBottomOf="@+id/now_limit" />
 
         </android.support.constraint.ConstraintLayout>
 
