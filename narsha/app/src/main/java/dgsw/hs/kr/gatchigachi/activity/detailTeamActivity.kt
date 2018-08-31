@@ -3,6 +3,8 @@ package dgsw.hs.kr.gatchigachi
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.graphics.drawable.ShapeDrawable
+import android.graphics.drawable.shapes.OvalShape
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -42,10 +44,13 @@ class DetailTeamActivity : AppCompatActivity() {
         team = myDb.selectTeamById(teamId)!!
         val myInfo = myDb.selectMyInfo()!!
 
-        team_field_detail.text = team.area
+        team_field_detail.text = team.area+" & "
         team_name_detail.text = team!!.name
         team_subject_detail.text = team!!.subject
         team_docs_detail.text = team!!.docs
+
+        team_image.background = ShapeDrawable(OvalShape());
+        team_image.clipToOutline = true;
 
         now_limit.text = "${team!!.member_count}/${team!!.member_limit}"
 

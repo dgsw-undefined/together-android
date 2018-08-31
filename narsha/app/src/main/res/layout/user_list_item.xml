@@ -44,7 +44,7 @@
         android:layout_marginBottom="20dp"
         android:layout_marginEnd="8dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/accent_stroke"
+        android:background="@drawable/white_radius"
         android:text="Trust"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"

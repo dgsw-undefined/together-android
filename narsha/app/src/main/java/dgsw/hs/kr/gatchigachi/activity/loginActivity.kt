@@ -39,6 +39,7 @@ class LoginActivity : AppCompatActivity() {
 
         nextIntent = Intent(this, MainActivity::class.java)
 
+
         myDb = DBHelper(this)
         val user = myDb.selectMyInfo()
 
