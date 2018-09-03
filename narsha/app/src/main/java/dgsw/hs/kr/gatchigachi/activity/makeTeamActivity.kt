@@ -3,6 +3,8 @@ package dgsw.hs.kr.gatchigachi
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.graphics.drawable.ShapeDrawable
+import android.graphics.drawable.shapes.OvalShape
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -13,6 +15,7 @@ import dgsw.hs.kr.gatchigachi.activity.MainActivity
 import dgsw.hs.kr.gatchigachi.database.DBHelper
 import dgsw.hs.kr.gatchigachi.model.Team
 import dgsw.hs.kr.gatchigachi.network.Network
+import kotlinx.android.synthetic.main.activity_detail_team.*
 import kotlinx.android.synthetic.main.activity_make_team.*
 import java.util.ArrayList
 
@@ -28,6 +31,9 @@ class MakeTeamActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         requestedOrientation = (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         setContentView(R.layout.activity_make_team)
+
+        team_image_make.background = ShapeDrawable(OvalShape());
+        team_image_make.clipToOutline = true;
 
         myDb = DBHelper(this)
         var list_of_items = arrayOf("2","3","4","5","6","7","8")
