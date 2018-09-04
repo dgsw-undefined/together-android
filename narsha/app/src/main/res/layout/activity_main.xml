@@ -8,13 +8,14 @@
     android:fitsSystemWindows="true"
     android:focusable="true"
     android:focusableInTouchMode="true"
+    tools:layout_editor_absoluteY="25dp"
     tools:openDrawer="start">
 
 
     <ScrollView
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="659dp"
+        android:background="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -23,191 +24,169 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <android.support.constraint.ConstraintLayout
-                android:id="@+id/constraintLayout10"
+            <Button
+                android:id="@+id/btn_do_trust"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:layout_constraintDimensionRatio="1.22:1"
+                android:layout_marginEnd="48dp"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/long_button_radius"
+                android:text="Trust / 정보수정"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintDimensionRatio="9:1"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/user_name"
+                app:layout_constraintTop_toBottomOf="@+id/trust_count" />
+
+            <ImageButton
+                android:id="@+id/to_search"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:background="#00000000"
+                android:tint="#ffffff"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_search_black_24dp" />
 
-                <ImageView
-                    android:id="@+id/user_profile_main"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:contentDescription="profile"
-                    app:layout_constraintStart_toStartOf="parent"
-                    />
+            <GridView
+                android:id="@+id/team_grid_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:numColumns="3"
+                app:layout_constraintDimensionRatio="1.4:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
-                <android.support.constraint.ConstraintLayout
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:background="@mipmap/splash_image2"
-                    app:layout_constraintDimensionRatio="1.5:1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+            <Button
+                android:id="@+id/log_out"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/primary_radius"
+                android:text="Log out"
+                android:textColor="#ffffff"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="10:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/team_grid_view" />
 
-                    <LinearLayout
-                        android:id="@+id/linearLayout7"
-                        android:layout_width="180dp"
-                        android:layout_height="100dp"
-                        android:background="@drawable/profile_radius"
-                        android:orientation="vertical"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintDimensionRatio="h,"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"></LinearLayout>
+            <ImageButton
+                android:id="@+id/add_team"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="12dp"
+                android:background="#00000000"
+                android:tint="#ffffff"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_add_white_40dp" />
 
-                    <TextView
-                        android:id="@+id/textView16"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:text="Trust"
-                        android:textColor="#fafafa"
-                        android:textSize="18sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/linearLayout7"
-                        app:layout_constraintStart_toStartOf="parent" />
+            <ImageView
+                android:id="@+id/user_profile_main"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_marginTop="16dp"
+                android:contentDescription="profile"
+                app:layout_constraintStart_toStartOf="@+id/to_search"
+                app:layout_constraintTop_toBottomOf="@+id/to_search" />
 
-                    <Button
-                        android:id="@+id/trust_count"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:background="#00000000"
-                        android:text="138"
-                        android:textColor="#fafafa"
-                        android:textSize="28sp"
-                        app:layout_constraintBottom_toTopOf="@+id/textView16"
-                        app:layout_constraintEnd_toStartOf="@+id/linearLayout7"
-                        app:layout_constraintStart_toStartOf="parent" />
+            <Button
+                android:id="@+id/trust_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00000000"
+                android:text="138"
+                android:textColor="#fafafa"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/textView16"
+                app:layout_constraintStart_toStartOf="@+id/textView16"
+                app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
-                    <TextView
-                        android:id="@+id/textView18"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:text="Truster"
-                        android:textColor="#fafafa"
-                        android:textSize="18sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/linearLayout7" />
+            <Button
+                android:id="@+id/truster_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00000000"
+                android:text="188"
+                android:textColor="#fafafa"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/textView18"
+                app:layout_constraintStart_toStartOf="@+id/textView18"
+                app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
-                    <Button
-                        android:id="@+id/truster_count"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:background="#00000000"
-                        android:text="188"
-                        android:textColor="#fafafa"
-                        android:textSize="28sp"
-                        app:layout_constraintBottom_toTopOf="@+id/textView18"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/linearLayout7" />
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Trust"
+                android:textColor="#fafafa"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toStartOf="@+id/textView18"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/user_profile_main"
+                app:layout_constraintTop_toTopOf="@+id/user_profile_main" />
 
-                    <TextView
-                        android:id="@+id/user_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:text="KimGun"
-                        android:textAlignment="center"
-                        android:textColor="#fafafa"
-                        android:textSize="30sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="Truster"
+                android:textColor="#fafafa"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/textView16"
+                app:layout_constraintTop_toTopOf="@+id/textView16" />
 
-                    <TextView
-                        android:id="@+id/user_position"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:text="Client-Developer"
-                        android:textAlignment="center"
-                        android:textColor="#fafafa"
-                        android:textSize="14sp"
-                        app:layout_constraintEnd_toEndOf="@+id/user_name"
-                        app:layout_constraintStart_toStartOf="@+id/user_name"
-                        app:layout_constraintTop_toBottomOf="@+id/user_name" />
-
-                    <Button
-                        android:id="@+id/btn_do_trust"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_marginEnd="100dp"
-                        android:layout_marginStart="100dp"
-                        android:layout_marginTop="8dp"
-                        android:background="@drawable/long_button_radius"
-                        android:text="Trust / 정보수정"
-                        app:layout_constraintDimensionRatio="6:1"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/user_position" />
-
-                    <ImageButton
-                        android:id="@+id/add_team"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginTop="12dp"
-                        android:background="#00000000"
-                        android:tint="#ffffff"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_add_white_40dp" />
-
-                    <ImageButton
-                        android:id="@+id/to_search"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="12dp"
-                        android:background="#00000000"
-                        android:tint="#ffffff"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_search_black_24dp" />
-
-                </android.support.constraint.ConstraintLayout>
-
-            </android.support.constraint.ConstraintLayout>
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="KimGun"
+                android:textAlignment="center"
+                android:textColor="#fafafa"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_do_trust"
+                app:layout_constraintEnd_toEndOf="@+id/user_profile_main"
+                app:layout_constraintStart_toStartOf="@+id/user_profile_main"
+                app:layout_constraintTop_toBottomOf="@+id/user_profile_main" />
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraintLayout5"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintDimensionRatio="2:1"
+                app:layout_constraintDimensionRatio="2.1:1"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout10">
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
 
                 <TextView
                     android:id="@+id/textView20"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
                     android:text="정보"
-                    android:textColor="#000000"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp"
+                    android:textStyle="normal"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -215,34 +194,19 @@
                     android:id="@+id/textView22"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginTop="8dp"
                     android:text="Phone : "
-                    android:textColor="#000000"
+                    android:textColor="#ffffff"
                     android:textSize="16sp"
-                    app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
+                    app:layout_constraintBottom_toTopOf="@+id/user_position"
                     app:layout_constraintStart_toStartOf="@+id/textView23"
                     app:layout_constraintTop_toBottomOf="@+id/textView23" />
-
-                <LinearLayout
-                    android:id="@+id/linearLayout6"
-                    android:layout_width="0dp"
-                    android:layout_height="2dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="64dp"
-                    android:background="@color/colorAccent"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toTopOf="@+id/textView17"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/textView17"></LinearLayout>
 
                 <TextView
                     android:id="@+id/textView23"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
                     android:text="Github : "
-                    android:textColor="#000000"
+                    android:textColor="#ffffff"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@+id/textView22"
                     app:layout_constraintStart_toStartOf="@+id/textView24"
@@ -252,9 +216,9 @@
                     android:id="@+id/textView24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
                     android:text="Mail : "
-                    android:textColor="#000000"
+                    android:textColor="#ffffff"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@+id/textView23"
                     app:layout_constraintStart_toStartOf="@+id/textView20"
@@ -267,7 +231,7 @@
                     android:layout_marginBottom="8dp"
                     android:layout_marginStart="8dp"
                     android:text="rlarjs2020@dgsw.hs.kr"
-                    android:textColor="#000000"
+                    android:textColor="#ffffff"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/textView24"
                     app:layout_constraintStart_toEndOf="@+id/textView24"
@@ -281,7 +245,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="github.com/kkimgun"
-                    android:textColor="#000000"
+                    android:textColor="#ffffff"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/textView23"
                     app:layout_constraintStart_toEndOf="@+id/textView23"
@@ -295,7 +259,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="010-6335-8449"
-                    android:textColor="#000000"
+                    android:textColor="#ffffff"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/textView22"
                     app:layout_constraintStart_toEndOf="@+id/textView22"
@@ -303,45 +267,53 @@
                     app:layout_constraintVertical_bias="0.8" />
 
                 <TextView
-                    android:id="@+id/textView17"
+                    android:id="@+id/user_position"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:layout_marginStart="32dp"
-                    android:text="소속 팀"
-                    android:textColor="#000000"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
+                    android:text="Client-Developer"
+                    android:textAlignment="center"
+                    android:textColor="#fafafa"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView22"
+                    tools:layout_editor_absoluteX="32dp" />
 
             </android.support.constraint.ConstraintLayout>
 
-            <GridView
-                android:id="@+id/team_grid_view"
+            <LinearLayout
+                android:id="@+id/linearLayout5"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:numColumns="3"
-                app:layout_constraintDimensionRatio="1.4:1"
+                android:layout_height="2dp"
+                android:layout_marginTop="12dp"
+                android:background="#60ffffff"
+                android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout5" />
+                app:layout_constraintTop_toBottomOf="@+id/btn_do_trust"></LinearLayout>
 
-            <Button
-                android:id="@+id/log_out"
+            <LinearLayout
+                android:id="@+id/linearLayout6"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/white_radius"
-                android:text="Log out"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintDimensionRatio="10:1"
+                android:layout_height="2dp"
+                android:background="#60ffffff"
+                android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/team_grid_view" />
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout5"></LinearLayout>
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:text="소속 팀 목록"
+                android:textColor="#ffffff"
+                android:textSize="18sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
 
         </android.support.constraint.ConstraintLayout>
 

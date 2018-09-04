@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/btn_team_detail"
     android:layout_width="180dp"
-    android:layout_height="170dp">
+    android:layout_height="170dp"
+    android:background="#ffffff">
 
     <TextView
         android:id="@+id/team_name"
@@ -15,7 +16,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="팀 이름"
-        android:textColor="#000000"
+        android:textColor="@color/colorPrimary"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,7 +30,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/primary_radius"
+        android:background="#00000000"
         app:layout_constraintDimensionRatio="1:0.75"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,10 +40,10 @@
             android:id="@+id/team_image"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="2dp"
-            android:layout_marginEnd="2dp"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="2dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

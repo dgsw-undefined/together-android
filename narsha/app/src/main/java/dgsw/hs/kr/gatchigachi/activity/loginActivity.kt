@@ -38,7 +38,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         nextIntent = Intent(this, MainActivity::class.java)
-
+        btn_login_do_login.bringToFront()
+        btn_login_to_sign.bringToFront()
 
         myDb = DBHelper(this)
         val user = myDb.selectMyInfo()
@@ -59,6 +60,8 @@ class LoginActivity : AppCompatActivity() {
             startActivity(nextIntent)
 
         }
+
+
 
         btn_login_do_login.setOnClickListener {
 

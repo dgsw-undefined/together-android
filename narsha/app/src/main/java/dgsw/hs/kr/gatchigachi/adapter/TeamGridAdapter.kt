@@ -2,6 +2,8 @@ package dgsw.hs.kr.gatchigachi.adapter
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.ShapeDrawable
+import android.graphics.drawable.shapes.OvalShape
 import android.support.v4.content.ContextCompat.startActivity
 import android.util.Log
 import android.view.LayoutInflater
@@ -52,6 +54,9 @@ class TeamGridAdapter (val context: Context, val teamData: ArrayList<Team>) : Ba
             nextIntent.putExtra("teamId", team.id)
             context.startActivity(nextIntent)
         }
+
+        teamView.team_image.background =  ShapeDrawable(OvalShape())
+        teamView.team_image.clipToOutline = true
 
         return teamView
     }

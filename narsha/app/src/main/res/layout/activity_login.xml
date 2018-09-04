@@ -138,63 +138,61 @@
 
     </android.support.constraint.ConstraintLayout>
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/bottom_const_login"
+    <Button
+        android:id="@+id/btn_login_do_login"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:adjustViewBounds="true"
-        android:background="#ffffff"
+        android:layout_marginEnd="120dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/primary_radius"
+        android:text="Login"
+        android:textAlignment="center"
+        android:textColor="#80ffffff"
+        app:layout_constraintDimensionRatio="4:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+    <Button
+        android:id="@+id/btn_login_to_sign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:layout_marginStart="24dp"
+        android:background="#00000000"
+        android:text="Sign Up"
+        android:textColor="#293b72"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="2.3:1"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="3dp"
+        android:adjustViewBounds="true"
+        android:padding="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/top_const_login">
+        app:layout_constraintTop_toBottomOf="@+id/top_const_login"
+        app:srcCompat="@mipmap/background_f" />
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:adjustViewBounds="true"
-            android:padding="0dp"
-            android:scaleType="fitXY"
-            app:layout_constraintDimensionRatio="2.4:1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@mipmap/background_f" />
-
-        <Button
-            android:id="@+id/btn_login_do_login"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginEnd="120dp"
-            android:layout_marginStart="120dp"
-            android:layout_marginTop="24dp"
-            android:background="@drawable/primary_radius"
-            android:text="Login"
-            android:textAlignment="center"
-            android:textColor="#80ffffff"
-            app:layout_constraintDimensionRatio="4:1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/btn_login_to_sign"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginStart="20dp"
-            android:background="#00000000"
-            android:text="Sign Up"
-            android:textColor="#293b72"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="0dp"
+        android:layout_height="5dp"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top_const_login"></LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
 
