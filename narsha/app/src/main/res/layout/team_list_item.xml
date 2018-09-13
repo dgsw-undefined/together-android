@@ -5,7 +5,7 @@
     android:id="@+id/btn_team_detail"
     android:layout_width="180dp"
     android:layout_height="170dp"
-    android:background="#ffffff">
+    android:background="#00000000">
 
     <TextView
         android:id="@+id/team_name"
@@ -16,7 +16,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="팀 이름"
-        android:textColor="@color/colorPrimary"
+        android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
