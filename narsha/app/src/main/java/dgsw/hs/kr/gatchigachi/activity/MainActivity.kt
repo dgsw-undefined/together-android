@@ -43,13 +43,13 @@ class MainActivity : AppCompatActivity() {
 
         if(myDb.selectMyInfo()!!.idx == userIdx.toLong()){
             user = myDb.selectMyInfo()
+            user = myDb.selectUserById(userIdx)
             val teams = myDb.selectAllMyTeam()
             Log.e("teams",teams.toString())
             btn_do_trust.text = "정보수정"
+            log_out.visibility = View.VISIBLE
             setView(teams)
         }
-
-
     }
 
     @SuppressLint("WrongConstant")
@@ -69,6 +69,7 @@ class MainActivity : AppCompatActivity() {
             val teams = myDb.selectAllMyTeam()
             Log.e("teams",teams.toString())
             btn_do_trust.text = "정보수정"
+            log_out.visibility = View.VISIBLE
             setView(teams)
         }else{
             user = myDb.selectUserById(userIdx)

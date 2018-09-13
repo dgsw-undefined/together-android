@@ -32,8 +32,7 @@ class MakeTeamActivity : AppCompatActivity() {
         requestedOrientation = (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         setContentView(R.layout.activity_make_team)
 
-        team_image_make.background = ShapeDrawable(OvalShape());
-        team_image_make.clipToOutline = true;
+
 
         myDb = DBHelper(this)
         var list_of_items = arrayOf("2","3","4","5","6","7","8")

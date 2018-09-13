@@ -1,5 +1,6 @@
 package dgsw.hs.kr.gatchigachi.activity
 
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +8,7 @@ import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.SearchView
+import android.widget.Toast
 import dgsw.hs.kr.gatchigachi.DataService
 import dgsw.hs.kr.gatchigachi.R
 import dgsw.hs.kr.gatchigachi.adapter.BestTrusterAdapter
@@ -79,6 +81,26 @@ class LookForActivity : AppCompatActivity() {
         search_lookfor.isIconified = false
         search_lookfor.clearFocus()
 
+
+        btn_search_cancel.setOnClickListener {
+            if(grid_search_result.visibility == View.VISIBLE){
+                grid_search_result.visibility = View.INVISIBLE
+                list_search_result.visibility = View.VISIBLE
+                list_search_result.startAnimation(list)
+
+                list_search_result.adapter = searchPerson
+            }
+            else if(list_search_result.visibility == View.VISIBLE){
+                list_search_result.visibility = View.INVISIBLE
+                grid_search_result.visibility = View.VISIBLE
+                grid_search_result.startAnimation(list)
+
+                grid_search_result.adapter = searchTeam
+            }else{
+                Toast.makeText(this, "ID를 입력하세요", Toast.LENGTH_SHORT).show()
+            }
+
+        }
 
         search_lookfor.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 

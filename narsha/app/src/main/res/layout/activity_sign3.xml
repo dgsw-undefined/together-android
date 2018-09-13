@@ -86,7 +86,7 @@
     <Button
         android:id="@+id/btn_sign3_to_sign4"
         android:layout_width="0dp"
-        android:layout_height="27dp"
+        android:layout_height="0dp"
         android:layout_marginStart="120dp"
         android:background="@drawable/small_button_radius"
         android:elevation="0dp"

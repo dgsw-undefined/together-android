@@ -52,7 +52,6 @@ class LoginActivity : AppCompatActivity() {
         }
 
         btn_login_to_sign.setOnClickListener {
-
             val nextIntent = Intent(this, SignActivity::class.java)
             val animation = AnimationUtils.loadAnimation(this, R.anim.button_anim)
             btn_login_to_sign.startAnimation(animation)
