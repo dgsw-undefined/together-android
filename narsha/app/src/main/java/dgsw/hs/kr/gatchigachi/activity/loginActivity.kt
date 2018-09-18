@@ -93,7 +93,7 @@ class LoginActivity : AppCompatActivity() {
         }
         network.getTeamList(myDb)
         network.getUserList(myDb)
-        nextIntent.putExtra("userIdx",. userIdx)
+        nextIntent.putExtra("userIdx", userIdx)
         startActivity(nextIntent)
         finish()
     }

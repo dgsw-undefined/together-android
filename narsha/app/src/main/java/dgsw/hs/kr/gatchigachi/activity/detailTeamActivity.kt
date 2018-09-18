@@ -49,7 +49,7 @@ class DetailTeamActivity : AppCompatActivity() {
         team_subject_detail.text = team!!.subject
         team_docs_detail.text = team!!.docs
 
-         team_image .background = ShapeDrawable(OvalShape());
+        team_image .background = ShapeDrawable(OvalShape());
         team_image.clipToOutline = true;
 
         now_limit.text = "${team!!.member_count}/${team!!.member_limit}"
