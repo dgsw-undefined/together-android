@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
+import android.widget.Filter
 import android.widget.SearchView
 import android.widget.Toast
 import dgsw.hs.kr.gatchigachi.DataService
@@ -49,7 +50,7 @@ class LookForActivity : AppCompatActivity() {
 
         val list = AnimationUtils.loadAnimation(this, R.anim.search_list)
 
-        val searchTeam = TeamGridAdapter(this, teams)
+        var searchTeam = TeamGridAdapter(this, teams)
 
         grid_search_result.visibility = View.INVISIBLE
         list_search_result.startAnimation(list)
@@ -62,6 +63,7 @@ class LookForActivity : AppCompatActivity() {
             list_search_result.startAnimation(list)
 
             list_search_result.adapter = searchPerson
+            search_lookfor.setQuery("",true)
 
         }
 
@@ -72,6 +74,7 @@ class LookForActivity : AppCompatActivity() {
             grid_search_result.startAnimation(list)
 
             grid_search_result.adapter = searchTeam
+            search_lookfor.setQuery("",true)
 
         }
 
@@ -88,14 +91,14 @@ class LookForActivity : AppCompatActivity() {
                 list_search_result.visibility = View.VISIBLE
                 list_search_result.startAnimation(list)
 
-                list_search_result.adapter = searchPerson
+                list_search_result.adapter = searchTeam
             }
             else if(list_search_result.visibility == View.VISIBLE){
                 list_search_result.visibility = View.INVISIBLE
                 grid_search_result.visibility = View.VISIBLE
                 grid_search_result.startAnimation(list)
 
-                grid_search_result.adapter = searchTeam
+                grid_search_result.adapter = searchPerson
             }else{
                 Toast.makeText(this, "ID를 입력하세요", Toast.LENGTH_SHORT).show()
             }
@@ -105,16 +108,37 @@ class LookForActivity : AppCompatActivity() {
         search_lookfor.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextChange(newText: String): Boolean {
-                searchPerson.filter.filter(newText)
+
+                if (grid_search_result.visibility == View.VISIBLE){
+                    if (newText == ""){
+                        searchTeam.teamData = teams
+                        searchTeam.notifyDataSetChanged()
+                    }
+                    searchTeam.filter.filter(newText)
+                }else{
+                    if (newText == ""){
+                        searchPerson.userList = users
+                        searchPerson.notifyDataSetChanged()
+                    }
+                    searchPerson.filter.filter(newText)
+                }
                 return true
             }
 
             override fun onQueryTextSubmit(query: String): Boolean {
-                searchPerson.filter.filter(query)
+
+                if (grid_search_result.visibility == View.VISIBLE){
+                    searchTeam.filter.filter(query)
+                }else{
+                    searchPerson.filter.filter(query)
+                }
                 return true
             }
         })
 
+        search_lookfor.setOnCloseListener { false }
+
     }
+
 
 }

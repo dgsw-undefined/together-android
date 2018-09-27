@@ -13,16 +13,18 @@ import com.bumptech.glide.request.RequestOptions
 import dgsw.hs.kr.gatchigachi.DataService.SearchUserData
 import dgsw.hs.kr.gatchigachi.R
 import dgsw.hs.kr.gatchigachi.activity.MainActivity
+import dgsw.hs.kr.gatchigachi.database.DBHelper
 import dgsw.hs.kr.gatchigachi.model.User
 import dgsw.hs.kr.gatchigachi.model.User2
 import java.util.*
 
-class SearchPersonAdapter (val context: Context, private var userList : ArrayList<User>, val type:Int, private val teamId:Int?) : BaseAdapter(),Filterable {
+class SearchPersonAdapter (val context: Context, public var userList : ArrayList<User>, val type:Int, private val teamId:Int?) : BaseAdapter(),Filterable {
 
     var tempArrayList = ArrayList<User>()
     var tempList = ArrayList<User>()
     var valueFilter: ValueFilter? = null
-
+    var myDb = DBHelper(context)
+    var userListTemp = userList
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val resultView : View = LayoutInflater.from(context).inflate(R.layout.search_result_person, null)
@@ -78,20 +80,20 @@ class SearchPersonAdapter (val context: Context, private var userList : ArrayLis
             val results = FilterResults()
 
             if (constraint != null && constraint.length > 0) {
+                val temp = constraint.toString().toLowerCase()
                 val filterList = ArrayList<User>()
-                for (i in 0 until userList.size) {
-                    if (userList[i].name.toUpperCase()
-                                    .contains(constraint.toString().toUpperCase())) {
-
-                        val user = userList[i]
+                for (i in 0 until userListTemp.size) {
+                    val data = userListTemp.get(i).name
+                    if (data.toLowerCase().startsWith(temp.toString())) {
+                        val user = userListTemp[i]
                         filterList.add(user)
                     }
                 }
                 results.count = filterList.size
                 results.values = filterList
             } else {
-                results.count = userList.size
-                results.values = userList
+                results.count = userListTemp.size
+                results.values = userListTemp
             }
             return results
 
@@ -101,6 +103,7 @@ class SearchPersonAdapter (val context: Context, private var userList : ArrayLis
                                               results: FilterResults) {
             userList = results.values as ArrayList<User>
             notifyDataSetChanged()
+
         }
 
     }
