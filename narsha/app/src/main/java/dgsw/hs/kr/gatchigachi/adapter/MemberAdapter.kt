@@ -26,12 +26,20 @@ class MemberAdapter (val context: Context, private val teamMembers: ArrayList<Te
     val nextIntent = Intent(context, MainActivity::class.java)
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
+
         val MemberView : View = LayoutInflater.from(context).inflate(R.layout.member_list_item, null)
+
         val MemberName : TextView = MemberView.findViewById(R.id.member_name)
         val MemberPosition : TextView = MemberView.findViewById(R.id.member_position)
         val Date : TextView = MemberView.findViewById(R.id.member_sign_date)
+
+        Alram alram = alramList.get(position);
+
+        alram
+
         val Member = teamMembers[position]
         val MemberProfile : ImageView = MemberView.findViewById(R.id.user_profile_member)
+
 
         Glide.with(MemberView)
                 .load(myDb.selectUserById(Member.user_id!!.toInt())!!.profile)
@@ -50,10 +58,14 @@ class MemberAdapter (val context: Context, private val teamMembers: ArrayList<Te
 
         Date.text = Member.enroll_date
 
+        TextView.setText();
+
         MemberView.setOnClickListener {
             nextIntent.putExtra("userIdx", Member.user_id!!.toInt())
             context.startActivity(nextIntent)
         }
+
+
 
         return MemberView
     }

@@ -10,7 +10,7 @@ import dgsw.hs.kr.gatchigachi.LoginActivity
 import dgsw.hs.kr.gatchigachi.R
 import kotlinx.android.synthetic.main.activity_splash.*
 import android.support.v4.content.ContextCompat.startActivity
-
+import dgsw.hs.kr.gatchigachi.R.id.splash_video
 
 
 class SplashActivity : AppCompatActivity() {
